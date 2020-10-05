@@ -1,0 +1,42 @@
+footer ul li{
+    padding:5px 0px;
+}
+
+.about-us span , .contact span , .info span{
+   color: #FFF;
+   font-weight: 800;
+   padding-bottom: 10px;
+   margin-bottom: 20px;
+   display: block;
+   text-transform: uppercase;
+   font-size: 20px;
+   letter-spacing: 3px;
+}
+
+.about-us li p , .contact li a , .info li a{
+    color:#FFF;
+    letter-spacing: 2px;
+    text-decoration:none;
+    font-size:15px;
+}
+
+.info li{
+    float:left;
+}
+
+.about-us , .contact , .info {
+    list-style: none;
+    margin-top: 30px;
+}
+
+.contact, .info{
+  margin-top: 80px;
+}
+
+.contacto {
+  margin-top:50px;
+}
+
+.SocialImg{
+  width: 50px;
+}
