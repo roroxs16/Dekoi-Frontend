@@ -20,6 +20,8 @@ import { FormularioProductosComponent } from './components/productos/formulario-
 import { VerProductoComponent } from './components/productos/ver-producto.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { SubirFotoComponent } from './components/subir-foto/subir-foto.component';
+import { ComprasComponent } from './components/compras/compras.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
 
 
 const routes : Routes =[
@@ -42,7 +44,9 @@ const routes : Routes =[
     FormularioProductosComponent,
     VerProductoComponent,
     PaginatorComponent,
-    SubirFotoComponent
+    SubirFotoComponent,
+    ComprasComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,

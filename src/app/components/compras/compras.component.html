@@ -1,0 +1,13 @@
+<h2 class="text-center">Compra</h2>
+<ul>
+    <li *ngFor="let compra of compras.ProductoCompras">
+        {{ compra.producto.nombre }} - ${{ compra.producto.valorUnitario }} x {{ compra.cantidad}} pcs.
+    </li>
+</ul>
+<h3 class="text-right">Valor total: ${{ total }}</h3>
+
+<button class="btn btn-primary btn-block" (click)="pagar()" *ngIf="!pagado">Pay</button>
+
+<div class="alert alert-success" role="alert" *ngIf="pagado">
+    <strong>Congratulation!</strong> You successfully made the order.
+</div>

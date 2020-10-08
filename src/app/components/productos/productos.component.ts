@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Producto } from '../../models/producto';
+import { ProductoCompra } from '../../models/productoCompra';
+import { ProductoCompras } from '../../models/productoCompras';
 import { Categoria } from '../../models/categoria';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import {Subscription} from "rxjs/internal/Subscription";
+
 import { ProductoService } from '../../service/producto.service';
 import { CategoriaService } from '../../service/categoria.service';
+import { CompraService } from '../../service/compra.service';
 
 import Swal from 'sweetalert2';
 
@@ -25,15 +30,26 @@ export class ProductosComponent implements OnInit {
 
   paginador: any;
 
+  productoCompra: ProductoCompra[]=[];
+
+  selectedproductoCompra: ProductoCompra;
+
+  private carritoDeCompras: ProductoCompras;
+
+  sub: Subscription;
+
+  productoSelected: boolean = false;
 
   enabled: boolean = false;
 
   constructor(private productoService: ProductoService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private categoriaService: CategoriaService) { }
+    private categoriaService: CategoriaService,
+    private compraService:CompraService) { }
 
   ngOnInit(): void {
+    this.productoCompra=[];
 
     this.activatedRoute.paramMap.subscribe(params => {
       let page: number = +params.get('page');
@@ -45,7 +61,7 @@ export class ProductosComponent implements OnInit {
       this.categoriaService.getCategoria().subscribe(response => {
         this.categorias = response;
       });
-      
+
       this.productoService.getProducto(page).subscribe(response => {
         this.productos = response.content as Producto[];
         this.paginador = response;
@@ -97,5 +113,12 @@ export class ProductosComponent implements OnInit {
     this.enabled = true;
 
   }
+
+  agregarAlCarrito(compra: ProductoCompra){
+    this.compraService.SelectedProductoCompra = compra;
+    this.selectedproductoCompra = this.compraService.SelectedProductoCompra;
+    this.productoSelected= true;
+  }
+  
 
 }

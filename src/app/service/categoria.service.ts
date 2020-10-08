@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class CategoriaService {
 
-  private urlEndPoint: string = 'http://localhost:8080/api/categoria';
+   private urlEndPoint: string = 'http://localhost:8080/api/categoria';
    private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient) { }
