@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+<<<<<<< HEAD
 import { CategoriaComponent } from './components/categoria/categoria.component';
 
 import {CategoriaService} from './service/categoria.service';
@@ -33,11 +32,14 @@ const routes : Routes =[
   {path: 'producto/formulario/:id', component:FormularioProductosComponent},
   {path: 'producto/:id', component:VerProductoComponent},
 ];
+=======
+>>>>>>> parent of 71948bf... add gestion de productos
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+<<<<<<< HEAD
     FooterComponent,
     CategoriaComponent,
     ProductosComponent,
@@ -47,16 +49,15 @@ const routes : Routes =[
     SubirFotoComponent,
     ComprasComponent,
     CarritoComponent
+=======
+    FooterComponent
+>>>>>>> parent of 71948bf... add gestion de productos
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    FontAwesomeModule,
-    FormsModule,
-    RouterModule.forRoot(routes)
-
+    FontAwesomeModule
   ],
-  providers: [CategoriaService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
