@@ -8,6 +8,8 @@
       <h1 class="my-4">Categorias</h1>
         <button type="button" class="btn btn-success my-2" [routerLink]="['/productos/formulario']" styles="margin-left: 5px;">Agregar Producto</button>
 
+        <button type="button" class="btn btn-success my-2" [routerLink]="['/categoria/formulario']" styles="margin-left: 5px;">Agregar Categoria</button>
+
       <div class="list-group">
         <a class="list-group-item" *ngFor="let categoria of categorias" (click)="mostrarProductos(categoria)" style="cursor:pointer">{{categoria.nombre}}</a>
 

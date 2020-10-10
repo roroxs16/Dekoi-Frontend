@@ -22,12 +22,15 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import { SubirFotoComponent } from './components/subir-foto/subir-foto.component';
 
 
+
+
 const routes : Routes =[
   {path: '', redirectTo: '/', pathMatch: 'full'},
   {path: 'categorias', component:CategoriaComponent},
   {path: 'productos', component:ProductosComponent},
   {path: 'productos/page/:page', component:ProductosComponent},
   {path: 'productos/formulario', component:FormularioProductosComponent},
+  {path: 'categoria/formulario', component:CategoriaComponent},
   {path: 'producto/formulario/:id', component:FormularioProductosComponent},
   {path: 'producto/:id', component:VerProductoComponent},
 ];

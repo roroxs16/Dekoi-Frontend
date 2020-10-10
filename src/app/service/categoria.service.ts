@@ -3,8 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Categoria } from '../models/categoria';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+
+
+import { Observable, of, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+
+
+
+import swal from 'sweetalert2'
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +29,15 @@ export class CategoriaService {
     //   map((response) => response as Categoria[])
     // );
   }
+
+  createCategoria(categoria: Categoria): Observable<Categoria> {
+    return this.http.post<Categoria>(this.urlEndPoint, categoria, { headers: this.httpHeaders }).pipe(
+      map((response: any) => response.categoria as Categoria),
+      catchError(e => {
+        swal.fire('Error al crear la Categoria', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    )
+  }
+
 }

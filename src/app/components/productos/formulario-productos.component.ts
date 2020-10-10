@@ -34,7 +34,7 @@ export class FormularioProductosComponent implements OnInit {
   }
 
   public crearProducto(): void{
-    console.log(this.producto)
+  
     this.productoService.createProducto(this.producto)
     .subscribe( producto => {
       this.router.navigate(['/productos'])

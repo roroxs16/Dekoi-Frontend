@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Categoria } from '../../models/categoria';
-import { Producto } from '../../models/producto';
 
 import { CategoriaService } from '../../service/categoria.service';
+
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categoria',
@@ -11,24 +15,24 @@ import { CategoriaService } from '../../service/categoria.service';
 })
 export class CategoriaComponent implements OnInit {
 
-  categorias: Categoria[];
-  productosPorCategoria: Producto[];
-  enabled:boolean=false;
-  constructor(private categoriaService: CategoriaService) { }
+  categoria: Categoria = new Categoria();
+  enabled: boolean = false;
+  constructor(private categoriaService: CategoriaService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     //  this.categoria = this.categoriaService.getCategoria();
-    this.categoriaService.getCategoria().subscribe(response => {
-      this.categorias = response;
-    });
+
 
   }
 
-  public mostrarProductos(categoria: Categoria):any{
-    this.productosPorCategoria=[];
-    this.productosPorCategoria=categoria.productos;
-    this.enabled=true;
-    
+  public crearCategoria(): void {
+    this.categoriaService.createCategoria(this.categoria).
+      subscribe(categoria => {
+        this.router.navigate(['/productos'])
+        swal.fire('Nueva categoria', `Categoria ${categoria.nombre} creada con existo!`, 'success')
+      })
   }
 
 }

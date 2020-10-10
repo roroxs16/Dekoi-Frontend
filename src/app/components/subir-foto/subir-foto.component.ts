@@ -27,7 +27,7 @@ export class SubirFotoComponent implements OnInit {
   constructor(public modalService: ModalService, private productoService: ProductoService) { }
 
   ngOnInit(): void {
-    console.log("El id es" + this.productoId);
+
   }
 
   cerrarModal() {

@@ -1,31 +1,34 @@
-<!-- 
-
-<div class="">
-  <div class="container col-md-4" style="margin-top: 30px; float:left; margin-left:120px">
-    <h3 style="margin-left:15px;">CATEGORÍAS</h3>
-    <ul class="list-group col-md-4">
-      <li style="cursor:pointer;"class="list-group-item" *ngFor="let categoria of categorias" (click)="mostrarProductos(categoria)">
-        {{ categoria.nombre }}
-      </li>
-    </ul>
-  </div>
-  <div class="card-columns" style="margin-top: 70px; float:left;">
-
-    <div class="card" *ngFor="let productos of productosPorCategoria">
-      <img src="..." class="card-img-top" alt="...">
+<div class="container">
+  <div class="card bg-dark text-white my-4">
+    <div class="card-header">Agregar Categoria</div>
       <div class="card-body">
-        <h5 class="card-title">{{productos.nombre}}</h5>
-        <p class="card-text">{{productos.descripcion}}</p>
-        <p class="card-text">{{productos.valorUnitario | currency:'CLP':'symbol-narrow'}}</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 
-          <button type="button" class="btn btn-primary">Ver más</button>
+      <form #categoriaForm="ngForm">
+        <div class="form-group row">
+          <label for="nombre" class="col-form-label col-sm-2">Nombre de la categoria</label>
+          <div class="column-sm-6">
+            <input class="form-control" type="text" name="nombre" value="" [(ngModel)]="categoria.nombre" required minlength="4" #nombre="ngModel">
+            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div *ngIf="nombre.errors.required">
+                El nombre del producto es requerido
+              </div>
+              <div *ngIf="nombre.errors.minlength">
+                El nombre del producto debe tener 4 caracteres o más
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <button type="button" class="btn btn-primary">Agregar al carrito</button>
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <button class="btn btn-primary" role="button" (click)="crearCategoria()" *ngIf="!categoria.id else elseBlock" [disabled]="!categoriaForm.form.valid">Crear Categoria</button>
 
-
-      </div>
+            <ng-template #elseBlock>
+              <button class="btn btn-primary" role="button" (click)="updateProducto()"  [disabled]="!productoForm.form.valid">Editar Producto</button>
+            </ng-template>
+          </div>
+        </div>
+      </form>
     </div>
-
   </div>
-</div> -->
+</div>
