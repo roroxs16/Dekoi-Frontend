@@ -7,6 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { CategoriaComponent } from './components/categoria/categoria.component';
 
 import {CategoriaService} from './service/categoria.service';
@@ -34,11 +35,14 @@ const routes : Routes =[
 ];
 =======
 >>>>>>> parent of 71948bf... add gestion de productos
+=======
+>>>>>>> parent of 71948bf... add gestion de productos
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+<<<<<<< HEAD
 <<<<<<< HEAD
     FooterComponent,
     CategoriaComponent,
@@ -49,6 +53,9 @@ const routes : Routes =[
     SubirFotoComponent,
     ComprasComponent,
     CarritoComponent
+=======
+    FooterComponent
+>>>>>>> parent of 71948bf... add gestion de productos
 =======
     FooterComponent
 >>>>>>> parent of 71948bf... add gestion de productos
