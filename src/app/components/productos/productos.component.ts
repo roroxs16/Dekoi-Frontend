@@ -5,7 +5,10 @@ import { Categoria } from '../../models/categoria';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ProductoService } from '../../service/producto.service';
+import { CarritoService } from '../../service/carrito.service';
+import { AuthService } from '../../service/auth.service';
 import { CategoriaService } from '../../service/categoria.service';
+import { ProductoForm } from '../../models/productoForm';
 
 import Swal from 'sweetalert2';
 
@@ -27,11 +30,14 @@ export class ProductosComponent implements OnInit {
 
 
   enabled: boolean = false;
+  productoForm:ProductoForm;
 
   constructor(private productoService: ProductoService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private categoriaService: CategoriaService) { }
+    private categoriaService: CategoriaService,
+    private carritoService:CarritoService,
+    public authService: AuthService) { }
 
   ngOnInit(): void {
 
@@ -45,7 +51,7 @@ export class ProductosComponent implements OnInit {
       this.categoriaService.getCategoria().subscribe(response => {
         this.categorias = response;
       });
-      
+
       this.productoService.getProducto(page).subscribe(response => {
         this.productos = response.content as Producto[];
         this.paginador = response;
@@ -91,11 +97,23 @@ export class ProductosComponent implements OnInit {
     })
   }
 
+  public crearCarrito():any{
+    this.carritoService.createCarrito().subscribe(
+
+    )
+  }
   public mostrarProductos(categoria: Categoria): any {
     this.productos = [];
     this.productos = categoria.productos;
     this.enabled = true;
 
+  }
+
+  public addProductToCart(id: number ):any{
+
+    this.productoForm.cantidad=1;
+    this.productoForm.productoId=id;
+    this.carritoService.addProductToCart(this.productoForm,id);
   }
 
 }

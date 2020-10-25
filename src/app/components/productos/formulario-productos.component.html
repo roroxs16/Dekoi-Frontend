@@ -51,21 +51,26 @@
             <input class="form-control" type="text" name="codigoDeBarra" value="" [(ngModel)]="producto.codigoDeBarra">
           </div>
         </div>
+
         <div class="form-group row">
           <label for="categoria" class="col-form-label col-sm-2">Categoria a la que pertenece</label>
           <div class="column-sm-6">
-            <select class="form-control" type="text" name="categoria" value="" [(ngModel)]="producto.categoria">
+            <select class="form-control" type="text" name="categoria"  placeholder="Seleccione categoria" value="" [(ngModel)]="producto.categoria">
               <option [ngValue]="categoria" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
             </select>
           </div>
         </div>
+
         <div class="form-group row">
           <div class="col-sm-6">
             <button class="btn btn-primary" role="button" (click)="crearProducto()" *ngIf="!producto.id else elseBlock" [disabled]="!productoForm.form.valid">Crear Producto</button>
 
             <ng-template #elseBlock>
-              <button class="btn btn-primary" role="button" (click)="updateProducto()"  [disabled]="!productoForm.form.valid">Editar Producto</button>
+              <button class="btn btn-primary" role="button" (click)="updateProducto()" [disabled]="!productoForm.form.valid">Editar Producto</button>
             </ng-template>
+          </div>
+          <div class="col-sm-6">
+            <button type="button" class="btn btn-danger " [routerLink]="['/productos']">cancelar</button>
           </div>
         </div>
       </form>

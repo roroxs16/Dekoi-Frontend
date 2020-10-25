@@ -4,7 +4,7 @@ import { Producto } from '../../models/producto';
 import { Imagen } from '../../models/imagen';
 
 import {Router, ActivatedRoute} from '@angular/router';
-
+import { AuthService } from '../../service/auth.service';
 import { ProductoService } from '../../service/producto.service';
 import { ModalService } from '../../service/modal.service';
 import Swal from 'sweetalert2';
@@ -24,8 +24,9 @@ export class VerProductoComponent implements OnInit {
 
   constructor(private productoService: ProductoService,
               private activatedRoute:ActivatedRoute,
-              private modalService: ModalService,
-              private router: Router,) { }
+              public modalService: ModalService,
+              private router: Router,
+              public authService: AuthService) { }
 
   ngOnInit(): void {
     this.cargarProducto();

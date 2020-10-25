@@ -24,7 +24,7 @@
             <button class="btn btn-primary" role="button" (click)="crearCategoria()" *ngIf="!categoria.id else elseBlock" [disabled]="!categoriaForm.form.valid">Crear Categoria</button>
 
             <ng-template #elseBlock>
-              <button class="btn btn-primary" role="button" (click)="updateProducto()"  [disabled]="!productoForm.form.valid">Editar Producto</button>
+              <button class="btn btn-primary" role="button" (click)="updateCategoria()"  [disabled]="!categoriaForm.form.valid">Editar Producto</button>
             </ng-template>
           </div>
         </div>
