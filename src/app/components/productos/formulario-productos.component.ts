@@ -14,7 +14,8 @@ import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario-productos',
-  templateUrl: './formulario-productos.component.html'
+  templateUrl: './formulario-productos.component.html',
+  styleUrls: ['./formulario.component.css']
 })
 export class FormularioProductosComponent implements OnInit {
 

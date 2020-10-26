@@ -5,6 +5,7 @@ export class Usuario {
   email:string;
   direccion:string;
   ciudad:string;
+  numeroTelefono:number;
   fechaNacimiento: Date;
   password:string;
   rut:string;

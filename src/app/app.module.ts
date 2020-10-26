@@ -39,7 +39,8 @@ const routes : Routes =[
   {path: 'producto/formulario/:id', component:FormularioProductosComponent,canActivate:[AuthGuard,RoleGuard],data:{role:'ROLE_ADMIN'}},
   {path: 'producto/:id', component:VerProductoComponent},
   {path: 'carrito', component:CarritoComponent},
-  {path: 'login', component:LoginComponent}
+  {path: 'login', component:LoginComponent},
+  {path: 'registro', component: RegistroComponent}
 ];
 
 @NgModule({

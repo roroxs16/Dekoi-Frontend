@@ -20,7 +20,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductosComponent implements OnInit {
 
-  productos: Producto[];
+  productos: Producto[]=[];
 
   categorias: Categoria[];
 

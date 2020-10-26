@@ -14,8 +14,9 @@ export class NavbarComponent implements OnInit {
   constructor(public authService:AuthService, private router: Router) { }
 
   ngOnInit(): void {
-  }
 
+  }
+nombreLogueado:string=this.authService.usuario.nombre
   logout():void{
     let nombreUsuario=this.authService.usuario.nombre
     this.authService.logout();
