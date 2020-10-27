@@ -6,9 +6,9 @@
       <div class="col-lg-3">
         <h2 class="my-4">{{producto.nombre}}</h2>
         <div class="list-group">
-          <button class="btn btn-success" (click)="abrirModal(productoId);" type="button" name="button">Subir imagen</button>
-          <button type="button" class="btn btn-success my-2" [routerLink]="['/producto/formulario', producto.id]" styles="margin-left: 5px;">Editar</button>
-          <button type="button" class="btn btn-danger" (click)='delete(producto)' styles="margin-left: 5px;">Eliminar</button>
+          <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-success" (click)="abrirModal(productoId);" type="button" name="button">Subir imagen</button>
+          <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-success my-2" [routerLink]="['/producto/formulario', producto.id]" styles="margin-left: 5px;">Editar</button>
+          <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-danger" (click)='delete(producto)' styles="margin-left: 5px;">Eliminar</button>
         </div>
       </div>
       <!-- /.col-lg-3 -->

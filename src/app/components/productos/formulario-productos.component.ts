@@ -14,11 +14,12 @@ import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario-productos',
-  templateUrl: './formulario-productos.component.html'
+  templateUrl: './formulario-productos.component.html',
+  styleUrls: ['./formulario.component.css']
 })
 export class FormularioProductosComponent implements OnInit {
 
-  producto: Producto = new Producto ();
+  public producto: Producto = new Producto ();
   categorias: Categoria[];
 
   constructor(private productoService: ProductoService,
@@ -34,7 +35,7 @@ export class FormularioProductosComponent implements OnInit {
   }
 
   public crearProducto(): void{
-  
+
     this.productoService.createProducto(this.producto)
     .subscribe( producto => {
       this.router.navigate(['/productos'])

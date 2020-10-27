@@ -11,7 +11,8 @@ import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categoria',
-  templateUrl: './categoria.component.html'
+  templateUrl: './categoria.component.html',
+    styleUrls: ['./categoria.component.css']
 })
 export class CategoriaComponent implements OnInit {
 
@@ -33,6 +34,23 @@ export class CategoriaComponent implements OnInit {
         this.router.navigate(['/productos'])
         swal.fire('Nueva categoria', `Categoria ${categoria.nombre} creada con existo!`, 'success')
       })
+  }
+
+  public cargarProducto():void{
+    this.activatedRoute.params.subscribe(params => {
+      let id = params['id'];
+      if(id){
+        this.categoriaService.getCategoriaById(id).subscribe( (categoria) => this.categoria = categoria);
+      }
+    })
+  }
+
+  public updateCategoria(): void {
+    this.categoriaService.updateCategoria(this.categoria)
+    .subscribe( producto => {
+      this.router.navigate(['/productos'])
+      swal.fire('Producto Actualizado', `Producto ${producto.nombre} Actualizado con exito!`, 'success')
+    })
   }
 
 }

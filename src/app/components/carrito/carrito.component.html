@@ -1,0 +1,102 @@
+<body class="bg-light">
+    <div class="container mt-5 mb-5">
+        <div class="row">
+
+            <!-- COLUMNA DERECHA DEL DETALLE DE COMPRA -->
+            <div class="col-md-4 order-md-12 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Detalle de compra</span>
+                </h4>
+
+                <ul class="list-group mb-3">
+                    <!-- CADA li ES UN PRODUCTO, HACER EN EL li EL NGFOR -->
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Subtotal</h6>
+                        </div>
+                        <span class="text-muted">$150.000</span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Envío</h6>
+                        </div>
+                        <span class="text-muted">$5.000</span>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span><strong>Total</strong></span>
+                        <strong>$155.000</strong>
+                    </li>
+                </ul>
+                <button class="btn btn-success float-right">Finalizar compra</button>
+            </div>
+
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="col-md-8 order-md-1">
+                <h4 class="d-flex justify-content-start align-items-center mb-3">
+                    <span class="text-muted">Carrito de compra</span>
+                    <!-- ESTE SPAN ES DINÁMICO MUESTRA EL TOTAL DE PRODUCTOS -->
+                    <span class="badge badge-secondary badge-pill ml-3">1</span>
+                </h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th class="text-center">Precio</th>
+                            <th class="text-center">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- CELDA DEL PRIMER PRODUCTO -->
+                        <tr>
+                            <!-- 1º BOTON PARA ELIMINAR -->
+                            <td>
+                                <button type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </td>
+
+                            <!-- 2º IMAGEN DEL PRODUCTO -->
+                            <td class="col-md-1">
+                                <!-- el estilo img-carrito se puede cambiar la resolución, ver detalles en el carrito.css -->
+                                <img src="puerta.jpg" alt="acá va la imagen" class="img-carrito">
+                            </td>
+
+                            <!-- 3º NOMBRE DEL PRODUCTO LLENAR EL HREF SI SE QUIERE IR AL ENLACE DEL PRODUCTO AL PINCHARLO -->
+                            <td>
+                                <a id="text-deco" href="#">Nombre producto</a>
+                            </td>
+
+                            <!-- 4º CANTIDAD DEL PRODUCTO, TIENE MINIMO 1 Y EL MAXIMO SE PUEDE AJUSTAR AL STOCK O TRABAJAR COMO SE QUIERA -->
+                            <td class="col-md-1" style="text-align: center">
+                                <input type="number" class="form-control" value="1" min="1">
+                            </td>
+
+                            <!-- 5º PRECIO UNITARIO DEL PRODUCTO -->
+                            <td class="col-sm-1 col-md-1 text-center"><strong>$150.000</strong></td>
+
+                            <!-- 6º TOTAL DEL PRODUCTO + CANTIDAD -->
+                            <td class="col-sm-1 col-md-1 text-center"><strong>$150.000</strong></td>
+                        </tr>
+
+                        <!-- CELDA FINAL PARA LOS BOTONES-->
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td colspan="3">
+                                <button type="button" class="btn btn-primary float-right">
+                                    Seguir comprando
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+</div>
