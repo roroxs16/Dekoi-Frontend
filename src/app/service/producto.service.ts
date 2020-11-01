@@ -50,9 +50,7 @@ export class ProductoService {
   getProductoById(id): Observable<Producto> {
     return this.http.get<Producto>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e => {
-        if(e.status!=401 ){
-            this.router.navigate(['/productos']);
-        }
+    
         swal.fire('Error al Editar', e.error.mensaje, 'error');
         return throwError(e);
       })

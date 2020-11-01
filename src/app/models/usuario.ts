@@ -1,3 +1,5 @@
+import {Carrito} from './carrito'
+import {Compra} from './compra'
 export class Usuario {
   id:number;
   nombre:string;
@@ -10,4 +12,6 @@ export class Usuario {
   password:string;
   rut:string;
   roles:string[]=[];
+  carrito:Carrito[]=[]
+    compras:Compra[]=[]
 }

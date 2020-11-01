@@ -55,7 +55,7 @@ export class SubirFotoComponent implements OnInit {
             this.progreso = Math.round((event.loaded / event.total) * 100);
           } else if (event.type === HttpEventType.Response) {
             let response: any = event.body;
-            console.log(response);
+            
           }
 
 
