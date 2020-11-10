@@ -2,35 +2,11 @@
 /* ==== BASE STYLES ====*/
 /* ==================== GLOBAL STYLES ======================= */
 
-.btn-primary{
-	background-color: #3167eb
-}
-.fade-in {
-	opacity: 1;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 0.5s;
-}
-
-@keyframes fadeInOpacity {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
-
 html {
   font-family: "Inter", sans-serif;
   font-size: 15px;
 }
 
-.btn-primary{
-	background-color: #3167eb
-}
 /* ========================
 INCLUDE STYLES AND COMPONENTS
 ===================== */
@@ -181,6 +157,7 @@ a:hover {
 
 /* ============== spacing ============== */
 .padding-y {
+  padding-top: 40px;
   padding-bottom: 40px;
 }
 
@@ -190,6 +167,32 @@ a:hover {
 
 .padding-bottom {
   padding-bottom: 40px;
+}
+
+.padding-y-lg {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.padding-top-lg {
+  padding-top: 80px;
+}
+
+.padding-bottom-lg {
+  padding-bottom: 80px;
+}
+
+.padding-y-sm {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.padding-top-sm {
+  padding-top: 20px;
+}
+
+.padding-bottom-sm {
+  padding-bottom: 20px;
 }
 
 .relative {
@@ -1413,7 +1416,6 @@ a[class*=card]:hover .title {
 }
 
 /*# sourceMappingURL=ui.css.map */
-
 .mobile-block {
   display: none;
 }

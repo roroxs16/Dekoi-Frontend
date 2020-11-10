@@ -48,7 +48,12 @@
 
         <div class="clearfix"></div>
 
-        <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search" (click)="crearProducto()" *ngIf="!producto.id else elseBlock" [disabled]="!productoForm.form.valid"> <span class="glyphicon glyphicon-search"></span> Agregar Producto </button>
+        <button type="submit" class="btn btn-info  btn-responsive" id="search" (click)="crearProducto()" *ngIf="!producto.id else elseBlock" [disabled]="!productoForm.form.valid">
+           <span class="glyphicon glyphicon-search"></span> Agregar Producto
+         </button>
+         <button type="submit" class="btn btn-info btn-responsive" id="search" [routerLink]="['/productos']" >
+            <span class="glyphicon glyphicon-search"></span> Cancelar
+          </button>
 
         <ng-template #elseBlock>
           <button class="btn btn-info btn-lg btn-responsive" id="search" role="button" (click)="updateProducto()" [disabled]="!productoForm.form.valid">Editar Producto</button>

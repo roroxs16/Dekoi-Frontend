@@ -1,5 +1,20 @@
 <app-subir-foto *ngIf="productoId" [productoId]="productoId"></app-subir-foto>
 
+<section class="section-pagetop bg fade-in">
+  <div class="container">
+    <h2 class="title-page">{{nombreProducto}}</h2>
+    <nav>
+      <ol class="breadcrumb text-white">
+        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
+				<li class="breadcrumb-item"><a [routerLink]="['/productos']">Productos</a></li>
+
+        <li class="breadcrumb-item active" aria-current="page">{{nombreProducto}}</li>
+
+      </ol>
+    </nav>
+  </div>
+</section>
+
 <section class="section-content padding-y bg fade-in ">
 	<div class="container">
 

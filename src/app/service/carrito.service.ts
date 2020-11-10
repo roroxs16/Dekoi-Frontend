@@ -23,7 +23,12 @@ export class CarritoService {
     .pipe(
       map((response: any) => response.carritoProducto as CarritoProducto),
       catchError(e => {
-        swal.fire('Error al agregar un producto al carrito', e.error.mensaje, 'error')
+        if(e.status==401){
+          swal.fire('Error al agregar un producto al carrito', 'Debe iniciar sesion', 'error')
+        }else{
+          swal.fire('Error al agregar un producto al carrito', e.error.mensaje, 'error')
+        }
+
         return throwError(e);
       })
     )

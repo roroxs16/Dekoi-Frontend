@@ -29,10 +29,11 @@ import { TokenInterceptor } from './service/interceptors/token.interceptor';
 import { AuthInterceptor } from './service/interceptors/auth.interceptor';
 import { DireccionComponent } from './components/direccion/direccion.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
-import { MiscomprasComponent } from './components/usuario/miscompras.component';
 import { MisdatosComponent } from './components/usuario/misdatos.component';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { DetalleCompraComponent } from './components/usuario/detalle-compra.component';
+import { UsuariodireccionComponent } from './components/usuario/usuariodireccion.component';
 
 registerLocaleData(localeEs, 'es');
 const routes: Routes = [
@@ -49,7 +50,8 @@ const routes: Routes = [
   { path: 'carrito', component: CarritoComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: 'direccion', component: DireccionComponent }
+  { path: 'direccion', component: DireccionComponent },
+  { path: 'detallecompra/:id', component: DetalleCompraComponent, canActivate: [AuthGuard, RoleGuard], data: [{ role: 'ROLE_ADMIN' } , {role: 'ROLE_CLIENTE'}]}
 ];
 
 @NgModule({
@@ -68,8 +70,9 @@ const routes: Routes = [
     RegistroComponent,
     DireccionComponent,
     UsuarioComponent,
-    MiscomprasComponent,
-    MisdatosComponent
+    MisdatosComponent,
+    DetalleCompraComponent,
+    UsuariodireccionComponent
   ],
   imports: [
     BrowserModule,

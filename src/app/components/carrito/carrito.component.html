@@ -1,3 +1,17 @@
+<section class="section-pagetop bg fade-in">
+  <div class="container">
+    <h2 class="title-page">Carrito de compras</h2>
+    <nav>
+      <ol class="breadcrumb text-white">
+        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
+				<li class="breadcrumb-item"><a [routerLink]="['/productos']">Productos</a></li>
+
+        <li class="breadcrumb-item active" aria-current="page">Carrito</li>
+
+      </ol>
+    </nav>
+  </div>
+</section>
 <section class="section-content padding-y bg fade-in">
   <div class="container">
     <div class="row">
@@ -101,7 +115,7 @@
                 </div>
 
                 <div class="card-body border-top">
-                  <button type="submit" [routerLink]="['/']" (click)="realizarCompra()" class="btn btn-primary float-md-right" [disabled]="!direccionForm.form.valid ? carritoProductos: null "> Realizar Compra <fa-icon [icon]="faRight"></fa-icon></button>
+                  <button type="submit" [routerLink]="['/usuario']" (click)="realizarCompra()" class="btn btn-primary float-md-right" [disabled]="!direccionForm.form.valid ? carritoProductos: null "> Realizar Compra <fa-icon [icon]="faRight"></fa-icon></button>
 
                   <a [routerLink]="['/productos']" class="btn btn-light">
                     <fa-icon [icon]="faLeft"></fa-icon> Continuar Comprando

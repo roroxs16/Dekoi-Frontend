@@ -8,6 +8,7 @@ import { AuthService} from '../../service/auth.service';
 import swal from 'sweetalert2';
 import {Router} from '@angular/router';
 import { ModalService } from '../../service/modal.service';
+
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
@@ -16,12 +17,17 @@ import { ModalService } from '../../service/modal.service';
 export class UsuarioComponent implements OnInit {
   faUser=faUser;
   usuario:Usuario = new Usuario();
-  usuarioModal:Usuario;;
+  usuarioModal:Usuario;
+  usuarioDireccionModal:Usuario;
   compras:Compra[]=[]
   carritoProducto:CarritoProducto[];
+  ultimaCompra :Compra = new Compra();
 
-  ultimaCompra :Compra =new Compra();
-  constructor(private usuarioService: UsuarioService, public authService:AuthService,  private router: Router,     public modalService: ModalService,) { }
+  esCompras:boolean=false;
+
+
+
+  constructor(private usuarioService: UsuarioService, public authService:AuthService,  private router: Router,     public modalService: ModalService) { }
 
   ngOnInit(): void {
     this.usuarioService.cargarUsuario().subscribe(response=>{
@@ -45,6 +51,13 @@ export class UsuarioComponent implements OnInit {
     this.modalService.abrirModal();
   }
 
+  abrirModalDireccion(usuario: Usuario) {
+
+    this.usuarioDireccionModal = usuario;
+    this.modalService.abrirModal();
+  }
+
+
   logout():void{
     let nombreUsuario=this.authService.usuario.nombre
     this.authService.logout();
@@ -52,4 +65,16 @@ export class UsuarioComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  loadUltimaCompra():void{
+    this.esCompras=false;
+    this.ultimaCompra=this.compras[this.compras.length-1];
+  }
+
+  loadMisCompras():void{
+    this.esCompras=true;
+    this.ultimaCompra=new Compra();
+    this.usuarioService.getAllCompras().subscribe(response =>{
+      this.compras=response;
+    });
+  }
 }

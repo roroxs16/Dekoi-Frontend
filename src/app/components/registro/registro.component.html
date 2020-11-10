@@ -55,8 +55,8 @@
           </div>
         </div>
       </div> <!-- form-group end.// -->
-      <div class="form-row">
-        <div class="form-group col-md-6">
+
+        <div class="form-group">
           <label>Ciudad</label>
           <input type="text" class="form-control" placeholder="Ciudad" name="ciudad" [(ngModel)]="usuario.ciudad" required #ciudad="ngModel">
           <div class="alert alert-danger" *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
@@ -68,13 +68,8 @@
             </div>
           </div>
         </div> <!-- form-group end.// -->
-        <div class="form-group col-md-6">
-          <label>Fecha de nacimiento</label>
 
-          <input type="date" class="form-control" placeholder="01-01-2020" name="fechaNacimiento" [(ngModel)]="usuario.fechaNacimiento" required #fechaNacimiento="ngModel">
 
-        </div> <!-- form-group end.// -->
-      </div> <!-- form-row.// -->
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Teléfono</label>

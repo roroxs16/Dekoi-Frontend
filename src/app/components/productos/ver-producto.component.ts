@@ -18,6 +18,8 @@ import { CarritoService } from '../../service/carrito.service';
   styleUrls: ['./ver-producto.component.css']
 })
 export class VerProductoComponent implements OnInit {
+
+
   faCart = faShoppingCart
   producto: Producto = new Producto();
   productoId: number;
@@ -25,7 +27,7 @@ export class VerProductoComponent implements OnInit {
   productos: Producto[];
   cantidad: number = 1;
   imagenes: Imagen[] = [];
-
+  nombreProducto=""
   imagenAuxiliar: Imagen;
 
   productoForm:ProductoForm = new ProductoForm();
@@ -49,7 +51,7 @@ export class VerProductoComponent implements OnInit {
       if (id) {
         this.productoService.getProductoById(id)
           .subscribe((producto) => {
-  
+            this.nombreProducto=producto.nombre;
             this.producto = producto
             this.imagenes = this.producto.imagenes;
           });

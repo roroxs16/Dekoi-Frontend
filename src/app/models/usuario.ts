@@ -8,7 +8,7 @@ export class Usuario {
   direccion:string;
   ciudad:string;
   numeroTelefono:number;
-  fechaNacimiento: Date;
+
   password:string;
   rut:string;
   roles:string[]=[];
