@@ -1,0 +1,67 @@
+<!-- <div class="container">
+  <div class="card bg-dark text-white my-4">
+    <div class="card-header">Agregar Categoria</div>
+      <div class="card-body">
+
+      <form #categoriaForm="ngForm">
+        <div class="form-group row">
+          <label for="nombre" class="col-form-label col-sm-2">Nombre de la categoria</label>
+          <div class="column-sm-6">
+            <input class="form-control" type="text" name="nombre" value="" [(ngModel)]="categoria.nombre" required minlength="4" #nombre="ngModel">
+            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div *ngIf="nombre.errors.required">
+                El nombre del producto es requerido
+              </div>
+              <div *ngIf="nombre.errors.minlength">
+                El nombre del producto debe tener 4 caracteres o más
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <button class="btn btn-primary" role="button" (click)="crearCategoria()" *ngIf="!categoria.id else elseBlock" [disabled]="!categoriaForm.form.valid">Crear Categoria</button>
+
+            <ng-template #elseBlock>
+              <button class="btn btn-primary" role="button" (click)="updateCategoria()"  [disabled]="!categoriaForm.form.valid">Editar Producto</button>
+            </ng-template>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<div class="container" id="advanced-search-form">
+    <h2>Agregar Categoria</h2>
+    <form #categoriaForm="ngForm">
+        <div class="form-group">
+          <label for="nombre" class="col-form-label col-sm-2">Categoria</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Nombre del producto" id="first-name" [(ngModel)]="categoria.nombre" required minlength="4" #nombre="ngModel">
+            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div *ngIf="nombre.errors.required">
+                El nombre del producto es requerido
+              </div>
+              <div *ngIf="nombre.errors.minlength">
+                El nombre del producto debe tener 4 caracteres o más
+              </div>
+            </div>
+        </div>
+
+
+
+        <div class="clearfix"></div>
+
+        <button type="submit" class="btn btn-info btn-responsive" id="search" (click)="crearCategoria()" *ngIf="!categoria.id else elseBlock" [disabled]="!categoriaForm.form.valid">
+          <span class="glyphicon glyphicon-search"></span> Agregar Categoria </button>
+          <button type="submit" class="btn btn-info btn-responsive" id="search" [routerLink]="['/productos']" >
+             <span class="glyphicon glyphicon-search"></span> Cancelar
+           </button>
+        <ng-template #elseBlock>
+          <button class="btn btn-info btn-lg btn-responsive" id="search" role="button" (click)="updateCategoria()"  [disabled]="!categoriaForm.form.valid">
+            Editar Producto
+          </button>
+        </ng-template>
+    </form>
+</div>

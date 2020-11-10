@@ -1,0 +1,118 @@
+<app-subir-foto *ngIf="productoId" [productoId]="productoId"></app-subir-foto>
+
+<section class="section-pagetop bg fade-in">
+  <div class="container">
+    <h2 class="title-page">{{nombreProducto}}</h2>
+    <nav>
+      <ol class="breadcrumb text-white">
+        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
+				<li class="breadcrumb-item"><a [routerLink]="['/productos']">Productos</a></li>
+
+        <li class="breadcrumb-item active" aria-current="page">{{nombreProducto}}</li>
+
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="section-content padding-y bg fade-in ">
+	<div class="container">
+
+		<div class="card">
+			<div class="row no-gutters">
+
+				<aside class="col-sm-6 border-right">
+					<article class="gallery-wrap">
+						<div class="card img-big-wrap">
+							<a>
+								<img *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{imagenes[0].nombre}}" alt="">
+							</a>
+							<img *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="card-img-top" alt="...">
+						</div> <!-- img-big-wrap.// -->
+						<div class="thumbs-wrap">
+							<a class="item-thumb" *ngFor="let imagen of producto.imagenes; let i = index" >
+								<img (click)="cambiarImagen(i)" src="http://localhost:8080/api/uploads/img/{{imagen.nombre}}">
+							</a>
+
+						</div>
+					</article>
+				</aside>
+				<main class="col-sm-6">
+					<article class="content-body">
+						<h3 class="title">{{producto.nombre}}</h3>
+						<button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-success" (click)="abrirModal(productoId);" type="button" name="button">
+							Subir imagen
+						</button>
+						<button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-success my-2" [routerLink]="['/producto/formulario', producto.id]">
+							Editar
+						</button>
+						<button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-danger" (click)='delete(producto)'>
+							Eliminar
+						</button>
+						<p>{{producto.descripcion}} </p>
+
+						<ul class="list-check mb-4">
+							<li>Best performance of battery</li>
+							<li>5 years warranty for this product</li>
+							<li>Best performance of battery</li>
+						</ul>
+
+						<div class="item-option-select">
+							<h6>Medidas</h6>
+							<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+								<label class="btn btn-light active">
+									<input type="radio" name="radio_size" checked> Xs
+								</label>
+								<label class="btn btn-light">
+									<input type="radio" name="radio_size"> Xs Max
+								</label>
+							</div>
+						</div>
+
+						<div class="item-option-select">
+							<h6>Color</h6>
+							<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+								<label class="btn btn-light">
+									<input type="radio" name="radio_color"> Silver
+								</label>
+								<label class="btn btn-light active">
+									<input type="radio" name="radio_color" checked> Gray
+								</label>
+								<label class="btn btn-light">
+									<input type="radio" name="radio_color"> Gold
+								</label>
+							</div>
+						</div>
+
+
+						<div class="h3 mb-4">
+							<var class="price h4">{{producto.valorUnitario | currency:'CLP':'symbol-narrow'}}</var>
+						</div>
+
+						<div class="form-row">
+							<div class="form-group col-md flex-grow-0">
+								<label>Cantidad</label>
+								<div class="input-group mb-3 input-spinner">
+									<div class="input-group-prepend">
+										<button class="btn btn-light" type="button" id="button-plus" (click)="aumentaCantidad()"> + </button>
+									</div>
+									<input type="text" class="form-control" [value]="cantidad">
+									<div class="input-group-append">
+										<button class="btn btn-light" type="button" id="button-minus" (click)="disminuyeCantidad()"> &minus; </button>
+									</div>
+								</div>
+							</div> <!-- col.// -->
+
+
+						</div> <!-- row.// -->
+
+						<!-- <a class="btn  btn-primary"> Comprar Ahora </a> -->
+						<a class="btn  btn-outline-primary" (click)="addProductToCart(cantidad,producto.id)"> <span class="text"> Agregar al carrito </span>
+							<fa-icon [icon]="faCart"></fa-icon>
+						</a>
+					</article> <!-- product-info-aside .// -->
+				</main> <!-- col.// -->
+			</div> <!-- row.// -->
+		</div> <!-- card.// -->
+	</div>
+</section>

@@ -1,0 +1,62 @@
+<div class="container" id="advanced-search-form">
+    <h2>Agregar Producto</h2>
+    <form #productoForm="ngForm">
+        <div class="form-group">
+            <label for="nombre">Nombre del producto</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Nombre del producto" id="first-name"
+            [(ngModel)]="producto.nombre" required minlength="4" #nombre="ngModel">
+            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div *ngIf="nombre.errors.required">
+                El nombre del producto es requerido
+              </div>
+              <div *ngIf="nombre.errors.minlength">
+                El nombre del producto debe tener 4 caracteres o más
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripcion del producto</label>
+            <input type="text-area" class="form-control" name="descripcion" placeholder="Descripcion del producto" id="last-name"
+            [(ngModel)]="producto.descripcion" required minlegth="4" #descripcion="ngModel">
+            <div class="alert alert-danger" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+              <div *ngIf="descripcion.errors.required">
+                La descripcion del producto es requerido
+              </div>
+              <div *ngIf="descripcion.errors.minlength">
+                La descripcion del producto debe tener 4 caracteres o más
+              </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="valorUnitario">Valor del producto</label>
+            <input class="form-control" type="number" name="valor" placeholder="$50.000" [(ngModel)]="producto.valorUnitario" required #valor="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="Stock">Stock</label>
+            <input type="text" class="form-control" name="stock" placeholder="50" id="number" [(ngModel)]="producto.stock">
+        </div>
+
+        <div class="form-group">
+            <label for="categoria">Categoría a la que pertenece</label>
+            <select class="form-control" type="text" name="categoria"   value="" [(ngModel)]="producto.categoria">
+              	<option hidden value="" disabled selected> Select one category </option>
+              <option [ngValue]="categoria" *ngFor="let categoria of categorias">{{categoria.nombre}}</option>
+            </select>
+        </div>
+
+
+        <div class="clearfix"></div>
+
+        <button type="submit" class="btn btn-info  btn-responsive" id="search" (click)="crearProducto()" *ngIf="!producto.id else elseBlock" [disabled]="!productoForm.form.valid">
+           <span class="glyphicon glyphicon-search"></span> Agregar Producto
+         </button>
+         <button type="submit" class="btn btn-info btn-responsive" id="search" [routerLink]="['/productos']" >
+            <span class="glyphicon glyphicon-search"></span> Cancelar
+          </button>
+
+        <ng-template #elseBlock>
+          <button class="btn btn-info btn-lg btn-responsive" id="search" role="button" (click)="updateProducto()" [disabled]="!productoForm.form.valid">Editar Producto</button>
+        </ng-template>
+    </form>
+</div>

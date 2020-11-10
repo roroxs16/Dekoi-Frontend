@@ -1,0 +1,95 @@
+<section class="section-pagetop bg fade-in">
+  <div class="container">
+    <h2 class="title-page">Productos</h2>
+    <nav>
+      <ol class="breadcrumb text-white">
+        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Productos</li>
+
+      </ol>
+    </nav>
+  </div>
+</section>
+
+
+<section class="section-content padding-y bg fade-in">
+  <div class="container">
+
+    <div class="row">
+      <aside class="col-md-3">
+
+        <div class="card" style="margin-top:65px">
+          <article class="filter-group">
+            <header class="card-header">
+              <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-success my-2" [routerLink]="['/productos/formulario']" styles="margin-left: 5px;">Agregar Producto</button>
+
+              <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-success my-2" [routerLink]="['/categoria/formulario']" styles="margin-left: 5px;">Agregar Categoria</button>
+              <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h3 class="title">Categorías</h3>
+
+              </a>
+
+            </header>
+            <hr>
+            <div class="filter-content collapse show" id="collapse_1" style="">
+              <div class="card-body">
+
+
+                <ul class="list-menu">
+                  <li *ngFor="let categoria of categorias" (click)="mostrarProductos(categoria)" style="cursor:pointer; font-size:25px">{{categoria.nombre}}
+                    <hr>
+                  </li>
+
+                </ul>
+
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- filter-group  .// -->
+
+        </div> <!-- card.// -->
+
+      </aside> <!-- col.// -->
+      <main class="col-md-9">
+
+        <header class="border-bottom mb-4 pb-3">
+          <div class="form-inline">
+            <span class="mr-md-auto">{{productos.length}} Productos encontrados </span>
+
+          </div>
+        </header><!-- sect-heading -->
+
+        <div class="row">
+          <div class="col-md-4" *ngFor="let producto of productos">
+            <figure class="card card-product-grid">
+              <div class="img-wrap">
+
+                <img img class="card-img-top" *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
+                <img *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="card-img-top" alt="...">
+                <a class="btn-overlay" [routerLink]="['/producto', producto.id]"><i class="fa fa-search-plus"></i> Ver más</a>
+              </div> <!-- img-wrap.// -->
+              <figcaption class="info-wrap">
+                <div class="fix-height">
+                  <a [routerLink]="['/producto', producto.id]" class="title" style="font-size:15px">{{producto.nombre}}</a>
+                  <div class="price-wrap mt-2">
+                    <span class="price">{{producto.valorUnitario | currency:'CLP':'symbol-narrow'}}</span>
+
+                  </div> <!-- price-wrap.// -->
+                </div>
+                <a (click)="addProductToCart(producto.id)" class="btn btn-block btn-primary">Agregar al carrito </a>
+              </figcaption>
+            </figure>
+          </div> <!-- col.// -->
+
+
+        </div> <!-- row end.// -->
+
+        <div *ngIf="enabled==false">
+          <app-paginator *ngIf="paginador" [paginador]="paginador"></app-paginator>
+        </div>
+      </main> <!-- col.// -->
+
+    </div>
+
+  </div> <!-- container .//  -->
+</section>
