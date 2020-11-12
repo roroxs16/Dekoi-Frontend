@@ -1,0 +1,56 @@
+<div *ngIf="modalService.modal" class="modal fade-in" tabindex="-1" style="display:block">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modificar dirección </h5>
+        <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #registroForm="ngForm">
+          <div class="form-row">
+            <div class="col form-group">
+              <label>Ciudad</label>
+              <input type="text" class="form-control" placeholder="Ricardo" name="nombre" [(ngModel)]="usuarioDireccionModal.ciudad" required minlength="4" #ciudad="ngModel">
+              <div class="alert alert-danger" *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
+                <div *ngIf="ciudad.errors.required">
+                  La ciudad es requerido
+                </div>
+                <div *ngIf="ciudad.errors.minlength">
+                                  La ciudad debe tener 4 caracteres o más
+                </div>
+              </div>
+            </div> <!-- form-group end.// -->
+
+          </div> <!-- form-row end.// -->
+          <div class="form-group">
+            <label>Direccion</label>
+            <input type="text" class="form-control" placeholder="Calle de ejemplo #123" name="direccion" [(ngModel)]="usuarioDireccionModal.direccion" required #direccion="ngModel">
+            <small class="form-text text-muted"> Nunca compartiremos tu email con alguien más.</small>
+            <div class="alert alert-danger" *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)">
+              <div *ngIf="direccion.errors.required">
+                                  La Direccion es requerido.
+              </div>
+
+            </div>
+          </div> <!-- form-group end.// -->
+
+
+
+
+         <!-- form-group end.// -->
+            <!-- <div class="form-group col-md-6">
+              <label>Repetir password</label>
+              <input class="form-control" type="password" placeholder="confirmar contraseña" name="confirmPassword">
+            </div> <!-- form-group end.// -->
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" (click)="editarCuenta()" (click)="cerrarModal()" [disabled]="!registroForm.form.valid"> Modificar Datos </button>
+          </div> <!-- form-group// -->
+
+        </form>
+
+    </div>
+  </div>
+</div>

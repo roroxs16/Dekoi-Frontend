@@ -11,7 +11,7 @@ import { CategoriaService } from '../../service/categoria.service';
 import { ProductoForm } from '../../models/productoForm';
 
 import Swal from 'sweetalert2';
-
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-productos',
@@ -30,7 +30,7 @@ export class ProductosComponent implements OnInit {
 
 
   enabled: boolean = false;
-  productoForm:ProductoForm;
+  productoForm:ProductoForm = new ProductoForm();
 
   constructor(private productoService: ProductoService,
     private router: Router,
@@ -97,11 +97,7 @@ export class ProductosComponent implements OnInit {
     })
   }
 
-  public crearCarrito():any{
-    this.carritoService.createCarrito().subscribe(
 
-    )
-  }
   public mostrarProductos(categoria: Categoria): any {
     this.productos = [];
     this.productos = categoria.productos;
@@ -109,11 +105,15 @@ export class ProductosComponent implements OnInit {
 
   }
 
-  public addProductToCart(id: number ):any{
+  public addProductToCart(id: number):any{
 
     this.productoForm.cantidad=1;
     this.productoForm.productoId=id;
-    this.carritoService.addProductToCart(this.productoForm,id);
+    this.carritoService.addProductToCart(this.productoForm).subscribe(
+      response =>{
+        swal.fire('Producto agregado',` Producto Agregado con exito al carrito`,'success');
+      }
+    );
   }
 
 }

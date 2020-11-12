@@ -57,10 +57,10 @@ export class RegistroComponent implements OnInit {
   }
 
   public crearUsuario():void{
-  
+
     this.usuarioService.createUser(this.usuario).subscribe( usuario => {
       this.router.navigate(['/login'])
-      swal.fire('Nuevo Usuario',` Usuario ${usuario.nombre} creado con exito!`,'success');
+      swal.fire('Nuevo Usuario',` Usuario creado con exito!`,'success');
     }
     )
   }

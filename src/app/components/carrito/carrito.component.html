@@ -1,102 +1,166 @@
-<body class="bg-light">
-    <div class="container mt-5 mb-5">
-        <div class="row">
+<section class="section-pagetop bg fade-in">
+  <div class="container">
+    <h2 class="title-page">Carrito de compras</h2>
+    <nav>
+      <ol class="breadcrumb text-white">
+        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
+				<li class="breadcrumb-item"><a [routerLink]="['/productos']">Productos</a></li>
 
-            <!-- COLUMNA DERECHA DEL DETALLE DE COMPRA -->
-            <div class="col-md-4 order-md-12 mb-4">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Detalle de compra</span>
-                </h4>
+        <li class="breadcrumb-item active" aria-current="page">Carrito</li>
 
-                <ul class="list-group mb-3">
-                    <!-- CADA li ES UN PRODUCTO, HACER EN EL li EL NGFOR -->
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Subtotal</h6>
-                        </div>
-                        <span class="text-muted">$150.000</span>
-                    </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+<section class="section-content padding-y bg fade-in">
+  <div class="container">
+    <div class="row">
+      <aside class="col-lg-9">
 
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0">Envío</h6>
-                        </div>
-                        <span class="text-muted">$5.000</span>
-                    </li>
+          <div *ngIf="carritoProductos==undefined" class="alert alert-warning" role="alert">
+            No hay productos en el carrito
+          </div>
 
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span><strong>Total</strong></span>
-                        <strong>$155.000</strong>
-                    </li>
-                </ul>
-                <button class="btn btn-success float-right">Finalizar compra</button>
-            </div>
+        <div class="card">
 
-            <!-- COLUMNA IZQUIERDA -->
-            <div class="col-md-8 order-md-1">
-                <h4 class="d-flex justify-content-start align-items-center mb-3">
-                    <span class="text-muted">Carrito de compra</span>
-                    <!-- ESTE SPAN ES DINÁMICO MUESTRA EL TOTAL DE PRODUCTOS -->
-                    <span class="badge badge-secondary badge-pill ml-3">1</span>
-                </h4>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th class="text-center">Precio</th>
-                            <th class="text-center">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- CELDA DEL PRIMER PRODUCTO -->
-                        <tr>
-                            <!-- 1º BOTON PARA ELIMINAR -->
-                            <td>
-                                <button type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </td>
+          <table *ngIf="carritoProductos!=undefined" class="table table-borderless table-shopping-cart">
+            <thead class="text-muted">
+              <tr class="small text-uppercase">
+                <th scope="col">Producto</th>
+                <th scope="col" width="120">Cantidad</th>
+                <th scope="col" width="120">Precio</th>
+                <th scope="col" class="text-right" width="200"> </th>
+              </tr>
+            </thead>
 
-                            <!-- 2º IMAGEN DEL PRODUCTO -->
-                            <td class="col-md-1">
-                                <!-- el estilo img-carrito se puede cambiar la resolución, ver detalles en el carrito.css -->
-                                <img src="puerta.jpg" alt="acá va la imagen" class="img-carrito">
-                            </td>
 
-                            <!-- 3º NOMBRE DEL PRODUCTO LLENAR EL HREF SI SE QUIERE IR AL ENLACE DEL PRODUCTO AL PINCHARLO -->
-                            <td>
-                                <a id="text-deco" href="#">Nombre producto</a>
-                            </td>
 
-                            <!-- 4º CANTIDAD DEL PRODUCTO, TIENE MINIMO 1 Y EL MAXIMO SE PUEDE AJUSTAR AL STOCK O TRABAJAR COMO SE QUIERA -->
-                            <td class="col-md-1" style="text-align: center">
-                                <input type="number" class="form-control" value="1" min="1">
-                            </td>
+            <tbody >
 
-                            <!-- 5º PRECIO UNITARIO DEL PRODUCTO -->
-                            <td class="col-sm-1 col-md-1 text-center"><strong>$150.000</strong></td>
 
-                            <!-- 6º TOTAL DEL PRODUCTO + CANTIDAD -->
-                            <td class="col-sm-1 col-md-1 text-center"><strong>$150.000</strong></td>
-                        </tr>
 
-                        <!-- CELDA FINAL PARA LOS BOTONES-->
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td colspan="3">
-                                <button type="button" class="btn btn-primary float-right">
-                                    Seguir comprando
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                <tr *ngFor="let carritoProducto of carritoProductos ">
+                  <td>
+                    <figure class="itemside align-items-center">
+                      <div class="aside">
+                        <img *ngIf="carritoProducto.producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{carritoProducto.producto.imagenes[0].nombre}}" class="img-sm">
+                        <img *ngIf="carritoProducto.producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="img-sm" alt="...">
+                      </div>
+                      <figcaption class="info">
+                        <a href="#" class="title text-dark">{{carritoProducto.producto.nombre}}</a>
+                        <!-- <p class="text-muted small">{{carritoProducto.producto.descripcion}} <br></p> -->
+                      </figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" [value]="carritoProducto.cantidad" disabled>
+                  </td>
+                  <td>
+                    <div class="price-wrap">
+                      <var class="price">{{carritoProducto.producto.valorUnitario*carritoProducto.cantidad | currency:'CLP':'symbol-narrow'}}</var>
+                      <small class="text-muted"> {{carritoProducto.producto.valorUnitario | currency:'CLP':'symbol-narrow'}} </small>
+                    </div> <!-- price-wrap .// -->
+                  </td>
+                  <td class="text-right">
 
-</div>
+                    <a class="btn btn-danger" style="background: #EC320B;" (click)="removeProductoFormCart(carritoProducto)">
+                      <fa-icon [icon]="faTrash"></fa-icon> Eliminar
+                    </a>
+                  </td>
+                </tr>
+
+            </tbody>
+          </table>
+          <hr>
+          <div class="card-body">
+            <h4 class="card-title mb-4">Direccion de envío</h4>
+
+            <form #direccionForm="ngForm">
+
+
+              <div class="row">
+                <div class="form-group col-sm-6">
+                  <label for="ciudad">Ciudad*</label>
+                  <input type="text" name="ciudad" placeholder="Ejemplo de ciudad" [(ngModel)]="direccion.ciudad" class="form-control" required #ciudad="ngModel" [disabled]="carritoProductos.length==0">
+                  <div class="alert alert-danger" *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
+                    <div *ngIf="ciudad.errors.required">
+                      La ciudad es requerida para el envío
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="departamento">Departamento</label>
+                  <input type="text" name="departamento" placeholder="Departamento ejemplo" [(ngModel)]="direccion.departamento" class="form-control" #departamento="ngModel" [disabled]="carritoProductos.length==0">
+                </div>
+                <div class="form-group col-sm-8">
+                  <label for="calle">Calle*</label>
+                  <input type="text" name="calle" placeholder="Ejemplo de calle" class="form-control" [(ngModel)]="direccion.calle" required #calle="ngModel" [disabled]="carritoProductos.length==0">
+                  <div class="alert alert-danger" *ngIf="calle.invalid && (calle.dirty || calle.touched)">
+                    <div *ngIf="calle.errors.required">
+                      La calle es requerida para el envío
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label for="numero">Numero de calle</label>
+                  <input type="text" name="numero" placeholder="123" class="form-control" [(ngModel)]="direccion.numero" required #numero="ngModel" [disabled]="carritoProductos.length==0">
+                  <div class="alert alert-danger" *ngIf="numero.invalid && (numero.dirty || numero.touched)">
+                    <div *ngIf="numero.errors.required">
+                      El numero es requerida para el envío
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="card-body border-top">
+                  <button type="submit" [routerLink]="['/pago']" (click)="realizarCompra()" class="btn btn-primary float-md-right" 
+                  [disabled]="!direccionForm.form.valid ? carritoProductos: null ">
+                   Realizar Compra <fa-icon [icon]="faRight"></fa-icon>
+                  </button>
+
+                  <a [routerLink]="['/productos']" class="btn btn-light">
+                    <fa-icon [icon]="faLeft"></fa-icon> Continuar Comprando
+                  </a>
+                </div> <!-- card-body.// -->
+              </div> <!-- row.// -->
+            </form>
+          </div> <!-- card-body.// -->
+
+
+        </div> <!-- card.// -->
+
+      </aside> <!-- col.// -->
+      <aside class="col-lg-3">
+
+
+        <div class="card">
+          <div class="card-body">
+            <dl class="dlist-align">
+              <dt>Valor total:</dt>
+              <dd class="text-right">{{valorCarrito | currency:'CLP':'symbol-narrow'}}</dd>
+            </dl>
+
+            <dl class="dlist-align">
+              <dt>Total:</dt>
+              <dd class="text-right text-dark b"><strong>{{valorCarrito | currency:'CLP':'symbol-narrow'}}</strong></dd>
+            </dl>
+            <hr>
+            <p class="text-center mb-3">
+
+            </p>
+
+            <button type="submit" [routerLink]="['/pago']" (click)="realizarCompra()" class="btn btn-primary btn-block" [disabled]="!direccionForm.form.valid"> Realizar Compra </button>
+
+
+            <a [routerLink]="['/productos']" class="btn btn-light btn-block">Continuar Comprando</a>
+          </div> <!-- card-body.// -->
+        </div> <!-- card.// -->
+
+      </aside> <!-- col.// -->
+
+
+    </div>
+  </div>
+</section>

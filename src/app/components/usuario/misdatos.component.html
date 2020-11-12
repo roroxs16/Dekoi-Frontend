@@ -1,0 +1,103 @@
+<div *ngIf="modalService.modal" class="modal fade-in" tabindex="-1" style="display:block">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modificar datos de la cuenta </h5>
+        <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #registroForm="ngForm">
+          <div class="form-row">
+            <div class="col form-group">
+              <label>Nombre</label>
+              <input type="text" class="form-control" placeholder="Ricardo" name="nombre" [(ngModel)]="usuarioModal.nombre" required minlength="4" #nombre="ngModel">
+              <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                <div *ngIf="nombre.errors.required">
+                  El nombre es requerido
+                </div>
+                <div *ngIf="nombre.errors.minlength">
+                  El nombre debe tener 4 caracteres o más
+                </div>
+              </div>
+            </div> <!-- form-group end.// -->
+            <div class="col form-group">
+              <label>Apellido</label>
+              <input  type="text" class="form-control" placeholder="Contreras" name="apellido" [(ngModel)]="usuarioModal.apellido" required minlength="4" #apellido="ngModel">
+              <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+                <div *ngIf="apellido.errors.required">
+                  El apellido es requerido.
+                </div>
+                <div *ngIf="apellido.errors.minlength">
+                  El apellido debe tener 4 caracteres o más.
+                </div>
+              </div>
+            </div> <!-- form-group end.// -->
+          </div> <!-- form-row end.// -->
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" placeholder="ejemplo@gmail.com" name="email" [(ngModel)]="usuarioModal.email" required email #email="ngModel">
+            <small class="form-text text-muted"> Nunca compartiremos tu email con alguien más.</small>
+            <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+              <div *ngIf="email.errors.required">
+                El email es requerido.
+              </div>
+              <div *ngIf="email.errors.email">
+                Debe tener un formato adecuado.
+              </div>
+            </div>
+          </div> <!-- form-group end.// -->
+
+
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Teléfono</label>
+              <input class="form-control" type="text" placeholder="9 1234 5678" name="numeroTelefono" [(ngModel)]="usuarioModal.numeroTelefono" required minlength="9" maxlength="9" #telefono="ngModel">
+              <div class="alert alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+                <div *ngIf="telefono.errors.required">
+                  El Teléfono es requerido.
+                </div>
+                <div *ngIf="telefono.errors.maxlength">
+                  El Teléfono debe tener 9 caracteres o más.
+                </div>
+                <div *ngIf="telefono.errors.minlength">
+                  El Teléfono debe tener 9 caracteres o más.
+                </div>
+              </div>
+            </div> <!-- form-group end.// -->
+            <div class="form-group col-md-6">
+              <label>Rut</label>
+              <input disabled class="form-control" type="text" placeholder="11.111.111-1" name="rut" [(ngModel)]="usuarioModal.rut" required #rut="ngModel">
+              <div class="alert alert-danger" *ngIf="(rut.dirty || rut.touched) && rut.invalid">
+                <div *ngIf="rut.errors.required">
+                  Rut es requerido
+                </div>
+
+              </div>
+              <div class="alert alert-danger" *ngIf="(rut.dirty || rut.touched) && !validarRut(usuarioModal.rut)">
+
+                El rut ingresado no es valido
+
+
+              </div>
+
+            </div> <!-- form-group end.// -->
+          </div>
+
+         <!-- form-group end.// -->
+            <!-- <div class="form-group col-md-6">
+              <label>Repetir password</label>
+              <input class="form-control" type="password" placeholder="confirmar contraseña" name="confirmPassword">
+            </div> <!-- form-group end.// -->
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" (click)="editarCuenta()" (click)="cerrarModal()" [disabled]="!registroForm.form.valid"> Modificar Datos </button>
+          </div> <!-- form-group// -->
+
+        </form>
+
+    </div>
+  </div>
+</div>

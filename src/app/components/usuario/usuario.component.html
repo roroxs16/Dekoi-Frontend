@@ -1,0 +1,213 @@
+<app-misdatos *ngIf="usuarioModal" [usuarioModal]="usuarioModal"></app-misdatos>
+<app-usuariodireccion *ngIf="usuarioDireccionModal" [usuarioDireccionModal]="usuarioDireccionModal"></app-usuariodireccion>
+
+<section class="section-pagetop bg fade-in">
+  <div class="container">
+
+    <nav>
+      <ol class="breadcrumb text-white">
+        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
+				<li class="breadcrumb-item"><a [routerLink]="['/productos']">Productos</a></li>
+
+        <li class="breadcrumb-item active" aria-current="page">Mi cuenta</li>
+
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="section-content bg padding-y">
+	<div class="container">
+
+		<div class="row">
+			<aside class="col-md-3">
+				<ul class="list-group">
+					<a class="list-group-item" style="cursor:pointer" [routerLink]="['/usuario']" (click)="loadUltimaCompra()"> Configuracion de cuenta </a>
+					<a class="list-group-item" style="cursor:pointer" (click)="loadMisCompras()"> Mis Compras </a>
+
+
+				</ul>
+				<br>
+				<a class="btn btn-light btn-block" (click)="  logout()"> <i class="fa fa-power-off"></i> <span class="text">Cerrar sesion</span> </a>
+			</aside> <!-- col.// -->
+			<main class="col-md-9">
+
+				<article class="card mb-3">
+					<div class="card-body">
+
+						<figure class="icontext">
+							<div class="icon">
+								<img class="rounded-circle img-sm border" src="../../assets/img/user.png">
+							</div>
+							<div class="text">
+								<strong> {{usuario.nombre}} {{usuario.apellido}} </strong> <br>
+								{{usuario.email}} <br>
+								<a class="btn-link" (click)="abrirModal(usuario)" style="cursor:pointer">Modificar datos</a>
+							</div>
+						</figure>
+						<hr>
+						<p>
+							<i class="fa fa-map-marker text-muted"></i> &nbsp; Mi direccion:
+							<br>
+							{{usuario.ciudad}}, {{usuario.direccion}}
+							<a class="btn-link" (click)="abrirModalDireccion(usuario)" style="cursor:pointer">Modificar direccion</a>
+						</p>
+
+
+
+						<article class="card-group">
+							<figure class="card bg">
+								<div class="p-3">
+									<h5 class="card-title">{{usuario.compras.length}}</h5>
+									<span>Compras</span>
+								</div>
+							</figure>
+
+						</article>
+
+
+					</div>
+				</article>
+
+
+				<article class="card mb-3" *ngIf="!ultimaCompra">
+					<div class="card-body">
+						<h5 class="card-title mb-4">Usted no tiene compras recientes!
+						</h5>
+
+						<div class="row">
+							<div class="col-md-6">
+								<figure class="itemside  mb-3">
+									<div class="alert alert-danger">
+
+										Para realizar compras vea nuestro catalogo
+									</div>
+								</figure>
+								<a [routerLink]="['/productos']" class="btn btn-outline-primary"> Productos </a>
+							</div>
+
+						</div>
+
+
+					</div>
+				</article>
+
+				<article class="card order-group" *ngIf="ultimaCompra && esCompras==false">
+					<header class="card-header">
+						<b class="d-inline-block mr-3">ID de la compra: {{ultimaCompra.id}} </b>
+						<span>{{ultimaCompra.fechaCompra | date :'longDate'}}</span>
+
+						<span *ngIf="ultimaCompra.estado==false" class="text-warning"> Por Pagar</span>
+						<span *ngIf="ultimaCompra.estado!=false" class="text-success"> Pagado</span>
+					</header>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-4">
+								<h6 class="text-muted">Total</h6>
+
+
+								<p>
+									<span class="b">{{ultimaCompra.valorTotal | currency:'CLP':'symbol-narrow'}} </span>
+								</p>
+
+							</div>
+							<div class="col-md-4">
+								<h6 class="text-muted">Contacto</h6>
+								<p> {{usuario.nombre}} {{usuario.apellido}}
+									<br>
+									{{usuario.numeroTelefono}}
+									<br>
+									{{usuario.email}} <br></p>
+
+							</div>
+							<div class="col-md-4">
+								<h6 class="text-muted">Direccion de envío</h6>
+								<p> {{ultimaCompra.direccion.numero}} , {{ultimaCompra.direccion.calle}}, {{ultimaCompra.direccion.ciudad}} </p>
+								<p *ngIf="ultimaCompra.direccion.departamento">	Departamento: {{ultimaCompra.direccion.departamento}}</p>
+							</div>
+						</div> <!-- row.// -->
+						<hr>
+						<ul class="row">
+							<li class="col-md-4" *ngFor="let carrito of carritoProducto">
+								<figure class="itemside  mb-3">
+									<div class="aside"><img *ngIf="carrito.producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" class="border img-sm">
+										<img *ngIf="carrito.producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="border img-sm" alt="..."></div>
+									<figcaption class="info align-self-center">
+
+										<p class="title">{{carrito.producto.nombre}} </p>
+										<span class="text-muted">{{carrito.producto.valorUnitario | currency:'CLP':'symbol-narrow'}} X {{carrito.cantidad }}</span>
+
+									</figcaption>
+								</figure>
+							</li>
+
+						</ul>
+						<a [routerLink]="['/productos']" class="btn btn-outline-success"> Pagar </a>
+					</div> <!-- card-body .// -->
+				</article>
+
+				<div *ngFor="let compra of compras">
+
+
+					<article class="card order-group"  *ngIf="esCompras">
+						<header class="card-header">
+							<b class="d-inline-block mr-3">ID de la compra: {{compra.id}} </b>
+							<span>{{compra.fechaCompra | date :'longDate'}}</span>
+
+							<span *ngIf="compra.estado==false" class="text-warning"> Por Pagar</span>
+							<span *ngIf="compra.estado!=false" class="text-success"> Pagado</span>
+						</header>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-4">
+									<h6 class="text-muted">Total</h6>
+
+
+									<p>
+										<span class="b">{{compra.valorTotal | currency:'CLP':'symbol-narrow'}} </span>
+									</p>
+
+								</div>
+								<div class="col-md-4">
+									<h6 class="text-muted">Contacto</h6>
+									<p> {{usuario.nombre}} {{usuario.apellido}}
+										<br>
+										{{usuario.numeroTelefono}}
+										<br>
+										{{usuario.email}} <br></p>
+
+								</div>
+								<div class="col-md-4">
+									<h6 class="text-muted">Direccion de envío</h6>
+									<p> {{compra.direccion.numero}}, {{compra.direccion.calle}}, {{compra.direccion.ciudad}} </p>
+									<p *ngIf="compra.direccion.departamento">	Departamento: {{compra.direccion.departamento}}</p>
+
+								</div>
+							</div> <!-- row.// -->
+							<hr>
+							<ul class="row">
+								<li class="col-md-4" *ngFor="let carrito of carritoProducto">
+									<figure class="itemside  mb-3">
+										<div class="aside"><img *ngIf="carrito.producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" class="border img-sm">
+											<img *ngIf="carrito.producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="border img-sm" alt="..."></div>
+										<figcaption class="info align-self-center">
+
+											<p class="title">{{carrito.producto.nombre}} </p>
+											<span class="text-muted">{{carrito.producto.valorUnitario | currency:'CLP':'symbol-narrow'}} X {{carrito.cantidad }}</span>
+
+										</figcaption>
+									</figure>
+								</li>
+
+							</ul>
+							<a [routerLink]="['/productos']" class="btn btn-outline-success"> Pagar </a>
+						</div> <!-- card-body .// -->
+					</article>
+					<br>
+				</div>
+			</main> <!-- col.// -->
+
+		</div>
+
+	</div> <!-- container .//  -->
+</section>

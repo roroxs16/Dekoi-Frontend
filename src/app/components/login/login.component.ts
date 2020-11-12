@@ -38,6 +38,11 @@ export class LoginComponent implements OnInit {
     },err =>{
       if(err.status == 400){
         swal.fire('Error al ingresar', 'Usuario o contraseña incorrecta', 'error');
+
+      }
+      if(err.status == 401){
+        swal.fire('Error al ingresar', 'El usuario ingresado no es valido o no existe', 'error');
+
       }
     });
   }
