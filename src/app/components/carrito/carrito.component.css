@@ -2,9 +2,6 @@
 /* ==== BASE STYLES ====*/
 /* ==================== GLOBAL STYLES ======================= */
 
-.btn-primary{
-	background-color: #3167eb
-}
 .fade-in {
 	opacity: 1;
 	animation-name: fadeInOpacity;
@@ -28,8 +25,15 @@ html {
   font-size: 15px;
 }
 
-.btn-primary{
-	background-color: #3167eb
+.btn-primary {
+  color: #fff;
+  background-color: #ff5100;
+  border-color: #ff5100;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #ff5100;
+  border-color: #ff5100;
 }
 /* ========================
 INCLUDE STYLES AND COMPONENTS
@@ -597,15 +601,16 @@ p:last-child {
 }
 
 .btn-light {
-  background-color: #fff;
-  border-color: #e4e4e4;
+  background: #878787;
+  color: white;
 }
 .btn-light i {
-  color: #969696;
+color: #969696;
 }
 .btn-light:hover {
-  background-color: #fff;
-  border-color: #989898;
+  background: #878787;
+  color: white;
+  border: #878787
 }
 
 .btn .text + i {

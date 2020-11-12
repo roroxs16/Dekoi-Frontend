@@ -1,0 +1,51 @@
+<section class="section-pagetop bg fade-in">
+  <div class="container">
+
+    <nav>
+      <ol class="breadcrumb text-white">
+        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/productos']">Productos</a></li>
+
+        <li class="breadcrumb-item active" aria-current="page">Pago</li>
+
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="section-content padding-y bg fade-in ">
+  <div class="container">
+
+    <div class="card " style="max-width: 640px; max-height: 460px; margin:0 auto;">
+      <div class="row no-gutters ">
+        <div class="col-md-4">
+          <img src="../../../assets/img/dekoi.jpg" style="height: 299px;" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Datos de pago Dekoi</h5>
+            <p >Banco: Banco Santander</p>
+            <p >Tipo de cuenta: Cuenta Corriente</p>
+            <p>N° cuenta: 00007747897-3</p>
+            <p >Nombre: Elizabeth Carolina Martínez Contreras
+            </p>
+            <p >Rut: 14.292.654-7</p>
+            <p>Correo: cmartinezc30@gmail.com</p>
+            
+          </div>
+        </div>
+      </div>
+      <div class="card-body border-top">
+        <button type="submit" [routerLink]="['/usuario']"  class="btn btn-primary float-md-right" >Ir a mis compras <fa-icon [icon]="faRight"></fa-icon></button>
+
+        <a [routerLink]="['/productos']" class="btn btn-light">
+         <fa-icon [icon]="faLeft"></fa-icon> Volver a comprar
+        </a>
+
+      </div> <!-- card-body.// -->
+    </div>
+
+
+
+  </div>
+</section>

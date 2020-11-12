@@ -35,25 +35,17 @@ a:hover {
 border-color: #3167eb;
 }
 .btn-outline-primary {
-  margin-left: 20px;
-  color: #3167eb;
-  border-color: #3167eb;
+  
+  color: #ff5100;
+  border-color: #ff5100;
 }
 .btn-outline-primary:hover {
-  color: #3167eb;
+  color: #ff5100;
   color: #fff;
-  background-color: #3167eb;
+  background-color: #ff5100;
+  border:  #ff5100;
 }
-.btn-primary {
-    color: #fff;
-    background-color: #3167eb;
-    border-color: #3167eb;
-}
-.btn-primary:hover {
-    color: #fff;
-    background-color: #3167eb;
-    border-color: #3167eb;
-}
+
 
 .img-wrap {
   text-align: center;

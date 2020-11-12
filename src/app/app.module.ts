@@ -34,6 +34,7 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { DetalleCompraComponent } from './components/usuario/detalle-compra.component';
 import { UsuariodireccionComponent } from './components/usuario/usuariodireccion.component';
+import { PagoComponent } from './components/pago/pago.component';
 
 registerLocaleData(localeEs, 'es');
 const routes: Routes = [
@@ -51,7 +52,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'direccion', component: DireccionComponent },
-  { path: 'detallecompra/:id', component: DetalleCompraComponent, canActivate: [AuthGuard, RoleGuard], data: [{ role: 'ROLE_ADMIN' } , {role: 'ROLE_CLIENTE'}]}
+  { path: 'detallecompra/:id', component: DetalleCompraComponent, canActivate: [AuthGuard, RoleGuard], data: [{ role: 'ROLE_ADMIN' } , {role: 'ROLE_CLIENTE'}]},
+  { path: 'pago', component: PagoComponent },
+  
 ];
 
 @NgModule({
@@ -72,7 +75,8 @@ const routes: Routes = [
     UsuarioComponent,
     MisdatosComponent,
     DetalleCompraComponent,
-    UsuariodireccionComponent
+    UsuariodireccionComponent,
+    PagoComponent
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,8 @@
       <div class="form-row">
         <div class="col form-group">
           <label>Nombre</label>
-          <input type="text" class="form-control" placeholder="Ricardo" name="nombre" [(ngModel)]="usuario.nombre" required minlength="4" #nombre="ngModel">
+          <input type="text" class="form-control" placeholder="Ricardo" name="nombre" [(ngModel)]="usuario.nombre"
+            required minlength="4" #nombre="ngModel">
           <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
             <div *ngIf="nombre.errors.required">
               El nombre es requerido
@@ -19,7 +20,8 @@
         </div> <!-- form-group end.// -->
         <div class="col form-group">
           <label>Apellido</label>
-          <input type="text" class="form-control" placeholder="Contreras" name="apellido" [(ngModel)]="usuario.apellido" required minlength="4" #apellido="ngModel">
+          <input type="text" class="form-control" placeholder="Contreras" name="apellido" [(ngModel)]="usuario.apellido"
+            required minlength="4" #apellido="ngModel">
           <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
             <div *ngIf="apellido.errors.required">
               El apellido es requerido.
@@ -32,7 +34,8 @@
       </div> <!-- form-row end.// -->
       <div class="form-group">
         <label>Email</label>
-        <input type="email" class="form-control" placeholder="ejemplo@gmail.com" name="email" [(ngModel)]="usuario.email" required email #email="ngModel">
+        <input type="email" class="form-control" placeholder="ejemplo@gmail.com" name="email"
+          [(ngModel)]="usuario.email" required email #email="ngModel">
         <small class="form-text text-muted"> Nunca compartiremos tu email con alguien más.</small>
         <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
           <div *ngIf="email.errors.required">
@@ -45,7 +48,8 @@
       </div> <!-- form-group end.// -->
       <div class="form-group">
         <label>Direccion</label>
-        <input type="text" class="form-control" placeholder="Calle de ejemplo 123" name="direccion" [(ngModel)]="usuario.direccion" required minlength="4" #direccion="ngModel">
+        <input type="text" class="form-control" placeholder="Calle de ejemplo 123" name="direccion"
+          [(ngModel)]="usuario.direccion" required minlength="4" #direccion="ngModel">
         <div class="alert alert-danger" *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)">
           <div *ngIf="direccion.errors.required">
             La direccion es requerida.
@@ -56,24 +60,26 @@
         </div>
       </div> <!-- form-group end.// -->
 
-        <div class="form-group">
-          <label>Ciudad</label>
-          <input type="text" class="form-control" placeholder="Ciudad" name="ciudad" [(ngModel)]="usuario.ciudad" required #ciudad="ngModel">
-          <div class="alert alert-danger" *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
-            <div *ngIf="ciudad.errors.required">
-              La Ciudad es requerida.
-            </div>
-            <div *ngIf="ciudad.errors.minlength">
-              La Ciudad debe tener 4 caracteres o más.
-            </div>
+      <div class="form-group">
+        <label>Ciudad</label>
+        <input type="text" class="form-control" placeholder="Ciudad" name="ciudad" [(ngModel)]="usuario.ciudad" required
+          #ciudad="ngModel">
+        <div class="alert alert-danger" *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
+          <div *ngIf="ciudad.errors.required">
+            La Ciudad es requerida.
           </div>
-        </div> <!-- form-group end.// -->
+          <div *ngIf="ciudad.errors.minlength">
+            La Ciudad debe tener 4 caracteres o más.
+          </div>
+        </div>
+      </div> <!-- form-group end.// -->
 
 
       <div class="form-row">
         <div class="form-group col-md-6">
           <label>Teléfono</label>
-          <input class="form-control" type="text" placeholder="9 1234 5678" name="numeroTelefono" [(ngModel)]="usuario.numeroTelefono" required minlength="9" maxlength="9" #telefono="ngModel">
+          <input class="form-control" type="text" placeholder="9 1234 5678" name="numeroTelefono"
+            [(ngModel)]="usuario.numeroTelefono" required minlength="9" maxlength="9" #telefono="ngModel">
           <div class="alert alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
             <div *ngIf="telefono.errors.required">
               El Teléfono es requerido.
@@ -88,7 +94,8 @@
         </div> <!-- form-group end.// -->
         <div class="form-group col-md-6">
           <label>Rut</label>
-          <input class="form-control" type="text" placeholder="11.111.111-1" name="rut" [(ngModel)]="usuario.rut" required #rut="ngModel">
+          <input class="form-control" type="text" placeholder="11.111.111-1" name="rut" [(ngModel)]="usuario.rut"
+            required #rut="ngModel">
           <div class="alert alert-danger" *ngIf="(rut.dirty || rut.touched) && rut.invalid">
             <div *ngIf="rut.errors.required">
               Rut es requerido
@@ -105,26 +112,28 @@
         </div> <!-- form-group end.// -->
       </div>
 
-        <div class="form-group">
-          <label>Contraseña</label>
-          <input class="form-control" type="password" placeholder="Contraseña" name="password" [(ngModel)]="usuario.password" required minlength="8" #password="ngModel">
-          <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
-            <div *ngIf="password.errors.required">
-              La contraseña es requerida.
-            </div>
-
-            <div *ngIf="password.errors.minlength">
-              La contraseña debe tener 9 caracteres o más.
-            </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input class="form-control" type="password" placeholder="Contraseña" name="password"
+          [(ngModel)]="usuario.password" required minlength="8" #password="ngModel">
+        <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+          <div *ngIf="password.errors.required">
+            La contraseña es requerida.
           </div>
-        </div> <!-- form-group end.// -->
-        <!-- <div class="form-group col-md-6">
+
+          <div *ngIf="password.errors.minlength">
+            La contraseña debe tener 9 caracteres o más.
+          </div>
+        </div>
+      </div> <!-- form-group end.// -->
+      <!-- <div class="form-group col-md-6">
           <label>Repetir password</label>
           <input class="form-control" type="password" placeholder="confirmar contraseña" name="confirmPassword">
         </div> <!-- form-group end.// -->
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block" (click)="crearUsuario()"  [disabled]="!registroForm.form.valid"> Registrar </button>
+        <button type="submit" class="btn btn-primary btn-block" (click)="crearUsuario()"
+          [disabled]="!registroForm.form.valid"> Registrar </button>
       </div> <!-- form-group// -->
 
     </form>
