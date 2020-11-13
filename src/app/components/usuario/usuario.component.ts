@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../../service/usuario.service';
+
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import {Usuario} from '../../models/usuario';
 import {Compra} from '../../models/compra';
 import {CarritoProducto} from '../../models/carritoProducto';
-import { AuthService} from '../../service/auth.service';
+
 import swal from 'sweetalert2';
+
 import {Router} from '@angular/router';
+import { AuthService} from '../../service/auth.service';
+import { UsuarioService } from '../../service/usuario.service';
 import { ModalService } from '../../service/modal.service';
+import { Carrito } from 'src/app/models/carrito';
 
 @Component({
   selector: 'app-usuario',
@@ -17,27 +21,32 @@ import { ModalService } from '../../service/modal.service';
 export class UsuarioComponent implements OnInit {
   faUser=faUser;
   usuario:Usuario = new Usuario();
-  usuarioModal:Usuario;
+  usuarioModal:Usuario=new Usuario;
   usuarioDireccionModal:Usuario;
   compras:Compra[]=[]
-  carritoProducto:CarritoProducto[];
-  ultimaCompra :Compra = new Compra();
-
+  carritoProducto:CarritoProducto[]= null;
+  ultimaCompra :Compra = null;
+  carrito: Carrito = null;
   esCompras:boolean=false;
+  allCompras: Compra[]=[];
 
 
-
-  constructor(private usuarioService: UsuarioService, public authService:AuthService,  private router: Router,     public modalService: ModalService) { }
+  constructor(private usuarioService: UsuarioService, 
+              public authService:AuthService, 
+              private router: Router, 
+              public modalService: ModalService
+            ) { }
 
   ngOnInit(): void {
     this.usuarioService.cargarUsuario().subscribe(response=>{
       this.usuario=response;
       this.compras= this.usuario.compras;
       this.ultimaCompra=this.compras[this.compras.length-1];
-      this.usuarioService.cargarProductosFromCompra(this.ultimaCompra.carrito.id).subscribe(response=>{
+      this.carrito = this.ultimaCompra.carrito;
+      this.usuarioService.cargarProductosFromCompra(this.carrito.id).subscribe(response=>{
 
         this.carritoProducto=response;
-
+        
       })
     });
 
@@ -49,6 +58,9 @@ export class UsuarioComponent implements OnInit {
     this.usuarioModal = usuario
 
     this.modalService.abrirModal();
+  }
+  cerrarModal() {
+    this.modalService.cerrarModal();
   }
 
   abrirModalDireccion(usuario: Usuario) {
@@ -68,6 +80,7 @@ export class UsuarioComponent implements OnInit {
   loadUltimaCompra():void{
     this.esCompras=false;
     this.ultimaCompra=this.compras[this.compras.length-1];
+    console.log(this.compras)
   }
 
   loadMisCompras():void{
@@ -76,5 +89,11 @@ export class UsuarioComponent implements OnInit {
     this.usuarioService.getAllCompras().subscribe(response =>{
       this.compras=response;
     });
+  }
+
+  loadAllCompras():void{
+    this.usuarioService.getAllComprasAdmin().subscribe(response =>{
+      this.compras=response;
+    })
   }
 }

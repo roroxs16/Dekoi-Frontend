@@ -1,63 +1,96 @@
-<div class="col-md-9">
+<section class="section-pagetop bg fade-in">
+  <div class="container">
+
+    <nav>
+      <ol class="breadcrumb text-white">
+        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/usuario']">Mi Cuenta</a></li>
+
+        <li class="breadcrumb-item active" aria-current="page">Compra #{{compra.id}} </li>
+
+      </ol>
+    </nav>
+  </div>
+</section>
+<div class="container" style="padding-bottom: 80px;">
   <article class="card order-group">
     <header class="card-header">
-      <b class="d-inline-block mr-3">Transaction ID: 6123456789</b>
-      <span>Date: 16 December 2018</span>
+      <b class="d-inline-block mr-3">ID de la compra: #{{compra.id}} </b>
+      <span>{{compra.fechaCompra | date :'longDate'}}</span>
+
+      <span class="text-warning" *ngIf="!compra.estado"> Por Pagar</span>
+      <span class="text-success" *ngIf="compra.estado"> Pagado </span>
+      
+
+ 
+      
     </header>
     <div class="card-body">
       <div class="row">
         <div class="col-md-4">
-          <h6 class="text-muted">Payment</h6>
-          <span class="text-success">
-            <i class="fab fa-lg fa-cc-visa"></i>
-            Visa **** 4216
-          </span>
+          <h6 class="text-muted">Total</h6>
 
-          <p>Subtotal: $356 <br>
-            Shipping fee: $56 <br>
-            <span class="b">Total: $456 </span>
+          <p>
+            <span class="b">{{compra.valorTotal | currency:'CLP':'symbol-narrow'}} </span>
           </p>
 
         </div>
         <div class="col-md-4">
-          <h6 class="text-muted">Contact</h6>
-          <p>Michael Jackson <br> +1234567890 <br> somename@gmail.com</p>
+          <h6 class="text-muted">Contacto</h6>
+          <p> {{usuarioNombre}} {{usuarioApellido}}
+            <br>
+            {{usuarioTelefono}}
+            <br>
+            {{usuarioEmail}} <br></p>
+
         </div>
         <div class="col-md-4">
-          <h6 class="text-muted">Shipping address</h6>
-          <p> Home 123, Building name, Street abcd, Tashkent Uzbekistan </p>
+          <h6 class="text-muted">Direccion de envío</h6>
+          <p> {{direccion.numero}}, {{direccion.calle}}, {{direccion.ciudad}} </p>
+          <p *ngIf="direccion.departamento"> Departamento: {{direccion.departamento}}</p>
         </div>
       </div> <!-- row.// -->
       <hr>
       <ul class="row">
-        <li class="col-md-4">
+        <li class="col-md-4" *ngFor="let carrito of carritoProducto">
           <figure class="itemside  mb-3">
-            <div class="aside"><img src="../images/items/1.jpg" class="img-sm border"></div>
+            <div class="aside"><img *ngIf="carrito.producto.imagenes.length>0"
+                src="http://localhost:8080/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}"
+                class="border img-sm">
+              <img *ngIf="carrito.producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="border img-sm"
+                alt="..."></div>
             <figcaption class="info align-self-center">
-              <p class="title">Just name of title or name goes here</p>
-              <span class="text-muted">$145 </span>
+
+              <p class="title">{{carrito.producto.nombre}} </p>
+              <span class="text-muted">{{carrito.producto.valorUnitario | currency:'CLP':'symbol-narrow'}} X
+                {{carrito.cantidad }}</span>
+
             </figcaption>
           </figure>
         </li>
-        <li class="col-md-4">
-          <figure class="itemside  mb-3">
-            <div class="aside"><img src="../images/items/2.jpg" class="img-sm border"></div>
-            <figcaption class="info align-self-center">
-              <p class="title">Just name of title or name goes here</p>
-              <span class="text-muted">$250 </span>
-            </figcaption>
-          </figure>
-        </li>
-        <li class="col-md-4">
-          <figure class="itemside mb-3">
-            <div class="aside"><img src="../images/items/3.jpg" class="img-sm border"></div>
-            <figcaption class="info align-self-center">
-              <p class="title">Just name of title or name goes here</p>
-              <span class="text-muted">$145 </span>
-            </figcaption>
-          </figure>
-        </li>
+
       </ul>
+
     </div> <!-- card-body .// -->
+    <div class="card-body border-top">
+      <div class="container">
+        <form #compraForm="ngForm">
+          <div class="row">       
+            <div class="col-md-2">
+            <label for="estado">Estado de compra</label>
+          </div>
+          <div class="col-md-2">
+            <select class="form-control" type="text" name="estado"   value="" [(ngModel)]="compra.estado">
+              <option [ngValue]="false"> Por pagar </option>
+              <option [ngValue]="true"> Pagado</option>
+            </select>
+          </div>
+          <div  >
+            <button style="float: right;" class="btn btn-primary" id="search" role="button" (click)="updateCompra()">Editar Compra</button>
+          </div></div>
+ 
+         </form>
+        </div>
+    </div>
   </article>
-</div> <!-- col .// -->
+</div>

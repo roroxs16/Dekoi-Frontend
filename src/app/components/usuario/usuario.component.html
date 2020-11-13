@@ -1,4 +1,7 @@
-<app-misdatos *ngIf="usuarioModal" [usuarioModal]="usuarioModal"></app-misdatos>
+
+<div *ngIf="!usuarioDireccionModal"><app-misdatos *ngIf="usuarioModal" [usuarioModal]="usuarioModal"></app-misdatos></div>
+
+
 <app-usuariodireccion *ngIf="usuarioDireccionModal" [usuarioDireccionModal]="usuarioDireccionModal"></app-usuariodireccion>
 
 <section class="section-pagetop bg fade-in">
@@ -7,7 +10,7 @@
     <nav>
       <ol class="breadcrumb text-white">
         <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
-				<li class="breadcrumb-item"><a [routerLink]="['/productos']">Productos</a></li>
+				
 
         <li class="breadcrumb-item active" aria-current="page">Mi cuenta</li>
 
@@ -19,18 +22,17 @@
 <section class="section-content bg padding-y">
 	<div class="container">
 
-		<div class="row">
+		<div class="row fade-in">
 			<aside class="col-md-3">
 				<ul class="list-group">
 					<a class="list-group-item" style="cursor:pointer" [routerLink]="['/usuario']" (click)="loadUltimaCompra()"> Configuracion de cuenta </a>
 					<a class="list-group-item" style="cursor:pointer" (click)="loadMisCompras()"> Mis Compras </a>
-
-
+					<a *ngIf="authService.hasRole('ROLE_ADMIN')" class="list-group-item" style="cursor:pointer" (click)="loadAllCompras()"> Compras Clientes </a>
 				</ul>
 				<br>
 				<a class="btn btn-light btn-block" (click)="  logout()"> <i class="fa fa-power-off"></i> <span class="text">Cerrar sesion</span> </a>
 			</aside> <!-- col.// -->
-			<main class="col-md-9">
+			<main class="col-md-9 fade-in">
 
 				<article class="card mb-3">
 					<div class="card-body">
@@ -94,11 +96,16 @@
 
 				<article class="card order-group" *ngIf="ultimaCompra && esCompras==false">
 					<header class="card-header">
-						<b class="d-inline-block mr-3">ID de la compra: {{ultimaCompra.id}} </b>
+						<b class="d-inline-block mr-3">ID de la compra: #{{ultimaCompra.id}} </b>
 						<span>{{ultimaCompra.fechaCompra | date :'longDate'}}</span>
 
 						<span *ngIf="ultimaCompra.estado==false" class="text-warning"> Por Pagar</span>
 						<span *ngIf="ultimaCompra.estado!=false" class="text-success"> Pagado</span>
+						<button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-success" style="float:right" 
+						 [routerLink]="['/detallecompra', ultimaCompra.id]"
+						 [queryParams]="{usuarioNombre: usuario.nombre, usuarioApellido: usuario.apellido, usuarioNumero: usuario.numeroTelefono, usuarioEmail: usuario.email}"> 
+							Detalle de la compra 
+						</button>
 					</header>
 					<div class="card-body">
 						<div class="row">
@@ -122,7 +129,7 @@
 							</div>
 							<div class="col-md-4">
 								<h6 class="text-muted">Direccion de envío</h6>
-								<p> {{ultimaCompra.direccion.numero}} , {{ultimaCompra.direccion.calle}}, {{ultimaCompra.direccion.ciudad}} </p>
+								<p> {{ultimaCompra.direccion.numero}}, {{ultimaCompra.direccion.calle}}, {{ultimaCompra.direccion.ciudad}} </p>
 								<p *ngIf="ultimaCompra.direccion.departamento">	Departamento: {{ultimaCompra.direccion.departamento}}</p>
 							</div>
 						</div> <!-- row.// -->
@@ -142,7 +149,7 @@
 							</li>
 
 						</ul>
-						<a [routerLink]="['/productos']" class="btn btn-outline-success"> Pagar </a>
+						<a *ngIf="ultimaCompra.estado==false" [routerLink]="['/pago']" class="btn btn-outline-success"> Pagar </a>
 					</div> <!-- card-body .// -->
 				</article>
 
@@ -151,11 +158,12 @@
 
 					<article class="card order-group"  *ngIf="esCompras">
 						<header class="card-header">
-							<b class="d-inline-block mr-3">ID de la compra: {{compra.id}} </b>
+							<b class="d-inline-block mr-3">ID de la compra: #{{compra.id}} </b>
 							<span>{{compra.fechaCompra | date :'longDate'}}</span>
 
 							<span *ngIf="compra.estado==false" class="text-warning"> Por Pagar</span>
 							<span *ngIf="compra.estado!=false" class="text-success"> Pagado</span>
+							<button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-success" style="float:right" [routerLink]="['/detallecompra', compra.id]"> Detalle de la compra </button>
 						</header>
 						<div class="card-body">
 							<div class="row">
@@ -200,11 +208,12 @@
 								</li>
 
 							</ul>
-							<a [routerLink]="['/productos']" class="btn btn-outline-success"> Pagar </a>
+							<a *ngIf="ultimaCompra.estado!=false"[routerLink]="['/productos']" class="btn btn-outline-success"> Pagar </a>
 						</div> <!-- card-body .// -->
 					</article>
 					<br>
 				</div>
+
 			</main> <!-- col.// -->
 
 		</div>
