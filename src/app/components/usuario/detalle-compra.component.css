@@ -15,6 +15,17 @@ a:hover {
   text-decoration: none;
 }
 
+.btn-primary {
+  color: #fff;
+  background-color: #ff5100;
+  border-color: #ff5100;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #ff5100;
+  border-color: #ff5100;
+}
+
 .img-wrap {
   text-align: center;
   display: block;
@@ -549,45 +560,7 @@ p:last-child {
      object-fit: cover;
 }
 
-.btn-facebook {
-  background-color: #405D9D;
-  color: #fff;
-}
-.btn-facebook:hover {
-  color: #fff;
-}
 
-.btn-instagram {
-  background-color: #E52D27;
-  color: #fff;
-}
-.btn-instagram:hover {
-  color: #fff;
-}
-
-.btn-youtube {
-  background-color: #C8046C;
-  color: #fff;
-}
-.btn-youtube:hover {
-  color: #fff;
-}
-
-.btn-twitter {
-  background-color: #42AEEC;
-  color: #fff;
-}
-.btn-twitter:hover {
-  color: #fff;
-}
-
-.btn-google {
-  background-color: #ff7575;
-  color: #fff;
-}
-.btn-google:hover {
-  color: #fff;
-}
 
 .btn-icon {
   width: calc(1.5em + 0.9rem + 2px);

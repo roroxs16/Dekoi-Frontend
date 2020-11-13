@@ -1,16 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 
-import { Producto } from '../../models/producto';
-import { Imagen } from '../../models/imagen';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../service/auth.service';
-import { ProductoService } from '../../service/producto.service';
-import { ModalService } from '../../service/modal.service';
+import {
+  Producto
+} from '../../models/producto';
+import {
+  Imagen
+} from '../../models/imagen';
+import {
+  faShoppingCart
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  Router,
+  ActivatedRoute
+} from '@angular/router';
+import {
+  AuthService
+} from '../../service/auth.service';
+import {
+  ProductoService
+} from '../../service/producto.service';
+import {
+  ModalService
+} from '../../service/modal.service';
 import Swal from 'sweetalert2';
-import { ProductoForm } from '../../models/productoForm';
+import {
+  ProductoForm
+} from '../../models/productoForm';
 import swal from 'sweetalert2';
-import { CarritoService } from '../../service/carrito.service';
+import {
+  CarritoService
+} from '../../service/carrito.service';
 
 @Component({
   selector: 'app-ver-producto',
@@ -27,17 +49,17 @@ export class VerProductoComponent implements OnInit {
   productos: Producto[];
   cantidad: number = 1;
   imagenes: Imagen[] = [];
-  nombreProducto=""
+  nombreProducto = ""
   imagenAuxiliar: Imagen;
 
-  productoForm:ProductoForm = new ProductoForm();
+  productoForm: ProductoForm = new ProductoForm();
 
   constructor(private productoService: ProductoService,
     private activatedRoute: ActivatedRoute,
     public modalService: ModalService,
     private router: Router,
     public authService: AuthService,
-    private carritoService:CarritoService) { }
+    private carritoService: CarritoService) {}
 
   ngOnInit(): void {
     this.cargarProducto();
@@ -51,7 +73,7 @@ export class VerProductoComponent implements OnInit {
       if (id) {
         this.productoService.getProductoById(id)
           .subscribe((producto) => {
-            this.nombreProducto=producto.nombre;
+            this.nombreProducto = producto.nombre;
             this.producto = producto
             this.imagenes = this.producto.imagenes;
           });
@@ -120,13 +142,13 @@ export class VerProductoComponent implements OnInit {
     this.imagenes[index] = this.imagenAuxiliar;
   }
 
-  public addProductToCart(cantidad:number, id: number):any{
+  public addProductToCart(cantidad: number, id: number): any {
 
-    this.productoForm.cantidad=cantidad;
-    this.productoForm.productoId=id;
+    this.productoForm.cantidad = cantidad;
+    this.productoForm.productoId = id;
     this.carritoService.addProductToCart(this.productoForm).subscribe(
-      response =>{
-        swal.fire('Producto agregado',` Producto Agregado con exito al carrito`,'success');
+      response => {
+        swal.fire('Producto agregado', ` Producto Agregado con exito al carrito`, 'success');
       }
     );
   }

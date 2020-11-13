@@ -77,6 +77,15 @@ export class UsuarioService {
     )
 
   }
+  getAllComprasAdmin(): Observable<Compra[]> {
+    return this.http.get<Compra[]>("http://localhost:8080/api/compra/admin").pipe(
+      catchError(e => {
+        swal.fire('Error al obtener las compras', 'No se pudieron obtener las compras', 'error')
+        return throwError(e);
+      })
+    )
+
+  }
 
   getCompra(id: number): Observable<Compra> {
     return this.http.get<Compra>(this.urlEndPoint + `compra/${id}`).pipe(
@@ -98,6 +107,18 @@ export class UsuarioService {
         return throwError(e);
       })
     )
+  }
+
+  updateCompra(compra: Compra): Observable<Compra>{
+    return this.http.put<Compra>(`http://localhost:8080/api/compra/${compra.id}`, compra)
+      .pipe(
+        map((response: any) => response.compra as Compra),
+        catchError(e => {
+
+          swal.fire('Error al editar la Compra', e.error.error, 'error');
+          return throwError(e);
+        })
+      )
   }
 
 }

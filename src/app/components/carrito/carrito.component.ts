@@ -39,6 +39,7 @@ export class CarritoComponent implements OnInit {
   }
   realizarCompra(): void {
     this.compraService.generateCompra(this.direccion).subscribe((response) => {
+  
       swal.fire('Se genero la compra', 'La compra se realizó exisotsamente!', 'success')
     })
   }

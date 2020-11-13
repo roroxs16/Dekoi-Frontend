@@ -52,7 +52,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'direccion', component: DireccionComponent },
-  { path: 'detallecompra/:id', component: DetalleCompraComponent, canActivate: [AuthGuard, RoleGuard], data: [{ role: 'ROLE_ADMIN' } , {role: 'ROLE_CLIENTE'}]},
+  { path: 'detallecompra/:id', component: DetalleCompraComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' }},
   { path: 'pago', component: PagoComponent },
   
 ];

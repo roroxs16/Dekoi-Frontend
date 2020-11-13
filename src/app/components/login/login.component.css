@@ -1,5 +1,7 @@
 .btn-primary{
-	background-color: #3167eb
+  color: #fff;
+  background-color: #ff5100;
+  border-color: #ff5100;
 }
 .fade-in {
 	opacity: 1;
