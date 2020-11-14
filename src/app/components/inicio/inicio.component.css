@@ -1,6 +1,10 @@
-@charset "UTF-8";
-/* ==== BASE STYLES ====*/
-/* ==================== GLOBAL STYLES ======================= */
+
+/* .contenedor-productos{
+  margin-top: 40px;
+  margin-bottom: 50px;
+  margin-left: 120px;
+  margin-right: 120px;
+} */
 
 .fade-in {
 	opacity: 1;
@@ -19,23 +23,53 @@
 	}
 }
 
+* {
+  box-sizing: border-box;
+}
 
-html , body{
-  font-family: "Inter", sans-serif;
-  font-size: 15px;
+body {
+  font-family: sans-serif;
   background-color: #f8f9fa;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #ff5100;
-  border-color: #ff5100;
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
 }
-.btn-primary:hover {
-  color: #fff;
-  background-color: #ff5100;
-  border-color: #ff5100;
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* ==== BASE STYLES ====*/
+/* ==================== GLOBAL STYLES ======================= */
+
+
 /* ========================
 INCLUDE STYLES AND COMPONENTS
 ===================== */
@@ -186,6 +220,7 @@ a:hover {
 
 /* ============== spacing ============== */
 .padding-y {
+
   padding-bottom: 40px;
 }
 
@@ -195,6 +230,32 @@ a:hover {
 
 .padding-bottom {
   padding-bottom: 40px;
+}
+
+.padding-y-lg {
+
+  padding-bottom: 80px;
+}
+
+.padding-top-lg {
+  padding-top: 80px;
+}
+
+.padding-bottom-lg {
+  padding-bottom: 80px;
+}
+
+.padding-y-sm {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.padding-top-sm {
+  padding-top: 20px;
+}
+
+.padding-bottom-sm {
+  padding-bottom: 20px;
 }
 
 .relative {
@@ -243,6 +304,7 @@ article:after,
 
 .bg {
   background-color: #f8f9fa;
+
 }
 
 .bg-white {
@@ -365,7 +427,19 @@ article:after,
   margin-bottom: 20px;
   margin-top: 15px;
 }
-
+.a{
+      color: #3167eb;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #ff5100;
+  border-color: #ff5100;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #ff5100;
+  border-color: #ff5100;
+}
 .section-title {
   color: #212529;
 }
@@ -551,45 +625,6 @@ p:last-child {
      object-fit: cover;
 }
 
-.btn-facebook {
-  background-color: #405D9D;
-  color: #fff;
-}
-.btn-facebook:hover {
-  color: #fff;
-}
-
-.btn-instagram {
-  background-color: #E52D27;
-  color: #fff;
-}
-.btn-instagram:hover {
-  color: #fff;
-}
-
-.btn-youtube {
-  background-color: #C8046C;
-  color: #fff;
-}
-.btn-youtube:hover {
-  color: #fff;
-}
-
-.btn-twitter {
-  background-color: #42AEEC;
-  color: #fff;
-}
-.btn-twitter:hover {
-  color: #fff;
-}
-
-.btn-google {
-  background-color: #ff7575;
-  color: #fff;
-}
-.btn-google:hover {
-  color: #fff;
-}
 
 .btn-icon {
   width: calc(1.5em + 0.9rem + 2px);
@@ -601,18 +636,7 @@ p:last-child {
   line-height: 1;
 }
 
-.btn-light {
-  background: #878787;
-  color: white;
-}
-.btn-light i {
-color: #969696;
-}
-.btn-light:hover {
-  background: #878787;
-  color: white;
-  border: #878787
-}
+
 
 .btn .text + i {
   margin-left: 10px;
@@ -764,16 +788,7 @@ ul.row, ul.row-sm {
   padding-left: 24px;
   margin-bottom: 7px;
 }
-.list-check > li::before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  font-size: 12px;
-  color: #00b517;
-  position: absolute;
-  top: 2px;
-  left: 0;
-  content: "";
-}
+
 
 .list-normal {
   list-style: none;
@@ -1419,88 +1434,3 @@ a[class*=card]:hover .title {
 }
 
 /*# sourceMappingURL=ui.css.map */
-
-.mobile-block {
-  display: none;
-}
-
-@media (max-width: 1200px) {
-  /* tablet devices */
-}
-@media (max-width: 992px) {
-  /* small tablet devices */
-  .slider-main .item-slide {
-    height: auto;
-  }
-
-  .table-shopping-cart tr td:first-child {
-    width: 250px;
-  }
-  .table-shopping-cart .itemside .info {
-    padding: 0;
-  }
-  .table-shopping-cart .itemside .aside {
-    display: none;
-  }
-}
-@media all and (max-width: 768px) {
-  /* mobile devices */
-  .mobile-block {
-    display: block;
-  }
-
-  .mobile-hide {
-    display: none;
-  }
-
-  .section-header .logo {
-    max-height: 40px;
-    width: auto;
-  }
-  .section-header .header-main .brand-wrap {
-    margin-bottom: 1rem;
-    display: inline-block;
-  }
-  .section-header .header-main .search {
-    margin-bottom: 1rem;
-  }
-
-  .item-feature {
-    margin-bottom: 20px;
-  }
-
-  .mobile-order-first {
-    order: -1;
-  }
-
-  .mobile-order-1 {
-    order: 1;
-  }
-
-  .mobile-order-2 {
-    order: 2;
-  }
-
-  .mobile-order-3 {
-    order: 3;
-  }
-
-  .mobile-py {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-
-  .mobile-pb {
-    padding-bottom: 20px;
-  }
-
-  .mobile-pt {
-    padding-top: 20px;
-  }
-
-  .navbar-expand .navbar-collapse {
-    flex-direction: column;
-  }
-}
-
-/*# sourceMappingURL=responsive.css.map */
