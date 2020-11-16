@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from'../../service/auth.service'
 import swal from 'sweetalert2';
 import {Router} from '@angular/router';
+import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -9,8 +11,8 @@ import {Router} from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-
-
+  faCart=faShoppingCart;
+  faUser=faUser;
   constructor(public authService:AuthService, private router: Router) { }
 
   ngOnInit(): void {

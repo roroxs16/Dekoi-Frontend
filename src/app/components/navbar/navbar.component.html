@@ -30,16 +30,17 @@
   <ul class="navbar-nav ml-auto">
     <!-- MOSTRAR ESTE li SI NO HA INICIADO SESION -->
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/carrito']">Carrito</a>
+      <a class="nav-link" [routerLink]="['/carrito']"><fa-icon [icon]="faCart" size="lg"></fa-icon></a>
     </li>
 
     <li *ngIf="!authService.isAuthenticated()" class="nav-item">
-      <a class="nav-link"  [routerLink]="['/login']" >Inicia sesión</a>
+      <a class="nav-link"  [routerLink]="['/login']" ><fa-icon [icon]="faUser" size="lg"></fa-icon> Inicio de sesión</a>
     </li>
 
     <!-- MOSTRAR ESTE li SI HAY UNA SESIÓN INICIADA -->
     <li *ngIf="authService.isAuthenticated()"class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <fa-icon [icon]="faUser" size="lg"></fa-icon>
         {{authService.usuario.nombre}}
       </a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
