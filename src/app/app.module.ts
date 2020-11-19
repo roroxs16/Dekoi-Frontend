@@ -35,11 +35,12 @@ import { registerLocaleData } from '@angular/common';
 import { DetalleCompraComponent } from './components/usuario/detalle-compra.component';
 import { UsuariodireccionComponent } from './components/usuario/usuariodireccion.component';
 import { PagoComponent } from './components/pago/pago.component';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 registerLocaleData(localeEs, 'es');
 const routes: Routes = [
-  // {path: '', redirectTo: '/', pathMatch: 'full'},
-  { path: '', component: ProductosComponent },
+  {path: '', redirectTo: '/', pathMatch: 'full'},
+  { path: '', component: InicioComponent },
   { path: 'categorias', component: CategoriaComponent },
   { path: 'productos', component: ProductosComponent },
   { path: 'productos/page/:page', component: ProductosComponent },
@@ -76,7 +77,8 @@ const routes: Routes = [
     MisdatosComponent,
     DetalleCompraComponent,
     UsuariodireccionComponent,
-    PagoComponent
+    PagoComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
