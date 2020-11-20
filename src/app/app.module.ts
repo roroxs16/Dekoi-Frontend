@@ -39,8 +39,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
 
 registerLocaleData(localeEs, 'es');
 const routes: Routes = [
-  {path: '', redirectTo: '/', pathMatch: 'full'},
-  { path: '', component: InicioComponent },
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: 'home', component: InicioComponent },
   { path: 'categorias', component: CategoriaComponent },
   { path: 'productos', component: ProductosComponent },
   { path: 'productos/page/:page', component: ProductosComponent },

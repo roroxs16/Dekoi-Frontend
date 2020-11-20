@@ -1,5 +1,5 @@
 <app-subir-foto *ngIf="productoId" [productoId]="productoId"></app-subir-foto>
-
+<!--
 <section class="section-pagetop bg fade-in">
   <div class="container">
     <h2 class="title-page">{{nombreProducto}}</h2>
@@ -28,7 +28,7 @@
 								<img *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{imagenes[0].nombre}}" alt="">
 							</a>
 							<img *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="card-img-top" alt="...">
-						</div> <!-- img-big-wrap.// -->
+						</div> 
 						<div class="thumbs-wrap">
 							<a class="item-thumb" *ngFor="let imagen of producto.imagenes; let i = index" >
 								<img (click)="cambiarImagen(i)" src="http://localhost:8080/api/uploads/img/{{imagen.nombre}}">
@@ -102,18 +102,99 @@
 										<button class="btn btn-light" type="button" id="button-minus" (click)="disminuyeCantidad()"> &minus; </button>
 									</div>
 								</div>
-							</div> <!-- col.// -->
+							</div> 
 
 
-						</div> <!-- row.// -->
+						</div> 
 
-						<!-- <a class="btn  btn-primary"> Comprar Ahora </a> -->
+					
 						<a class="btn  btn-outline-primary" (click)="addProductToCart(cantidad,producto.id)" > <span class="text"> Agregar al carrito </span>
 							<fa-icon [icon]="faCart"></fa-icon>
 						</a>
-					</article> <!-- product-info-aside .// -->
-				</main> <!-- col.// -->
-			</div> <!-- row.// -->
-		</div> <!-- card.// -->
+					</article>
+				</main> 
+			</div> 
+		</div> 
 	</div>
 </section>
+-->
+<div class="container-fluid fade-in" style="padding-top: 120px;">
+ 
+  <div class="row">
+    <div class="col-md-2">
+      <div style="margin-left: 50px;">
+
+      </div>
+
+    </div>
+    <div class="col-md-2" style="float: right;">
+      <div class="row">
+        <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
+        <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+		<h6 [routerLink]="['/productos']" style="cursor: pointer;">PRODUCTOS</h6>
+		<h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+		<h6 style="margin-left: 2px; margin-right: 2px;"> {{producto.nombre | uppercase}}</h6>
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+  <hr>
+  <div class="row">
+	<div class="col-md-2 lista-productos">
+
+	</div>
+
+	<div class="col-md-10 lista-productos">
+		<div class="row">
+			<h2>{{producto.nombre}}</h2>
+		</div>
+		<div class="row">
+			
+			<img class="img-producto" *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{imagenes[0].nombre}}" alt="">
+			<img class="img-producto" *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="card-img-top" alt="...">
+			
+
+			
+		</div>
+		<div class="row" styles="padding-left:40px; padding-top:20px">
+			<p class="descripcion-producto"> {{producto.descripcion}}</p>
+		</div>
+		<div class="row" styles="padding-left:40px; padding-top:20px">
+			<p class="descripcion-producto">{{producto.valorUnitario | currency:'CLP':'symbol-narrow'}}</p>
+		</div>
+		<div class="form-row" >
+			<div class="form-group col-md flex-grow-0">
+				<label style="margin-left: 22px;margin-top: 20px;">Cantidad</label>
+				<div class="input-group mb-3 input-spinner" style="margin-left: 20px;">
+					<div class="input-group-prepend">
+						<button class="btn btn-light" type="button" id="button-plus" (click)="aumentaCantidad()"> + </button>
+					</div>
+					<input type="text" class="form-control" [value]="cantidad">
+					<div class="input-group-append">
+						<button class="btn btn-light" type="button" id="button-minus" (click)="disminuyeCantidad()"> &minus; </button>
+					</div>
+				</div>
+			
+			</div> 
+			<a class="btn btn-agregar" (click)="addProductToCart(cantidad,producto.id)"  > <span class="text"> Agregar al carrito </span>
+				<fa-icon [icon]="faCart"></fa-icon>
+			</a>
+
+		</div> 
+		<div class="row">
+		
+		</div>
+		
+  
+	</div>
+  
+  </div>
+
+
+</div>
+

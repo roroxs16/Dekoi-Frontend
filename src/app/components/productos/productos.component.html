@@ -1,4 +1,5 @@
-<section class="section-pagetop bg fade-in">
+<!--
+<section class="section-pagetop bg fade-in" style="padding-top: 120px;">
   <div class="container">
     <h2 class="title-page">Productos</h2>
     <nav>
@@ -43,13 +44,13 @@
 
                 </ul>
 
-              </div> <!-- card-body.// -->
+              </div> 
             </div>
-          </article> <!-- filter-group  .// -->
+          </article> 
 
-        </div> <!-- card.// -->
+        </div> 
 
-      </aside> <!-- col.// -->
+      </aside> 
       <main class="col-md-9">
 
         <header class="border-bottom mb-4 pb-3">
@@ -57,39 +58,125 @@
             <span class="mr-md-auto">{{productos.length}} Productos encontrados </span>
 
           </div>
-        </header><!-- sect-heading -->
+        </header>
 
         <div class="row">
           <div class="col-md-4" *ngFor="let producto of productos">
             <figure class="card card-product-grid">
               <div class="img-wrap">
 
-                <img img class="card-img-top" *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
-                <img *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="card-img-top" alt="...">
+                <img img  *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
+                <img *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" alt="...">
                 <a class="btn-overlay" [routerLink]="['/producto', producto.id]"><i class="fa fa-search-plus"></i> Ver más</a>
-              </div> <!-- img-wrap.// -->
+              </div> 
               <figcaption class="info-wrap">
                 <div class="fix-height">
                   <a [routerLink]="['/producto', producto.id]" class="title" style="font-size:15px">{{producto.nombre}}</a>
                   <div class="price-wrap mt-2">
                     <span class="price">{{producto.valorUnitario | currency:'CLP':'symbol-narrow'}}</span>
 
-                  </div> <!-- price-wrap.// -->
+                  </div> 
                 </div>
                 <a (click)="addProductToCart(producto.id)" class="btn btn-block btn-primary">Agregar al carrito </a>
               </figcaption>
             </figure>
-          </div> <!-- col.// -->
+          </div> 
 
 
-        </div> <!-- row end.// -->
 
         <div *ngIf="enabled==false">
           <app-paginator *ngIf="paginador" [paginador]="paginador"></app-paginator>
         </div>
-      </main> <!-- col.// -->
+      </main> 
 
     </div>
 
-  </div> <!-- container .//  -->
-</section>
+  </div> 
+</section> -->
+<div class="container-fluid fade-in" style="padding-top: 120px;">
+  <div class="row">
+    <h4>CATEGORÍAS</h4>
+
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div style="margin-left: 50px;">
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-success my-2"
+          [routerLink]="['/productos/formulario']">Agregar Producto</button>
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-success my-2"
+          [routerLink]="['/categoria/formulario']">Agregar Categoria</button>
+
+      </div>
+
+    </div>
+    <div class="col-md-2" style="float: right;">
+      <div class="row">
+        <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
+        <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+        <h6 [routerLink]="['/productos']" style="cursor: pointer;">PRODUCTOS</h6>
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+  <hr>
+  <div class="row">
+    <div class="col-md-2 categorias">
+      <ul class="list-menu">
+        <div class="col-md-2">
+          <li class="categoria" *ngFor="let categoria of categorias" (click)="mostrarProductos(categoria)"
+            style="cursor:pointer;">{{categoria.nombre}}
+            <hr style="width:120px">
+          </li>
+        </div>
+
+
+      </ul>
+    </div>
+    <div class="col-md-2 lista-productos">
+
+    </div>
+    <div class="col-md-8 lista-productos">
+      <div class="row">
+        <div class="col-md-6" *ngFor="let producto of productos">
+          <div class="bg-producto">
+            <div class="row">
+              <img class="img-producto" *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
+              <img class="img-producto" *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" alt="...">
+            </div>
+            <div class="row" style="background: white;">
+              <div class="col-md-8">
+                <a class="nombre-producto" [routerLink]="['/producto', producto.id]">{{producto.nombre}}</a>
+              </div>
+              <div class="col-md-4" style="padding-top: 15px;">
+                <div class="row">
+                
+                  <div class="col-md-6" style="padding-left: 70px;">
+                    <span class="precio">{{producto.valorUnitario | currency:'CLP':'symbol-narrow'}}</span>
+                  </div>
+               
+
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+
+                  <a (click)="addProductToCart(producto.id)" class="btn btn-block btn-primary ">Añadir al carrito </a>
+                </div>
+             
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+      <div *ngIf="enabled==false">
+        <app-paginator *ngIf="paginador" [paginador]="paginador"></app-paginator>
+      </div>
+    </div>
+
+  </div>
+
+</div>
