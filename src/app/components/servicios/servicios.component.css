@@ -1,0 +1,110 @@
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInRight;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.5s;
+}
+@keyframes fadeInRight {
+   0% {
+      opacity: 0;
+      transform: translateX(20px);
+   }
+   100% {
+      opacity: 1;
+      transform: translateX(0);
+   }
+}
+h6{
+  color: #ff5100;
+  font-size: 14px;
+  
+}
+h4{
+  color: white;
+}
+h2{
+  margin-top: 40px;
+  margin-left: 40px;
+  color: #ff5100;
+}
+
+.btn{
+  height: 40px;
+
+}
+
+a{
+  color: #878787;
+
+  font-size: 12px;
+}
+.container-fluid{
+  font-family: 'Roboto', sans-serif;
+}
+h4{
+  text-align: center;
+  font-size: 18px;
+}
+hr{
+  border: 1px solid #878787;;
+}
+
+
+
+.card-deck span {
+  display: none;
+}
+
+@media (min-width:1200px){
+.card-deck span:nth-of-type(5n) {
+  display: block;
+  width: 100%;
+}
+
+}
+@media (min-width:992px) and (max-width: 1199px) {
+.card-deck span:nth-of-type(4n) {
+  display: block;
+  width: 100%;
+}
+
+}
+@media (min-width:768px) and (max-width: 991px) {
+.card-deck span:nth-of-type(3n) {
+  display: block;
+  width: 100%;
+}
+}
+@media (min-width: 576px) and (max-width: 767px) {
+.card-deck span:nth-of-type(2n) {
+  display: block;
+  width: 100%;
+}
+}
+
+button, button:hover{
+  border-color: #ff5100;
+  background-color: #ff5100;
+  color: white;
+  position: absolute;
+  bottom: 0;
+}
+
+/* add css for margin fix -- this will not be needed after beta */
+.card-deck .card {
+background-color:#878787; ;
+height: 700px;
+margin-right: 15px;
+}
+
+.card-deck .card:not(:last-child) {
+margin-right: 15px;
+}
+
+.card-deck .card:not(:first-child) {
+margin-left: 15px;
+}
+.card-block{
+  padding: 0px 20px;
+}

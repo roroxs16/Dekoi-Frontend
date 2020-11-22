@@ -1,0 +1,40 @@
+<div class="container-fluid fade-in" style="padding-top: 90px; ">
+    <div class="row">
+        <div class="col-md-2" style="margin-left: 50px;"></div>
+        <div class="col-md-4">
+            <div class="row">
+                <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
+                <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+                <h6 [routerLink]="['/servicios']" style="cursor: pointer;">SERVICIOS</h6>
+
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="container">
+           
+         
+                <div class="card-deck">
+                    <div class="card mb-4" *ngFor="let servicio of servicios; index as i">
+                        
+                            <fa-icon  *ngIf="i==0" [icon]="faTools" size="9x" style="color: white; align-self: center; padding: 50px 0px;"></fa-icon>
+                            <fa-icon  *ngIf="i==1" [icon]="faChair" size="9x" style="color: white; align-self: center; padding: 50px 0px;"></fa-icon>
+                            <fa-icon  *ngIf="i==2" [icon]="faPen" size="9x" style="color: white; align-self: center; padding: 50px 0px;"></fa-icon>
+                        
+                        <div class="card-block">
+                            <h4 class="card-title" style="color:white ;padding-top: 25px">{{servicio.nombre}}</h4>
+                            <h4 class="card-text" style="padding-top: 35px;">{{servicio.descripcion}}</h4>
+                            
+                        </div>
+                        <button class="btn btn-lg btn-block"> Agendar reunión </button>
+                    </div>
+
+                
+                </div>
+            
+           
+              </div> 
+    </div>
+
+</div>

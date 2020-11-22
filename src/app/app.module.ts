@@ -36,6 +36,7 @@ import { DetalleCompraComponent } from './components/usuario/detalle-compra.comp
 import { UsuariodireccionComponent } from './components/usuario/usuariodireccion.component';
 import { PagoComponent } from './components/pago/pago.component';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { ServiciosComponent } from './components/servicios/servicios.component';
 
 registerLocaleData(localeEs, 'es');
 const routes: Routes = [
@@ -55,6 +56,7 @@ const routes: Routes = [
   { path: 'direccion', component: DireccionComponent },
   { path: 'detallecompra/:id', component: DetalleCompraComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' }},
   { path: 'pago', component: PagoComponent },
+  { path: 'servicios', component: ServiciosComponent },
   
 ];
 
@@ -78,7 +80,8 @@ const routes: Routes = [
     DetalleCompraComponent,
     UsuariodireccionComponent,
     PagoComponent,
-    InicioComponent
+    InicioComponent,
+    ServiciosComponent
   ],
   imports: [
     BrowserModule,
