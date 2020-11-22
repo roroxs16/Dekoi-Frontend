@@ -28,9 +28,11 @@
 					<a class="list-group-item" style="cursor:pointer" [routerLink]="['/usuario']" (click)="loadUltimaCompra()"> Configuracion de cuenta </a>
 					<a class="list-group-item" style="cursor:pointer" (click)="loadMisCompras()"> Mis Compras </a>
 					<a *ngIf="authService.hasRole('ROLE_ADMIN')" class="list-group-item" style="cursor:pointer" (click)="loadAllCompras()"> Compras Clientes </a>
+					<a *ngIf="authService.hasRole('ROLE_ADMIN')" [routerLink]="['/admin/productos']" class="list-group-item" style="cursor:pointer" > Gestion de Productos </a>
 				</ul>
 				<br>
-				<a class="btn btn-light btn-block" (click)="  logout()"> <i class="fa fa-power-off"></i> <span class="text">Cerrar sesion</span> </a>
+				<a class="btn btn-light btn-block" (click)="logout()">     <fa-icon [icon]="faPowerOff"  style="color: black; padding-right: 8px;"></fa-icon>
+					<span class="text">Cerrar sesion</span> </a>
 			</aside> <!-- col.// -->
 			<main class="col-md-9 fade-in">
 
