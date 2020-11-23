@@ -80,7 +80,7 @@ export class UsuarioComponent implements OnInit {
   loadUltimaCompra():void{
     this.esCompras=false;
     this.ultimaCompra=this.compras[this.compras.length-1];
-    console.log(this.compras)
+
   }
 
   loadMisCompras():void{

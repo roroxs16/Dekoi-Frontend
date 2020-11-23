@@ -1,12 +1,18 @@
 <div class="container-fluid fade-in" style="padding-top: 90px; ">
     <div class="row">
         <div class="col-md-2" style="margin-left: 50px;"></div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             <div class="row">
                 <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
                 <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
                 <h6 [routerLink]="['/servicios']" style="cursor: pointer;">SERVICIOS</h6>
 
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn"
+                [routerLink]="['/servicios/formulario']">Agregar Servicios</button>
             </div>
         </div>
     </div>
@@ -27,6 +33,11 @@
                             <h4 class="card-text" style="padding-top: 35px;">{{servicio.descripcion}}</h4>
                             
                         </div>
+                        <div class="container" style="padding-top: 40px;">
+                            <a class="btn  btn-lg btn-block modificar" *ngIf="authService.hasRole('ROLE_ADMIN')" [routerLink]="['/servicios/formulario', servicio.id]"> Modificar Servicio </a>
+                            <a class="btn  btn-lg btn-block eliminar" (click)="delete(servicio)" *ngIf="authService.hasRole('ROLE_ADMIN')"> Eliminar Servicio </a>
+                        </div>
+                     
                         <button class="btn btn-lg btn-block"> Agendar reunión </button>
                     </div>
 

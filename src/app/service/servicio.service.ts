@@ -27,4 +27,49 @@ export class ServicioService {
     );
   }
 
+  deleteServicio(id:number): Observable<Servicio>{
+    return this.http.delete<Servicio>(`${this.urlEndPoint}/${id}`)
+    .pipe(
+      map((response:any)=> response.servicio as Servicio),
+      catchError(e=>{
+        swal.fire('Error al eliminar el producto', e.error.mensaje, 'error')
+        return throwError(e);
+      })
+    )
+  }
+
+  createServicio(servicio:Servicio): Observable<Servicio>{
+    return this.http.post<Servicio>(this.urlEndPoint, servicio).pipe(
+      map((response: any) => response.servicio as Servicio),
+      catchError(e => {
+
+
+        swal.fire('Error al crear el servicio', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    )
+  }
+
+  getServicioById(id): Observable<Servicio>{
+    return this.http.get<Servicio>(`${this.urlEndPoint}/${id}`).pipe(
+      catchError(e => {
+    
+        swal.fire('Error al obtener', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    );
+  }
+
+  updateServicio(servicio:Servicio):Observable<Servicio>{
+    return this.http.put<Servicio>(`${this.urlEndPoint}/${servicio.id}`, servicio)
+    .pipe(
+      map((response: any) => response.producto as Servicio),
+      catchError(e => {
+
+        swal.fire('Error al editar el servicio', e.error.error, 'error');
+        return throwError(e);
+      })
+    )
+  }
+
 }

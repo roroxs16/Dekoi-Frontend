@@ -15,6 +15,15 @@
       transform: translateX(0);
    }
 }
+.btn{
+    background-color: #ff5100;
+    border-color:   #ff5100;
+    color: white;
+}
+.cancelar{
+    border-color: #878787;
+    background-color: #878787;
+}
 h6{
   color: #ff5100;
   font-size: 14px;
@@ -43,7 +52,7 @@ h2{
 a , a:hover{
   color: white;
   background-color: #ff5100;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .container-fluid{
@@ -90,13 +99,7 @@ hr{
 }
 }
 
-button, button:hover{
-  border-color: #ff5100;
-  background-color: #ff5100;
-  color: white;
-  position: absolute;
-  bottom: 0;
-}
+
 
 /* add css for margin fix -- this will not be needed after beta */
 .card-deck .card {
@@ -114,4 +117,9 @@ margin-left: 15px;
 }
 .card-block{
   padding: 0px 20px;
+}
+
+.form-group, .botones{
+    margin-top: 25px;
+    margin-left: 40px;
 }

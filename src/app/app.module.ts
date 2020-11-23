@@ -38,6 +38,7 @@ import { PagoComponent } from './components/pago/pago.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { ServiciosComponent } from './components/servicios/servicios.component';
 import { AdminProductosComponent } from './components/usuario/admin/adminproductos/adminproductos.component';
+import { FormularioServiciosComponent } from './components/servicios/formulario-servicios.component';
 
 registerLocaleData(localeEs, 'es');
 const routes: Routes = [
@@ -58,6 +59,8 @@ const routes: Routes = [
   { path: 'detallecompra/:id', component: DetalleCompraComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' }},
   { path: 'pago', component: PagoComponent },
   { path: 'servicios', component: ServiciosComponent },
+  { path: 'servicios/formulario/:id', component: FormularioServiciosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
+  { path: 'servicios/formulario', component: FormularioServiciosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'admin/productos', component: AdminProductosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   
 ];
@@ -84,7 +87,8 @@ const routes: Routes = [
     PagoComponent,
     InicioComponent,
     ServiciosComponent,
-    AdminProductosComponent
+    AdminProductosComponent,
+    FormularioServiciosComponent
   ],
   imports: [
     BrowserModule,
