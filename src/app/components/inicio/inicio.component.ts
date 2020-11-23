@@ -5,7 +5,7 @@ import { AuthService } from '../../service/auth.service';
 import { CategoriaService } from '../../service/categoria.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Producto } from '../../models/producto';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faTools, faChair } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-inicio',
@@ -16,6 +16,8 @@ export class InicioComponent implements OnInit {
 
   faLeft= faChevronLeft
   faRight= faChevronRight
+  faTools = faTools;
+  faChair=faChair
   productos:Producto[]=[];
   productos2:Producto[]=[];
 
@@ -31,8 +33,7 @@ export class InicioComponent implements OnInit {
       this.productos =productos
       this.productos = this.productos.slice(0, 3) 
       this.productos2 = productos.slice(4, 7) 
-      console.log(this.productos)
-      console.log(this.productos2)
+
 
 
     })

@@ -5,13 +5,25 @@
   margin-left: 120px;
   margin-right: 120px;
 } */
+.container{
+  padding-top: 50px;
+}
+h1{
+  font-size: 24px;
+}
+
+h4{
+  font-size: 22px;
+}
 
 .fade-in {
 	opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
-	animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
 }
 
 @keyframes fadeInOpacity {
@@ -27,10 +39,6 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: sans-serif;
-  background-color: #f8f9fa;
-}
 
 /* Float four columns side by side */
 .column {

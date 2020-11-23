@@ -1,0 +1,77 @@
+<div class="container-fluid fade-in" style="padding-top: 90px; ">
+    <div class="row">
+        <div class="col-md-2" style="margin-left: 50px;"></div>
+        <div class="col-md-2">
+            <div class="row">
+                <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
+                <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+                <h6 [routerLink]="['/servicios']" style="cursor: pointer;">SERVICIOS</h6>
+                <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+                <h6 style="color: gray;" >Agregar Servicio</h6>
+
+            </div>
+        </div>
+       
+    </div>
+    <hr>
+    <div class="row" style="padding-bottom: 25px;">
+        <div class="container border border-dark"  style="padding-bottom: 25px;">
+            <h2>
+                Agregar Servicio
+            </h2>
+            <form #servicioForm="ngForm">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="nombre">Nombre del Servicio</label>
+                        <input type="text" class="form-control" name="nombre" placeholder="Nombre del Servicio" id="nombre-servicio"
+                        [(ngModel)]="servicio.nombre" required minlength="4" #nombre="ngModel">
+                        <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                          <div *ngIf="nombre.errors.required">
+                            El nombre del Servicio es requerido
+                          </div>
+                          <div *ngIf="nombre.errors.minlength">
+                            El nombre del Servicio debe tener 4 caracteres o más
+                          </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="descripcion">Descripción del Servicio</label>
+                        <input type="text" class="form-control" name="descripcion" placeholder="Descripción del Servicio" id="descripcion-servicio"
+                        [(ngModel)]="servicio.descripcion" required minlength="4" #descripcion="ngModel">
+                        <div class="alert alert-danger" *ngIf="descripcion.invalid && (nombre.dirty || descripcion.touched)">
+                          <div *ngIf="descripcion.errors.required">
+                            La Descripción del Servicio es requerido
+                          </div>
+                          <div *ngIf="descripcion.errors.minlength">
+                            La Descripción del Servicio debe tener 4 caracteres o más
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row botones">
+                    <div class="col">
+                        <button style="float:left" type="submit" class="btn cancelar " id="search" [routerLink]="['/servicios']" >
+                            Cancelar
+                         </button>
+                    </div>
+                      <div class="col">
+                        <button  type="submit" class="btn btn-primary" id="search"  (click)="crearServicio()" *ngIf="!servicio.id else elseBlock" [disabled]="!servicioForm.form.valid">
+                            Agregar Servicio
+                         </button>
+                      </div>
+                   
+                        <ng-template #elseBlock>
+                            <div class="col">
+                                <button class="btn btn-primary" id="search" role="button" (click)="modificarServicio()" [disabled]="!servicioForm.form.valid">Editar Producto</button>
+
+                            </div>
+                          </ng-template>
+                 
+                    
+                </div>
+
+            </form>
+        </div>
+    </div>
+    </div>
+    

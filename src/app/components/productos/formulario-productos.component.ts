@@ -48,7 +48,8 @@ export class FormularioProductosComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       let id = params['id'];
       if(id){
-        this.productoService.getProductoById(id).subscribe( (producto) => this.producto = producto);
+        this.productoService.getProductoById(id)
+        .subscribe( (producto) => this.producto = producto);
       }
     })
   }

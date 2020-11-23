@@ -1,0 +1,73 @@
+<div class="container-fluid fade-in" style="padding-top: 120px;">
+ 
+  <div class="row">
+    <div class="col-md-2">
+      <div style="margin-left: 50px;">
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-success my-2"
+          [routerLink]="['/productos/formulario']">Agregar Producto</button>
+   
+
+      </div>
+
+    </div>
+    <div class="col-md-2" style="float: right;">
+      <div class="row">
+        <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-success my-2"
+        [routerLink]="['/categoria/formulario']">Agregar Categoria</button>
+
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+  <hr>
+  <div class="row">
+    <div class="container">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Valor unitario</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Categoría</th>
+            <th scope="col">Eliminar</th>
+            <th scope="col">Modificar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos">
+         
+            <td>{{producto.id}}</td>
+            <td>{{producto.nombre}}</td>
+            <td>{{producto.descripcion}}</td>
+            <td>{{producto.valorUnitario | currency:'CLP':'symbol-narrow'}}</td>
+            <td><img class="img-producto" *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
+              <img class="img-producto" *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" alt="..."></td>
+            <td>{{producto.categoria.nombre}}</td>
+            <td>	<button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-danger my-4" (click)='delete(producto)'>
+              Eliminar
+            </button></td>
+            <td>		<button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-success my-4" [routerLink]="['/producto/formulario', producto.id]">
+              Editar
+            </button></td>
+           
+          </tr>
+         
+        </tbody>
+      </table>
+      
+    </div>
+   
+
+  
+  </div>
+
+</div>
+
+

@@ -1,3 +1,7 @@
+section{
+  font-family: 'Roboto', sans-serif;
+}
+
 .btn-primary{
   color: #fff;
   background-color: #ff5100;
@@ -483,36 +487,7 @@ p:last-child {
   color: #3167eb;
 }
 
-/* desktop only */
-/* desktop only .end */
-/* ================ SECTION-FOOTER ==================  */
-.section-footer ul li {
-  margin-bottom: 5px;
-}
-.section-footer ul a {
-  color: inherit;
-}
-.section-footer ul a:hover {
-  color: #3167eb;
-}
-.section-footer .logo-footer {
-  height: 40px;
-}
-.section-footer .title {
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #212529;
-}
 
-.footer-bottom {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.footer-copyright {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
 
 /* ================== COMPONENTS =================== */
 /* ================ OWL SLIDER BANNER ================ */

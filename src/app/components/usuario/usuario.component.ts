@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser,faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import {Usuario} from '../../models/usuario';
 import {Compra} from '../../models/compra';
 import {CarritoProducto} from '../../models/carritoProducto';
@@ -29,7 +29,7 @@ export class UsuarioComponent implements OnInit {
   carrito: Carrito = null;
   esCompras:boolean=false;
   allCompras: Compra[]=[];
-
+  faPowerOff=faPowerOff
 
   constructor(private usuarioService: UsuarioService, 
               public authService:AuthService, 
@@ -80,7 +80,7 @@ export class UsuarioComponent implements OnInit {
   loadUltimaCompra():void{
     this.esCompras=false;
     this.ultimaCompra=this.compras[this.compras.length-1];
-    console.log(this.compras)
+
   }
 
   loadMisCompras():void{

@@ -2,7 +2,8 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 
 @Component({
   selector: 'app-paginator',
-  templateUrl: './paginator.component.html'
+  templateUrl: './paginator.component.html',
+  styleUrls: ['./paginator.component.css']
 })
 export class PaginatorComponent implements OnInit, OnChanges {
 

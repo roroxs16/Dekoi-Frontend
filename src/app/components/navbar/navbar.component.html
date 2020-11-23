@@ -1,58 +1,68 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-<div class="container">
-  <a class="navbar-brand" [routerLink]="['/']">Dekoi</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/']">Inicio
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/productos']">Productos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Servicios</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Sobre Nosotros</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contacto</a>
-      </li>
+<nav class="navbar navbar-expand-lg border-bottom border-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']">
+    <img src="../../../assets/img/dekoi-navbar-2.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active-list-item" >Inicio
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/productos']" routerLinkActive="active-list-item">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  [routerLink]="['/servicios']" routerLinkActive="active-list-item">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sobre Nosotros</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contacto</a>
+        </li>
+
+      </ul>
+    </div>
+
+
+    <div class="navbar-collapse collapse order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        <!-- MOSTRAR ESTE li SI NO HA INICIADO SESION -->
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/carrito']" routerLinkActive="active-list-item">
+            <fa-icon [icon]="faCart" size="lg"></fa-icon>
+          </a>
+        </li>
+
+        <li *ngIf="!authService.isAuthenticated()" class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active-list-item">
+            <fa-icon [icon]="faUser" size="lg"></fa-icon> Inicio de sesión
+          </a>
+        </li>
+
+        <!-- MOSTRAR ESTE li SI HAY UNA SESIÓN INICIADA -->
+        <li *ngIf="authService.isAuthenticated()" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <fa-icon [icon]="faUser" size="lg"></fa-icon>
+            {{authService.usuario.nombre}}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" [routerLink]="['/usuario']" routerLinkActive="active-list-item">Perfil</a>
+            <button (click)="logout()" class="dropdown-item" type="submit" name="button">Cerrar sesión</button>
+
+          </div>
+        </li>
+      </ul>
+    </div>
  
-    </ul>
   </div>
 
-
-<div class="navbar-collapse collapse order-3 dual-collapse2">
-  <ul class="navbar-nav ml-auto">
-    <!-- MOSTRAR ESTE li SI NO HA INICIADO SESION -->
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/carrito']"><fa-icon [icon]="faCart" size="lg"></fa-icon></a>
-    </li>
-
-    <li *ngIf="!authService.isAuthenticated()" class="nav-item">
-      <a class="nav-link"  [routerLink]="['/login']" ><fa-icon [icon]="faUser" size="lg"></fa-icon> Inicio de sesión</a>
-    </li>
-
-    <!-- MOSTRAR ESTE li SI HAY UNA SESIÓN INICIADA -->
-    <li *ngIf="authService.isAuthenticated()"class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <fa-icon [icon]="faUser" size="lg"></fa-icon>
-        {{authService.usuario.nombre}}
-      </a>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" [routerLink]="['/usuario']" >Perfil</a>
-        <button (click)="logout()" class="dropdown-item"type="submit" name="button">Cerrar sesión</button>
-
-      </div>
-    </li>
-  </ul>
-</div>
-</div>
-
 </nav>
+

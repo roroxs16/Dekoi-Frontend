@@ -50,7 +50,7 @@ export class ProductoService {
   getProductos(): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.urlEndPoint).pipe(
       catchError(e=>{
-        swal.fire('Error al obtener las compras', 'No se pudieron obtener las compras', 'error')
+        swal.fire('Error al obtener los Productos', 'No se pudieron obtener las compras', 'error')
         return throwError(e);
       })
     );

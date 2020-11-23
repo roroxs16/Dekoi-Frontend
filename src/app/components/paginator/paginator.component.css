@@ -1,0 +1,7 @@
+.page-link{
+    color: #ff5100;
+}
+.active {
+    background-color: #ff5100;
+    border-color: #ff5100;
+}
