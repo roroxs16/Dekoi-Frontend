@@ -1,22 +1,23 @@
-<section class="section-pagetop bg fade-in">
-  <div class="container">
+<div class="container-fluid fade-in" style="padding-top: 90px; padding-bottom: 40px;">
+  <div class="row border-bottom border-dark">
+    <div class="col-md-2" style="margin-left: 50px;"></div>
+    <div class="col-md-2">
+      <div class="row">
+        <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
+        <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+        <h6 [routerLink]="['/pago']" style="cursor: pointer;">PAGO</h6>
 
-    <nav>
-      <ol class="breadcrumb text-white">
-        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
-        <li class="breadcrumb-item"><a [routerLink]="['/productos']">Productos</a></li>
+      </div>
+    </div>
 
-        <li class="breadcrumb-item active" aria-current="page">Pago</li>
 
-      </ol>
-    </nav>
   </div>
-</section>
+</div>
 
-<section class="section-content padding-y bg fade-in ">
+<section class="section-content padding-y fade-in ">
   <div class="container">
 
-    <div class="card " style="max-width: 640px; max-height: 460px; margin:0 auto;">
+    <div class="card border border-dark" style="max-width: 640px; max-height: 460px; margin:0 auto;">
       <div class="row no-gutters ">
         <div class="col-md-6">
           <img src="../../../assets/img/dekoi.jpg" style="height: 325px;" class="card-img" alt="...">

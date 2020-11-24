@@ -1,16 +1,41 @@
-@charset "UTF-8";
-/* ==== BASE STYLES ====*/
-/* ==================== GLOBAL STYLES ======================= */
 
-html {
-  font-family: "Inter", sans-serif;
-  font-size: 15px;
+h6{
+  color: #ff5100;
+  font-size: 14px;
+  
+}
+h4{
+  color: white;
+}
+h2{
+  margin-top: 40px;
+  margin-left: 40px;
+  color: #ff5100;
 }
 
-/* ========================
-INCLUDE STYLES AND COMPONENTS
-===================== */
-/* ================== HELPERS  =================== */
+
+
+.eliminar{
+  background-color: red !important;
+}
+.modificar{
+  background-color: green !important;
+}
+
+
+
+.container-fluid{
+  font-family: 'Roboto', sans-serif;
+}
+h4{
+  text-align: center;
+  font-size: 18px;
+}
+
+
+.container{
+  font-family: 'Roboto', sans-serif;
+}
 .fade-in {
 	opacity: 1;
 	animation-name: fadeInRight;

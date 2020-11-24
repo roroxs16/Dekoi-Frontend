@@ -1,27 +1,29 @@
-<section class="section-pagetop bg fade-in" style="padding-top: 80px;">
-  <div class="container">
-    <h2 class="title-page">Carrito de compras</h2>
-    <nav>
-      <ol class="breadcrumb text-white">
-        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
-				<li class="breadcrumb-item"><a [routerLink]="['/productos']">Productos</a></li>
+<div class="container-fluid fade-in" style="padding-top: 90px; padding-bottom: 40px;">
+  <div class="row border-bottom border-dark">
+    <div class="col-md-2" style="margin-left: 50px;"></div>
+    <div class="col-md-2">
+      <div class="row">
+        <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
+        <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+        <h6 [routerLink]="['/servicios']" style="cursor: pointer;">CARRITO DE COMPRAS</h6>
 
-        <li class="breadcrumb-item active" aria-current="page">Carrito</li>
+      </div>
+    </div>
 
-      </ol>
-    </nav>
+
   </div>
-</section>
-<section class="section-content padding-y bg fade-in">
+</div>
+
+<section class="section-content padding-y fade-in">
   <div class="container">
     <div class="row">
       <aside class="col-lg-9">
 
-          <div *ngIf="carritoProductos==undefined" class="alert alert-warning" role="alert">
-            No hay productos en el carrito
-          </div>
+        <div *ngIf="carritoProductos==undefined" class="alert alert-warning" role="alert">
+          No hay productos en el carrito
+        </div>
 
-        <div class="card">
+        <div class="card border border-dark">
 
           <table *ngIf="carritoProductos!=undefined" class="table table-borderless table-shopping-cart">
             <thead class="text-muted">
@@ -35,43 +37,49 @@
 
 
 
-            <tbody >
+            <tbody>
 
 
 
-                <tr *ngFor="let carritoProducto of carritoProductos ">
-                  <td>
-                    <figure class="itemside align-items-center">
-                      <div class="aside">
-                        <img *ngIf="carritoProducto.producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{carritoProducto.producto.imagenes[0].nombre}}" class="img-sm">
-                        <img *ngIf="carritoProducto.producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="img-sm" alt="...">
-                      </div>
-                      <figcaption class="info">
-                        <a href="#" class="title text-dark">{{carritoProducto.producto.nombre}}</a>
-                        <!-- <p class="text-muted small">{{carritoProducto.producto.descripcion}} <br></p> -->
-                      </figcaption>
-                    </figure>
-                  </td>
-                  <td>
-                    <input type="text" class="form-control" [value]="carritoProducto.cantidad" disabled>
-                  </td>
-                  <td>
-                    <div class="price-wrap">
-                      <var class="price">{{carritoProducto.producto.valorUnitario*carritoProducto.cantidad | currency:'CLP':'symbol-narrow'}}</var>
-                      <small class="text-muted"> {{carritoProducto.producto.valorUnitario | currency:'CLP':'symbol-narrow'}} </small>
-                    </div> <!-- price-wrap .// -->
-                  </td>
-                  <td class="text-right">
+              <tr *ngFor="let carritoProducto of carritoProductos ">
+                <td>
+                  <figure class="itemside align-items-center">
+                    <div class="aside">
+                      <img *ngIf="carritoProducto.producto.imagenes.length>0"
+                        src="http://localhost:8080/api/uploads/img/{{carritoProducto.producto.imagenes[0].nombre}}"
+                        class="img-sm">
+                      <img *ngIf="carritoProducto.producto.imagenes.length==0" src="../../assets/img/no-img.jpg"
+                        class="img-sm" alt="...">
+                    </div>
+                    <figcaption class="info">
+                      <a href="#" class="title text-dark">{{carritoProducto.producto.nombre}}</a>
+                      <!-- <p class="text-muted small">{{carritoProducto.producto.descripcion}} <br></p> -->
+                    </figcaption>
+                  </figure>
+                </td>
+                <td>
+                  <input type="text" class="form-control" [value]="carritoProducto.cantidad" disabled>
+                </td>
+                <td>
+                  <div class="price-wrap">
+                    <var
+                      class="price">{{carritoProducto.producto.valorUnitario*carritoProducto.cantidad | currency:'CLP':'symbol-narrow'}}</var>
+                    <small class="text-muted">
+                      {{carritoProducto.producto.valorUnitario | currency:'CLP':'symbol-narrow'}} </small>
+                  </div> <!-- price-wrap .// -->
+                </td>
+                <td class="text-right">
 
-                    <a class="btn btn-danger" style="background: #EC320B;" (click)="removeProductoFormCart(carritoProducto)">
-                      <fa-icon [icon]="faTrash"></fa-icon> Eliminar
-                    </a>
-                  </td>
-                </tr>
+                  <a class="btn btn-danger" style="background: #EC320B;"
+                    (click)="removeProductoFormCart(carritoProducto)">
+                    <fa-icon [icon]="faTrash"></fa-icon> Eliminar
+                  </a>
+                </td>
+              </tr>
 
             </tbody>
           </table>
-          <hr>
+          <hr style="border-top: 1px solid black">
           <div class="card-body">
             <h4 class="card-title mb-4">Direccion de envío</h4>
 
@@ -81,7 +89,8 @@
               <div class="row">
                 <div class="form-group col-sm-6">
                   <label for="ciudad">Ciudad*</label>
-                  <input type="text" name="ciudad" placeholder="Ejemplo de ciudad" [(ngModel)]="direccion.ciudad" class="form-control" required #ciudad="ngModel" [disabled]="carritoProductos.length==0">
+                  <input type="text" name="ciudad" placeholder="Ejemplo de ciudad" [(ngModel)]="direccion.ciudad"
+                    class="form-control" required #ciudad="ngModel" [disabled]="carritoProductos.length==0">
                   <div class="alert alert-danger" *ngIf="ciudad.invalid && (ciudad.dirty || ciudad.touched)">
                     <div *ngIf="ciudad.errors.required">
                       La ciudad es requerida para el envío
@@ -91,11 +100,14 @@
                 </div>
                 <div class="form-group col-sm-6">
                   <label for="departamento">Departamento</label>
-                  <input type="text" name="departamento" placeholder="Departamento ejemplo" [(ngModel)]="direccion.departamento" class="form-control" #departamento="ngModel" [disabled]="carritoProductos.length==0">
+                  <input type="text" name="departamento" placeholder="Departamento ejemplo"
+                    [(ngModel)]="direccion.departamento" class="form-control" #departamento="ngModel"
+                    [disabled]="carritoProductos.length==0">
                 </div>
                 <div class="form-group col-sm-8">
                   <label for="calle">Calle*</label>
-                  <input type="text" name="calle" placeholder="Ejemplo de calle" class="form-control" [(ngModel)]="direccion.calle" required #calle="ngModel" [disabled]="carritoProductos.length==0">
+                  <input type="text" name="calle" placeholder="Ejemplo de calle" class="form-control"
+                    [(ngModel)]="direccion.calle" required #calle="ngModel" [disabled]="carritoProductos.length==0">
                   <div class="alert alert-danger" *ngIf="calle.invalid && (calle.dirty || calle.touched)">
                     <div *ngIf="calle.errors.required">
                       La calle es requerida para el envío
@@ -105,7 +117,8 @@
                 </div>
                 <div class="form-group col-sm-4">
                   <label for="numero">Numero de calle</label>
-                  <input type="text" name="numero" placeholder="123" class="form-control" [(ngModel)]="direccion.numero" required #numero="ngModel" [disabled]="carritoProductos.length==0">
+                  <input type="text" name="numero" placeholder="123" class="form-control" [(ngModel)]="direccion.numero"
+                    required #numero="ngModel" [disabled]="carritoProductos.length==0">
                   <div class="alert alert-danger" *ngIf="numero.invalid && (numero.dirty || numero.touched)">
                     <div *ngIf="numero.errors.required">
                       El numero es requerida para el envío
@@ -115,9 +128,10 @@
                 </div>
 
                 <div class="card-body border-top">
-                  <button type="submit" [routerLink]="['/pago']" (click)="realizarCompra()" class="btn btn-primary float-md-right" 
-                  [disabled]="!direccionForm.form.valid ? carritoProductos: null ">
-                   Realizar Compra <fa-icon [icon]="faRight"></fa-icon>
+                  <button type="submit" [routerLink]="['/pago']" (click)="realizarCompra()"
+                    class="btn btn-primary float-md-right"
+                    [disabled]="!direccionForm.form.valid ? carritoProductos: null ">
+                    Realizar Compra <fa-icon [icon]="faRight"></fa-icon>
                   </button>
 
                   <a [routerLink]="['/productos']" class="btn btn-light">
@@ -135,7 +149,7 @@
       <aside class="col-lg-3">
 
 
-        <div class="card">
+        <div class="card border border-dark">
           <div class="card-body">
             <dl class="dlist-align">
               <dt>Valor total:</dt>
@@ -146,12 +160,13 @@
               <dt>Total:</dt>
               <dd class="text-right text-dark b"><strong>{{valorCarrito | currency:'CLP':'symbol-narrow'}}</strong></dd>
             </dl>
-            <hr>
+            <hr style="border-top: 1px solid black">
             <p class="text-center mb-3">
 
             </p>
 
-            <button type="submit" [routerLink]="['/pago']" (click)="realizarCompra()" class="btn btn-primary btn-block" [disabled]="!direccionForm.form.valid"> Realizar Compra </button>
+            <button type="submit" [routerLink]="['/pago']" (click)="realizarCompra()" class="btn btn-primary btn-block"
+              [disabled]="!direccionForm.form.valid"> Realizar Compra </button>
 
 
             <a [routerLink]="['/productos']" class="btn btn-light btn-block">Continuar Comprando</a>
