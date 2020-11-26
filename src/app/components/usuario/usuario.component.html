@@ -4,39 +4,40 @@
 
 <app-usuariodireccion *ngIf="usuarioDireccionModal" [usuarioDireccionModal]="usuarioDireccionModal"></app-usuariodireccion>
 
-<section class="section-pagetop bg fade-in" style="padding-top: 125px;">
-  <div class="container">
-
-    <nav>
-      <ol class="breadcrumb text-white">
-        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
-				
-
-        <li class="breadcrumb-item active" aria-current="page">Mi cuenta</li>
-
-      </ol>
-    </nav>
+<div class="container-fluid fade-in" style="padding-top: 90px; padding-bottom: 40px;">
+	<div class="row border-bottom border-dark">
+	  <div class="col-md-2" ></div>
+	  <div class="col-md-2" style="padding-bottom: 15px;">
+		<div class="row">
+		  <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
+		  <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+		  <h6 [routerLink]="['/usuario']" style="cursor: pointer;">MI CUENTA</h6>
+  
+		</div>
+	  </div>
+  
+  
+	</div>
   </div>
-</section>
 
-<section class="section-content bg padding-y">
+<section class="section-content padding-y">
 	<div class="container">
 
 		<div class="row fade-in">
 			<aside class="col-md-3">
-				<ul class="list-group">
-					<a class="list-group-item" style="cursor:pointer" [routerLink]="['/usuario']" (click)="loadUltimaCompra()"> Configuracion de cuenta </a>
-					<a class="list-group-item" style="cursor:pointer" (click)="loadMisCompras()"> Mis Compras </a>
-					<a *ngIf="authService.hasRole('ROLE_ADMIN')" class="list-group-item" style="cursor:pointer" (click)="loadAllCompras()"> Compras Clientes </a>
-					<a *ngIf="authService.hasRole('ROLE_ADMIN')" [routerLink]="['/admin/productos']" class="list-group-item" style="cursor:pointer" > Gestion de Productos </a>
+				<ul class="list-group ">
+					<a class="list-group-item border border-dark" style="cursor:pointer" [routerLink]="['/usuario']" (click)="loadUltimaCompra()"> Configuracion de cuenta </a>
+					<a class="list-group-item border border-dark" style="cursor:pointer" (click)="loadMisCompras()"> Mis Compras </a>
+					<a *ngIf="authService.hasRole('ROLE_ADMIN')" class="list-group-item border border-dark" style="cursor:pointer" (click)="loadAllCompras()"> Compras Clientes </a>
+					<a *ngIf="authService.hasRole('ROLE_ADMIN')" [routerLink]="['/admin/productos']" class="list-group-item border border-dark" style="cursor:pointer" > Gestion de Productos </a>
 				</ul>
 				<br>
-				<a class="btn btn-light btn-block" (click)="logout()">     <fa-icon [icon]="faPowerOff"  style="color: black; padding-right: 8px;"></fa-icon>
+				<a class="btn btn-light btn-block border border-dark" (click)="logout()">     <fa-icon [icon]="faPowerOff"  style="color: black; padding-right: 8px;"></fa-icon>
 					<span class="text">Cerrar sesion</span> </a>
 			</aside> <!-- col.// -->
 			<main class="col-md-9 fade-in">
 
-				<article class="card mb-3">
+				<article class="card mb-3 border border-dark">
 					<div class="card-body">
 
 						<figure class="icontext">
@@ -51,10 +52,10 @@
 						</figure>
 						<hr>
 						<p>
-							<i class="fa fa-map-marker text-muted"></i> &nbsp; Mi direccion:
+							<i class="fa fa-map-marker text-muted"></i> &nbsp; Mi dirección:
 							<br>
 							{{usuario.ciudad}}, {{usuario.direccion}}
-							<a class="btn-link" (click)="abrirModalDireccion(usuario)" style="cursor:pointer">Modificar direccion</a>
+							<a class="btn-link" (click)="abrirModalDireccion(usuario)" style="cursor:pointer">Modificar dirección</a>
 						</p>
 
 
@@ -74,7 +75,7 @@
 				</article>
 
 
-				<article class="card mb-3" *ngIf="!ultimaCompra">
+				<article class="card mb-3 border border-dark" *ngIf="!ultimaCompra">
 					<div class="card-body">
 						<h5 class="card-title mb-4">Usted no tiene compras recientes!
 						</h5>
@@ -96,7 +97,7 @@
 					</div>
 				</article>
 
-				<article class="card order-group" *ngIf="ultimaCompra && esCompras==false">
+				<article class="card order-group border border-dark" *ngIf="ultimaCompra && esCompras==false">
 					<header class="card-header">
 						<b class="d-inline-block mr-3">ID de la compra: #{{ultimaCompra.id}} </b>
 						<span>{{ultimaCompra.fechaCompra | date :'longDate'}}</span>
@@ -151,7 +152,7 @@
 							</li>
 
 						</ul>
-						<a *ngIf="ultimaCompra.estado==false" [routerLink]="['/pago']" class="btn btn-outline-success"> Pagar </a>
+						<button *ngIf="ultimaCompra.estado==false" [routerLink]="['/pago']" class="btn btn-outline-success"> Pagar </button>
 					</div> <!-- card-body .// -->
 				</article>
 
@@ -210,7 +211,7 @@
 								</li>
 
 							</ul>
-							<a *ngIf="ultimaCompra.estado!=false"[routerLink]="['/productos']" class="btn btn-outline-success"> Pagar </a>
+							<button *ngIf="ultimaCompra.estado!=false"[routerLink]="['/productos']" class="btn btn-outline-success"> Pagar </button>
 						</div> <!-- card-body .// -->
 					</article>
 					<br>
