@@ -1,17 +1,20 @@
-<section class="section-pagetop bg fade-in" style="padding-top: 120px;">
-  <div class="container">
-
-    <nav>
-      <ol class="breadcrumb text-white">
-        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
-        <li class="breadcrumb-item"><a [routerLink]="['/usuario']">Mi Cuenta</a></li>
-
-        <li class="breadcrumb-item active" aria-current="page">Compra #{{compra.id}} </li>
-
-      </ol>
-    </nav>
+<div class="container-fluid fade-in" style="padding-top: 90px; padding-bottom: 40px;">
+	<div class="row border-bottom border-dark">
+	  <div class="col-md-2" ></div>
+	  <div class="col-md-2" style="padding-bottom: 15px;">
+		<div class="row">
+		  <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
+		  <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+      <h6 [routerLink]="['/usuario']" style="cursor: pointer;">MI CUENTA</h6>
+      <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+		  <h6 style="cursor: default; color:grey">COMPRA # {{compra.id}}</h6>
+  
+		</div>
+	  </div>
+  
+  
+	</div>
   </div>
-</section>
 <div class="container" style="padding-bottom: 80px;">
   <article class="card order-group">
     <header class="card-header">

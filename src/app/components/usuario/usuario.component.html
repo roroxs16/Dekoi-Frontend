@@ -211,7 +211,7 @@
 								</li>
 
 							</ul>
-							<button *ngIf="ultimaCompra.estado!=false"[routerLink]="['/productos']" class="btn btn-outline-success"> Pagar </button>
+							<button *ngIf="ultimaCompra.estado==false"[routerLink]="['/productos']" class="btn btn-outline-success"> Pagar </button>
 						</div> <!-- card-body .// -->
 					</article>
 					<br>

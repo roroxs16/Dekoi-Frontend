@@ -31,8 +31,12 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
     this.productoService.getProductos().subscribe( productos =>{
       this.productos =productos
+    
       this.productos = this.productos.slice(0, 3) 
+  
       this.productos2 = productos.slice(4, 7) 
+    
+
     })
   }
 
