@@ -1,5 +1,6 @@
 import {Carrito} from './carrito'
 import {Compra} from './compra'
+import {Reunion} from './reunion'
 export class Usuario {
   id:number;
   nombre:string;
@@ -13,5 +14,6 @@ export class Usuario {
   rut:string;
   roles:string[]=[];
   carrito:Carrito[]=[]
-    compras:Compra[]=[]
+  compras:Compra[]=[]
+  reuniones: Reunion[] = [];
 }

@@ -1,14 +1,18 @@
 import {
   Usuario
 } from './usuario';
+import {
+  Servicio
+} from './servicio'
 
 
 export class Reunion {
 
   id: number;
-  fechaHora: Date;
-  codigoReunion: String;
-  estado: boolean;
+  fechaInicio: Date;
+  fechaTermino: Date;
+  codigoReunion: string;
+  estado: string;
   usuario: Usuario;
-  servicio: Array<Reunion>=[];
+  servicio: Servicio;
 }

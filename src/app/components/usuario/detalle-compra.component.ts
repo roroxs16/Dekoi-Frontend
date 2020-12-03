@@ -64,7 +64,7 @@ export class DetalleCompraComponent implements OnInit {
   updateCompra():void{
     this.usuarioService.updateCompra(this.compra).subscribe( compra =>{
       this.router.navigate(['/usuario'])
-      swal.fire('Producto Actualizado', `Compra ${compra.id} Actualizado con exito!`, 'success')
+      swal.fire('Compra Actualizada', `Compra ${compra.id} Actualizado con exito!`, 'success')
     })
   }
 

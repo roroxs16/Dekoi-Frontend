@@ -39,6 +39,11 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { ServiciosComponent } from './components/servicios/servicios.component';
 import { AdminProductosComponent } from './components/usuario/admin/adminproductos/adminproductos.component';
 import { FormularioServiciosComponent } from './components/servicios/formulario-servicios.component';
+import { DropDownListModule} from '@syncfusion/ej2-angular-dropdowns'
+import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars'
+
+import { ScheduleModule, RecurrenceEditorModule, DayService,WeekService,WorkWeekService,MonthAgendaService,MonthService } from '@syncfusion/ej2-angular-schedule';
+import { AgendaComponent } from './components/agenda/agenda.component';
 
 registerLocaleData(localeEs, 'es');
 const routes: Routes = [
@@ -62,6 +67,7 @@ const routes: Routes = [
   { path: 'servicios/formulario/:id', component: FormularioServiciosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'servicios/formulario', component: FormularioServiciosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'admin/productos', component: AdminProductosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
+  { path: 'agenda', component: AgendaComponent },
   
 ];
 
@@ -88,19 +94,27 @@ const routes: Routes = [
     InicioComponent,
     ServiciosComponent,
     AdminProductosComponent,
-    FormularioServiciosComponent
+    FormularioServiciosComponent,
+    AgendaComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FontAwesomeModule,
-    FormsModule,
-    RouterModule.forRoot(routes)
+    FormsModule,DropDownListModule,
+    DateTimePickerModule,
+    RouterModule.forRoot(routes),
+    ScheduleModule, RecurrenceEditorModule
 
   ],
   providers: [CategoriaService,{ provide: LOCALE_ID, useValue: 'es' },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    DayService,
+    WeekService,
+    WorkWeekService,
+    MonthAgendaService,
+    MonthService
 
   ],
   bootstrap: [AppComponent]
