@@ -67,7 +67,7 @@ const routes: Routes = [
   { path: 'servicios/formulario/:id', component: FormularioServiciosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'servicios/formulario', component: FormularioServiciosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'admin/productos', component: AdminProductosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
-  { path: 'agenda', component: AgendaComponent },
+  { path: 'agenda/:id', component: AgendaComponent, canActivate: [AuthGuard] },
   
 ];
 

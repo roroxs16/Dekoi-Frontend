@@ -1,6 +1,23 @@
 
-<div class="container-fluid">
-    <ejs-schedule #scheduleObj height="850" width="1400" [selectedDate]="setDate" [eventSettings]="eventObject" (created)="onCreate() "(popupOpen)="onPopupOpen($event)" >
+<div class="container-fluid fade-in" style="padding-top: 55px; ">
+
+    <div class="row">
+       
+        <div class="col-md-2">
+            <div class="row">
+                <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
+                <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+                <h6 [routerLink]="['/servicios']" style="cursor: pointer;">SERVICIOS</h6>
+                <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
+                <h6  style="cursor: default; color: gray !important;">REUNIONES</h6>
+            </div>
+        </div>
+       
+    </div>
+    <hr>
+
+<div class="row">
+    <ejs-schedule #scheduleObj height="850" width="100%" [selectedDate]="setDate" [eventSettings]="eventObject" (created)="onCreate() "(popupOpen)="onPopupOpen($event)" >
         <e-views>
 
        
@@ -55,7 +72,7 @@
           <form class="e-schedule-form">
             <div style="padding:10px">
                 <h5> Servicio a agendar</h5>
-              <input class="subject e-field e-input" type="text" name="Subject" placeholder="Servicio" style="width:100%">
+              <input class="subject e-field e-input" type="text" name="Subject" [placeholder]="servicio.nombre" style="width:100%; font-size: 18px; color: black;" disabled>
             </div>
 
           </form>
@@ -95,4 +112,6 @@
     </e-views>
 
     </ejs-schedule>
+</div>
+   
 </div>

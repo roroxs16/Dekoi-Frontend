@@ -6,6 +6,7 @@
                 <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
                 <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
                 <h6 [routerLink]="['/servicios']" style="cursor: pointer;">SERVICIOS</h6>
+                
 
             </div>
         </div>
@@ -38,7 +39,7 @@
                             <a class="btn  btn-lg btn-block eliminar" (click)="delete(servicio)" *ngIf="authService.hasRole('ROLE_ADMIN')"> Eliminar Servicio </a>
                         </div>
                      
-                        <button class="btn btn-lg btn-block"> Agendar reunión </button>
+                        <button class="btn btn-lg btn-block" [routerLink]="['/agenda/', servicio.id]"> Agendar reunión </button>
                     </div>
 
                 

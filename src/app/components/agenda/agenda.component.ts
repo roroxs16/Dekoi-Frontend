@@ -1,7 +1,4 @@
 import {
-  newArray
-} from '@angular/compiler/src/util';
-import {
   Component,
   OnInit,
   ViewChild
@@ -28,12 +25,22 @@ import {
 import {
   ReunionService
 } from '../../service/reunion.service';
+
 import {
-  isNullOrUndefined
-} from '@syncfusion/ej2-base';
+  ServicioService
+} from '../../service/servicio.service';
+import {
+  ActivatedRoute
+} from '@angular/router';
+
 
 import swal from 'sweetalert2';
-import {Router} from '@angular/router';
+import {
+  Router
+} from '@angular/router';
+import {
+  Servicio
+} from '../../models/servicio';
 
 @Component({
   selector: 'app-agenda',
@@ -42,27 +49,35 @@ import {Router} from '@angular/router';
 })
 export class AgendaComponent implements OnInit {
 
-  constructor(private reunionService: ReunionService, private router: Router,) {}
+  constructor(private reunionService: ReunionService,
+    private router: Router,
+    private servicioService: ServicioService,
+    private activatedRoute: ActivatedRoute) {}
 
   @ViewChild('scheduleObj', {
     static: true
   })
+
   public scheduleObj: ScheduleComponent
 
   public data: ReunionPojo[] = new Array();
+
   private selectionTarget: Element;
 
   public setDate = new Date();
-  public reuniones: Reunion[] = [];
-  public eventObject: EventSettingsModel = {
 
+  public reuniones: Reunion[] = [];
+
+  public servicio: Servicio;
+
+  public eventObject: EventSettingsModel = {
     dataSource: this.data
   }
 
   ngOnInit(): void {
 
     this.loadReuniones();
-
+    this.loadServicio();
 
   }
 
@@ -126,24 +141,34 @@ export class AgendaComponent implements OnInit {
 
     let fechaFin = this.dateToISOLikeButLocal(last[1]);
 
-    
-    console.log(fechaInicio)
-    console.log(fechaFin)
-    
-    this.reunionService.agregarReuniones(fechaInicio,fechaFin,1).subscribe(reunion => {
-      this.router.navigate(['/servicios'])
-      swal.fire('Nueva Reunion',`Reunion agendad con exito!`,'success');
+
+
+    this.reunionService.agregarReuniones(fechaInicio, fechaFin, this.servicio.id).subscribe(reunion => {
+      //this.router.navigate(['/servicios'])
+      swal.fire('Nueva Reunion', `Reunion agendad con exito!`, 'success');
     })
- 
-    //window.location.reload()
+
+    window.location.reload()
   }
   public dateToISOLikeButLocal(date) {
     const offsetMs = date.getTimezoneOffset() * 60 * 1000;
-    const msLocal =  date.getTime() - offsetMs;
+    const msLocal = date.getTime() - offsetMs;
     const dateLocal = new Date(msLocal);
     const iso = dateLocal.toISOString();
     const isoLocal = iso.slice(0, 19);
     return isoLocal;
-}
+  }
 
+  public loadServicio(): void {
+    this.activatedRoute.params.subscribe(params => {
+      let id = params['id'];
+      if (id) {
+        this.servicioService.getServicioById(id)
+          .subscribe((servicio) => this.servicio = servicio
+
+          );
+
+      }
+    })
+  }
 }
