@@ -41,7 +41,7 @@ import { AdminProductosComponent } from './components/usuario/admin/adminproduct
 import { FormularioServiciosComponent } from './components/servicios/formulario-servicios.component';
 import { DropDownListModule} from '@syncfusion/ej2-angular-dropdowns'
 import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars'
-
+import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { ScheduleModule, RecurrenceEditorModule, DayService,WeekService,WorkWeekService,MonthAgendaService,MonthService } from '@syncfusion/ej2-angular-schedule';
 import { AgendaComponent } from './components/agenda/agenda.component';
 
@@ -104,7 +104,8 @@ const routes: Routes = [
     FormsModule,DropDownListModule,
     DateTimePickerModule,
     RouterModule.forRoot(routes),
-    ScheduleModule, RecurrenceEditorModule
+    ScheduleModule, RecurrenceEditorModule,
+    ButtonModule
 
   ],
   providers: [CategoriaService,{ provide: LOCALE_ID, useValue: 'es' },

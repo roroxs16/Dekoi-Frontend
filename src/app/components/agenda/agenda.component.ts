@@ -10,12 +10,12 @@ import {
   DayService,
   WeekService,
   WorkWeekService,
-  MonthService,
+  MonthService,EJ2Instance,
   PopupOpenEventArgs
 } from '@syncfusion/ej2-angular-schedule';
-
-
-
+import { ButtonComponent } from '@syncfusion/ej2-angular-buttons';
+import { isNullOrUndefined } from '@syncfusion/ej2-base';
+import { Dialog } from '@syncfusion/ej2-popups';
 
 import {
   Reunion
@@ -183,6 +183,9 @@ export class AgendaComponent implements OnInit {
   })
   public scheduleObj: ScheduleComponent
 
+  @ViewChild("editButton")
+  public editButton: ButtonComponent;
+
   public data: ReunionPojo[] = new Array();
 
   private selectionTarget: Element;
@@ -197,6 +200,10 @@ export class AgendaComponent implements OnInit {
     dataSource: this.data
   }
 
+  public showQuickInfo: boolean = true;
+
+  public currentEvent;
+
   ngOnInit(): void {
     this.scheduleObj.locale='es'
     this.loadReuniones();
@@ -207,9 +214,6 @@ export class AgendaComponent implements OnInit {
   public loadReuniones(): void {
     this.reunionService.getReuniones().subscribe(reuniones => {
       this.reuniones = reuniones;
-
-
-
       for (var i = 0; i < this.reuniones.length; i++) {
         let obj: ReunionPojo = new ReunionPojo;
         obj.Id = this.reuniones[i].id;
@@ -231,9 +235,53 @@ export class AgendaComponent implements OnInit {
     return new Date(data)
   }
 
+  public dialogClose() {
+    let dialogObj: Dialog = (document.querySelector('.e-schedule-dialog') as EJ2Instance).ej2_instances[0] as Dialog;
+    dialogObj.hide();
+  }
+
+  public editEvent(e) {
+  
+    const eventData: { [key: string]: Object } = this.scheduleObj.eventWindow.getObjectFromFormData('e-schedule-dialog');
+  
+
+    this.scheduleObj.saveEvent(eventData);
+    this.dialogClose();
+    let last = Object.values(eventData);
+
+    let descripcion = JSON.stringify(last[4])
+    let id = Number(last[1])
+    console.log(descripcion)
+    console.log(id)
+    this.reunionService.editarReunion(descripcion, id).subscribe(reunion => {
+
+      swal.fire('Nueva Reunion', `Reunion agendad con exito!`, 'success');
+    })
+    window.location.reload()
+  }
+
+
   public onPopupOpen(args: PopupOpenEventArgs): void {
     this.selectionTarget = null;
     this.selectionTarget = args.target;
+    if (args.type === 'Editor') {
+      let dialogObj: Dialog = (args.element as EJ2Instance).ej2_instances[0] as Dialog;
+  
+      let buttons;
+            buttons = [
+          {
+            buttonModel: { content: "Modificar", isPrimary: true },
+            click: this.editEvent.bind(this)
+          },
+          {
+            buttonModel: { content: "Cancelar", cssClass: "e-event-delete" },
+            click: this.dialogClose.bind(this)
+          }
+        ];
+      
+      dialogObj.buttons = buttons;
+      dialogObj.dataBind();
+    }
   }
 
   public onDetailsClick(): void {
@@ -267,7 +315,7 @@ export class AgendaComponent implements OnInit {
 
 
     this.reunionService.agregarReuniones(fechaInicio, fechaFin, this.servicio.id).subscribe(reunion => {
-      //this.router.navigate(['/servicios'])
+
       swal.fire('Nueva Reunion', `Reunion agendad con exito!`, 'success');
     })
 
@@ -294,4 +342,5 @@ export class AgendaComponent implements OnInit {
       }
     })
   }
+
 }

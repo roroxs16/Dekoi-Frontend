@@ -17,6 +17,7 @@
     <hr>
 
 <div class="row">
+
     <ejs-schedule #scheduleObj height="850" width="100%"  [selectedDate]="setDate" [eventSettings]="eventObject" (created)="onCreate() "(popupOpen)="onPopupOpen($event)" >
         <e-views>
 
@@ -26,9 +27,15 @@
                 <table *ngIf="data != undefined" class="custom-event-editor" width="100%" cellpadding="5">
                     <tbody>
                         <tr>
-                            <td class="e-textlabel"> Nombre del servicio</td>
+                            <td class="e-textlabel"> Nombre del servicio </td>
                             <td colspan="4">
                                 <input type="text" data-name="Subject" class="e-field" id="Subject" value="{{data.Subject}}" style="width: 100%;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="e-textlabel"> ID# </td>
+                            <td colspan="4">
+                                <input type="text" data-name="Id" class="e-field" id="Id" value="{{data.Id}}" style="width: 100%;" disabled>
                             </td>
                         </tr>
                         <tr>
@@ -60,7 +67,9 @@
                             </tr>
 
                     </tbody>
+                   
                 </table>
+              
                 
             </ng-template>
     
@@ -90,7 +99,7 @@
         </div>
       </ng-template>
       <ng-template #quickInfoTemplatesFooter let-data>
-        <div *ngIf="data.elementType == 'cell'" class="e-cell-footer">
+        <div *ngIf="data.elementType == 'cell'" class="e-cell-footer" style="text-align: initial !important;">
             <div class="row">
                 <div class="col">
                     <div class="btn">
@@ -105,6 +114,7 @@
                 
               
             </div>
+     
          
         </div>
 

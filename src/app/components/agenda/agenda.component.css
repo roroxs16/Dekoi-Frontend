@@ -46,8 +46,8 @@ h2{
   background-color: green !important;
 }
 a , a:hover{
-  color: white;
-  background-color: #ff5100;
+  color: black;
+  background-color: white;
   font-size: 20px;
 }
 
@@ -106,6 +106,13 @@ button, button:hover{
 
 .e-quick-popup-wrapper .e-popup-header {
   height: 30px;
+}
+
+.e-quick-popup-wrapper .e-popup-footer {
+  display: block;
+  padding: 8px 18px 8px 22px;
+  text-align: initial !important;
+  padding-right: 4px;
 }
 
 .e-quick-popup-wrapper .e-header-icon-wrapper {
