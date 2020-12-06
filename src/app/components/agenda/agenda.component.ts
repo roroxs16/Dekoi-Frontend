@@ -251,8 +251,7 @@ export class AgendaComponent implements OnInit {
 
     let descripcion = JSON.stringify(last[4])
     let id = Number(last[1])
-    console.log(descripcion)
-    console.log(id)
+ 
     this.reunionService.editarReunion(descripcion, id).subscribe(reunion => {
 
       swal.fire('Nueva Reunion', `Reunion agendad con exito!`, 'success');

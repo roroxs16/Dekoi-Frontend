@@ -1,7 +1,4 @@
-.container-fluid {
-  
 
-}
 
 .fade-in {
 	opacity: 1;
@@ -39,12 +36,7 @@ h2{
   
 }
 
-.eliminar{
-  background-color: red !important;
-}
-.modificar{
-  background-color: green !important;
-}
+
 a , a:hover{
   color: black;
   background-color: white;

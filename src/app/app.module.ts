@@ -44,6 +44,8 @@ import { DateTimePickerModule } from '@syncfusion/ej2-angular-calendars'
 import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { ScheduleModule, RecurrenceEditorModule, DayService,WeekService,WorkWeekService,MonthAgendaService,MonthService } from '@syncfusion/ej2-angular-schedule';
 import { AgendaComponent } from './components/agenda/agenda.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 registerLocaleData(localeEs, 'es');
 const routes: Routes = [
@@ -68,6 +70,8 @@ const routes: Routes = [
   { path: 'servicios/formulario', component: FormularioServiciosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'admin/productos', component: AdminProductosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'agenda/:id', component: AgendaComponent, canActivate: [AuthGuard] },
+  { path: 'contacto', component: ContactComponent},
+  { path: 'aboutus', component: AboutUsComponent}
   
 ];
 
@@ -95,7 +99,9 @@ const routes: Routes = [
     ServiciosComponent,
     AdminProductosComponent,
     FormularioServiciosComponent,
-    AgendaComponent
+    AgendaComponent,
+    AboutUsComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +122,6 @@ const routes: Routes = [
     WorkWeekService,
     MonthAgendaService,
     MonthService
-
   ],
   bootstrap: [AppComponent]
 })

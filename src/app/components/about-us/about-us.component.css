@@ -1,0 +1,56 @@
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInRight;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.5s;
+}
+@keyframes fadeInRight {
+   0% {
+      opacity: 0;
+      transform: translateX(20px);
+   }
+   100% {
+      opacity: 1;
+      transform: translateX(0);
+   }
+}
+h6{
+  color: #ff5100;
+  font-size: 14px;
+  
+}
+
+h2{
+
+  color: #ff5100;
+}
+a , a:hover{
+    color: black;
+    background-color: white;
+    font-size: 20px;
+  }
+  
+  .container-fluid{
+    font-family: 'Roboto', sans-serif;
+
+  }
+  h4{
+  
+    font-size: 20px;
+  }
+  li{
+    font-size: 20px;
+  }
+  hr{
+    border: 1px solid #878787;;
+  }
+  .empresa{
+      height: auto;
+      padding-top: 10px;
+      padding-bottom: 25px;
+  }
+  .logo{
+    text-align: center;
+  }
+  

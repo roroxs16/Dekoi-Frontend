@@ -57,7 +57,7 @@ export class ReunionService {
   }
 
   public editarReunion(urlLink: string, id:number){
-    console.log(urlLink, id)
+
     return this.http.put(this.urlEndPoint + `/${id}/?linkReunion=${urlLink}`, null).pipe(
       map((response: any) => response.reunion as Reunion),
       catchError(e => {
