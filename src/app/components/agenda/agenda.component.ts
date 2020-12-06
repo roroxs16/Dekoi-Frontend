@@ -1,5 +1,6 @@
 import {
   Component,
+  Inject,
   OnInit,
   ViewChild
 } from '@angular/core';
@@ -15,8 +16,9 @@ import {
 } from '@syncfusion/ej2-angular-schedule';
 import { ButtonComponent } from '@syncfusion/ej2-angular-buttons';
 import { isNullOrUndefined } from '@syncfusion/ej2-base';
+import { DOCUMENT } from '@angular/common';
 import { Dialog } from '@syncfusion/ej2-popups';
-
+import {DomSanitizer} from '@angular/platform-browser';
 import {
   Reunion
 } from '../../models/reunion';
@@ -44,6 +46,7 @@ import {
   Servicio
 } from '../../models/servicio';
 
+import linkifyStr from 'linkifyjs/string';
 import { L10n, loadCldr } from '@syncfusion/ej2-base';
 
 declare let require: Function;
@@ -176,13 +179,17 @@ export class AgendaComponent implements OnInit {
   constructor(private reunionService: ReunionService,
     private router: Router,
     private servicioService: ServicioService,
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute,
+    private sanitizer:DomSanitizer,
+    @Inject(DOCUMENT) private document: Document) {}
 
   @ViewChild('scheduleObj', {
     static: true
   })
   public scheduleObj: ScheduleComponent
 
+
+  
   @ViewChild("editButton")
   public editButton: ButtonComponent;
 
@@ -341,5 +348,38 @@ export class AgendaComponent implements OnInit {
       }
     })
   }
+  sanitize(url:string){
+    return this.sanitizer.bypassSecurityTrustUrl(url)
+  }
+  goToMeeting(url:string): void{
+    let link:string = this.linkify(url);;
+
+    
+    console.log(link)
+    swal.fire('Link de reunion', `El link de su reunion es ${link}`, "success")
+    //this.router.navigateByUrl(cleanUrl)
+    //this.document.location.href=url;
+  }
+
+  private linkify(plainText): string{
+    let replacedText;
+    let replacePattern1;
+    let replacePattern2;
+    let replacePattern3;
+
+    //URLs starting with http://, https://, or ftp://
+    replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    replacedText = plainText.replace(replacePattern1, '$1');
+
+    //URLs starting with "www." (without // before it, or it'd re-link the ones done above).
+    replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    replacedText = replacedText.replace(replacePattern2, '$2');
+
+    //Change email addresses to mailto:: links.
+    replacePattern3 = /(([a-zA-Z0-9\-\_\.])+@[a-zA-Z\_]+?(\.[a-zA-Z]{2,6})+)/gim;
+    replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
+
+    return replacedText;
+   }
 
 }

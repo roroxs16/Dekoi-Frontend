@@ -11,7 +11,7 @@
 		<div class="row">
 		  <h6 [routerLink]="['/']" style="cursor: pointer;">INICIO</h6>
 		  <h6 style="margin-left: 2px; margin-right: 2px;"> > </h6>
-		  <h6 [routerLink]="['/usuario']" style="cursor: pointer;">MI CUENTA</h6>
+		  <h6  style="cursor: default; color: grey;">MI CUENTA</h6>
   
 		</div>
 	  </div>
@@ -26,10 +26,14 @@
 		<div class="row fade-in">
 			<aside class="col-md-3">
 				<ul class="list-group ">
-					<a class="list-group-item border border-dark" style="cursor:pointer" [routerLink]="['/usuario']" (click)="loadUltimaCompra()"> Configuracion de cuenta </a>
-					<a class="list-group-item border border-dark" style="cursor:pointer" (click)="loadMisCompras()"> Mis Compras </a>
-					<a *ngIf="authService.hasRole('ROLE_ADMIN')" class="list-group-item border border-dark" style="cursor:pointer" (click)="loadAllCompras()"> Compras Clientes </a>
-					<a *ngIf="authService.hasRole('ROLE_ADMIN')" [routerLink]="['/admin/productos']" class="list-group-item border border-dark" style="cursor:pointer" > Gestion de Productos </a>
+					<a class="list-group-item border border-dark" style="cursor:pointer" [routerLink]="['/usuario']" (click)="loadUltimaCompra()"> 
+						Configuracion de cuenta </a>
+					<a class="list-group-item border border-dark" style="cursor:pointer" (click)="loadMisCompras()">
+						 Mis Compras </a>
+					<a *ngIf="authService.hasRole('ROLE_ADMIN')" class="list-group-item border border-dark" style="cursor:pointer" (click)="loadAllCompras()">
+						 Compras Clientes </a>
+					<!--<a *ngIf="authService.hasRole('ROLE_ADMIN')" [routerLink]="['/admin/productos']" class="list-group-item border border-dark" style="cursor:pointer" > 
+						Gestion de Productos </a>-->
 				</ul>
 				<br>
 				<a class="btn btn-light btn-block border border-dark" (click)="logout()">     <fa-icon [icon]="faPowerOff"  style="color: black; padding-right: 8px;"></fa-icon>
