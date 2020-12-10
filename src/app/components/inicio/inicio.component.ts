@@ -6,7 +6,9 @@ import { CategoriaService } from '../../service/categoria.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Producto } from '../../models/producto';
 import { faChevronLeft, faChevronRight, faTools, faChair } from '@fortawesome/free-solid-svg-icons';
-
+import { ProductoForm } from '../../models/productoForm';
+import Swal from 'sweetalert2';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -20,7 +22,7 @@ export class InicioComponent implements OnInit {
   faChair=faChair
   productos:Producto[]=[];
   productos2:Producto[]=[];
-
+  productoForm:ProductoForm = new ProductoForm();
   constructor(private productoService: ProductoService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -38,6 +40,16 @@ export class InicioComponent implements OnInit {
     
 
     })
+  }
+  public addProductToCart(id: number):any{
+
+    this.productoForm.cantidad=1;
+    this.productoForm.productoId=id;
+    this.carritoService.addProductToCart(this.productoForm).subscribe(
+      response =>{
+        swal.fire('Producto agregado',` Producto Agregado con exito al carrito`,'success');
+      }
+    );
   }
 
 }

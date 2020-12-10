@@ -1,10 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { CarritoService } from '../../service/carrito.service';
-import { CompraService } from '../../service/compra.service';
-import { CarritoProducto } from '../../models/carritoProducto';
-import { Direccion } from '../../models/direccion';
-import { faChevronLeft, faChevronRight, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Router, ActivatedRoute } from '@angular/router';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  CarritoService
+} from '../../service/carrito.service';
+import {
+  CompraService
+} from '../../service/compra.service';
+import {
+  CarritoProducto
+} from '../../models/carritoProducto';
+import {
+  Direccion
+} from '../../models/direccion';
+import {
+  faChevronLeft,
+  faChevronRight,
+  faTrash
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  Router,
+  ActivatedRoute
+} from '@angular/router';
 
 import swal from 'sweetalert2'
 import Swal from 'sweetalert2'
@@ -22,7 +40,7 @@ export class CarritoComponent implements OnInit {
   valorCarrito: number;
   public direccion: Direccion = new Direccion();
 
-  constructor(private carritoService: CarritoService, private compraService: CompraService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private carritoService: CarritoService, private compraService: CompraService, private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.cargarCarrito();
@@ -34,18 +52,18 @@ export class CarritoComponent implements OnInit {
 
       this.carritoProductos = response;
       this.valorCarrito = this.carritoProductos[0].carrito.valor;
-
+      this.formatList();
     })
   }
   realizarCompra(): void {
     this.compraService.generateCompra(this.direccion).subscribe((response) => {
-  
+
       swal.fire('Se genero la compra', 'La compra se realizó exisotsamente!', 'success')
     })
   }
 
   carritoVacio(): boolean {
-    if(this.carritoProductos==[]){
+    if (this.carritoProductos == []) {
 
       return true;
     }
@@ -88,6 +106,42 @@ export class CarritoComponent implements OnInit {
 
       }
     })
+  }
+
+  public formatList(): void {
+    let array: CarritoProducto[] = [];
+    console.log(this.carritoProductos)
+    this.carritoProductos.forEach((carrito, index) => {
+     
+      
+
+      if(array.some(item => item.producto.nombre === carrito.producto.nombre)){
+      
+        for (let i = 0; i < array.length; i++) {  
+          if(array[i].producto.nombre==carrito.producto.nombre){
+            console.log(carrito.cantidad)
+            array[i].cantidad += carrito.cantidad
+            console.log("te encontre")
+            console.log(array[i].cantidad)
+            break;
+          }
+        
+        }
+        
+      }else{
+        array.push(carrito)
+      
+      }
+
+
+
+
+
+    });
+
+  
+    this.carritoProductos=array
+
   }
 
 
