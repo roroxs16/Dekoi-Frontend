@@ -10,13 +10,15 @@ import { CarritoProducto } from '../models/carritoProducto';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import swal from 'sweetalert2'
-
+import {URL_BACKEND} from '../config/config';
 @Injectable({
 
   providedIn: 'root'
 })
 export class UsuarioService {
-  private urlEndPoint: string = 'http://localhost:8080/api/usuario/';
+  private urlEndPoint: string = URL_BACKEND+'/api/usuario/';
+
+ // private urlEndPoint: string = 'http://localhost:8080/api/usuario/';
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -58,7 +60,7 @@ export class UsuarioService {
   }
 
   editDireccionUser(usuario: Usuario): Observable<Usuario> {
-    return this.http.put<Usuario>('http://localhost:8080/api/usuariodireccion/', usuario, { headers: this.httpHeaders }).pipe(
+    return this.http.put<Usuario>(URL_BACKEND+'/api/usuariodireccion/', usuario, { headers: this.httpHeaders }).pipe(
       map((response: any) => response.usuario as Usuario),
       catchError(e => {
         swal.fire('Error al editar el usuario', e.error.error, 'error');
@@ -78,7 +80,7 @@ export class UsuarioService {
 
   }
   getAllComprasAdmin(): Observable<Compra[]> {
-    return this.http.get<Compra[]>("http://localhost:8080/api/compra/admin").pipe(
+    return this.http.get<Compra[]>(URL_BACKEND+"/api/compra/admin").pipe(
       catchError(e => {
         swal.fire('Error al obtener las compras', 'No se pudieron obtener las compras', 'error')
         return throwError(e);
@@ -98,7 +100,7 @@ export class UsuarioService {
 
 
   cargarProductosFromCompra(id: number): Observable<CarritoProducto[]> {
-    return this.http.get<CarritoProducto[]>(`http://localhost:8080/api/carrito/productos?id=${id}`, { headers: this.httpHeaders }).pipe(
+    return this.http.get<CarritoProducto[]>(URL_BACKEND+`/api/carrito/productos?id=${id}`, { headers: this.httpHeaders }).pipe(
 
       catchError(e => {
 
@@ -110,7 +112,7 @@ export class UsuarioService {
   }
 
   updateCompra(compra: Compra): Observable<Compra>{
-    return this.http.put<Compra>(`http://localhost:8080/api/compra/${compra.id}`, compra)
+    return this.http.put<Compra>(URL_BACKEND+`/api/compra/${compra.id}`, compra)
       .pipe(
         map((response: any) => response.compra as Compra),
         catchError(e => {

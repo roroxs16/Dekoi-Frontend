@@ -5,6 +5,7 @@ import { ActivatedRoute} from '@angular/router';
 import { Compra } from '../../models/compra';
 import { Carrito } from 'src/app/models/carrito';
 import { Direccion } from 'src/app/models/direccion';
+import {URL_BACKEND} from '../../config/config';
 
 import { CarritoProducto } from 'src/app/models/carritoProducto';
 import swal from 'sweetalert2';
@@ -15,6 +16,9 @@ import swal from 'sweetalert2';
   styleUrls: ['./detalle-compra.component.css']
 })
 export class DetalleCompraComponent implements OnInit {
+
+  urlBackend= URL_BACKEND;
+
 
   compra: Compra = new Compra();
   carrito: Carrito = new Carrito();

@@ -48,7 +48,7 @@
             <td>{{producto.descripcion}}</td>
             <td>{{producto.valorUnitario | currency:'CLP':'symbol-narrow'}}</td>
             <td><img class="img-producto" *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
-              <img class="img-producto" *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" alt="..."></td>
+              <img class="img-producto" *ngIf="producto.imagenes.length==0" src="assets/img/no-img.jpg" alt="..."></td>
             <td>{{producto.categoria.nombre}}</td>
             <td>	<button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" class="btn btn-danger my-4" (click)='delete(producto)'>
               Eliminar

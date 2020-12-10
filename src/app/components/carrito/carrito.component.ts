@@ -5,7 +5,7 @@ import { CarritoProducto } from '../../models/carritoProducto';
 import { Direccion } from '../../models/direccion';
 import { faChevronLeft, faChevronRight, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {URL_BACKEND} from '../../config/config';
 import swal from 'sweetalert2'
 import Swal from 'sweetalert2'
 @Component({
@@ -14,6 +14,8 @@ import Swal from 'sweetalert2'
   styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent implements OnInit {
+  //para produccion
+  urlBackend= URL_BACKEND;
 
   carritoProductos: CarritoProducto[] = [];
   faLeft = faChevronLeft;

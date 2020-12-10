@@ -5,15 +5,15 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img class="d-block w-100" src="../../../assets/img/lavatorio.jpg" alt="First slide" width="600px"
+              <img class="d-block w-100" src="assets/img/lavatorio.jpg" alt="First slide" width="600px"
                 height="450px">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="../../../assets/img/sala.jpg" alt="Second slide" width="600px"
+              <img class="d-block w-100" src="assets/img/sala.jpg" alt="Second slide" width="600px"
                 height="450px">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="../../../assets/img/sillon.jpg" alt="Third slide" width="600px"
+              <img class="d-block w-100" src="assets/img/sillon.jpg" alt="Third slide" width="600px"
                 height="450px">
             </div>
           </div>
@@ -63,10 +63,12 @@
                   <div class="col-sm-12 col-lg-4" *ngFor="let producto of productos">
                     <figure class="card card-product-grid">
                       <div class="img-wrap">
-
-                        <img img class="card-img-top" *ngIf="producto.imagenes.length>0"
-                          src="http://localhost:8080/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
-                        <img *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="card-img-top"
+                        <!--    <img img class="card-img-top" *ngIf="producto.imagenes.length>0"
+                          src="http://localhost:8080/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">-->
+                    
+                          <img img class="card-img-top" *ngIf="producto.imagenes.length>0"
+                          src="{{urlBackend}}/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
+                        <img *ngIf="producto.imagenes.length==0" src="assets/img/no-img.jpg" class="card-img-top"
                           alt="...">
                         <a class="btn-overlay" [routerLink]="['/producto', producto.id]"><i
                             class="fa fa-search-plus"></i> Ver más</a>
@@ -94,10 +96,14 @@
                   <div class="col-sm-12 col-lg-4" *ngFor="let producto of productos2">
                     <figure class="card card-product-grid">
                       <div class="img-wrap">
-
-                        <img img class="card-img-top" *ngIf="producto.imagenes.length>0"
+                        <!--
+ <img img class="card-img-top" *ngIf="producto.imagenes.length>0"
                           src="http://localhost:8080/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
-                        <img *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="card-img-top"
+                        -->
+                        <img img class="card-img-top" *ngIf="producto.imagenes.length>0"
+                          src="{{urlBackend}}/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
+                          
+                        <img *ngIf="producto.imagenes.length==0" src="assets/img/no-img.jpg" class="card-img-top"
                           alt="...">
                         <a class="btn-overlay" [routerLink]="['/producto', producto.id]"><i
                             class="fa fa-search-plus"></i> Ver más</a>

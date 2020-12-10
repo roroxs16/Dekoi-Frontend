@@ -167,8 +167,9 @@
 		</div>
 		<div class="row">
 			
-			<img class="img-producto" *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{imagenes[0].nombre}}" alt="">
-			<img class="img-producto" *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg"  alt="...">
+			<!--<img class="img-producto" *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{imagenes[0].nombre}}" alt=""> -->
+			<img class="img-producto" *ngIf="producto.imagenes.length>0" src="{{urlBackend}}/api/uploads/img/{{imagenes[0].nombre}}" alt="">
+			<img class="img-producto" *ngIf="producto.imagenes.length==0" src="assets/img/no-img.jpg"  alt="...">
 			
 
 			

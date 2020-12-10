@@ -6,7 +6,7 @@ import { CategoriaService } from '../../service/categoria.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Producto } from '../../models/producto';
 import { faChevronLeft, faChevronRight, faTools, faChair } from '@fortawesome/free-solid-svg-icons';
-
+import {URL_BACKEND} from '../../config/config';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -14,6 +14,8 @@ import { faChevronLeft, faChevronRight, faTools, faChair } from '@fortawesome/fr
 })
 export class InicioComponent implements OnInit {
 
+    //para produccion
+    urlBackend= URL_BACKEND;
   faLeft= faChevronLeft
   faRight= faChevronRight
   faTools = faTools;

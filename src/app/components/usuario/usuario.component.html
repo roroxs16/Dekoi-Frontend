@@ -46,7 +46,7 @@
 
 						<figure class="icontext">
 							<div class="icon">
-								<img class="rounded-circle img-sm border" src="../../assets/img/user.png">
+								<img class="rounded-circle img-sm border" src="assets/img/user.png">
 							</div>
 							<div class="text">
 								<strong> {{usuario.nombre}} {{usuario.apellido}} </strong> <br>
@@ -144,8 +144,13 @@
 						<ul class="row">
 							<li class="col-md-4" *ngFor="let carrito of carritoProducto">
 								<figure class="itemside  mb-3">
-									<div class="aside"><img *ngIf="carrito.producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" class="border img-sm">
-										<img *ngIf="carrito.producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="border img-sm" alt="..."></div>
+									<div class="aside">
+										<!--
+										<img *ngIf="carrito.producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" 
+										class="border img-sm">-->
+										<img *ngIf="carrito.producto.imagenes.length>0" src="{{urlBackend}}/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" 
+										class="border img-sm">
+										<img *ngIf="carrito.producto.imagenes.length==0" src="assets/img/no-img.jpg" class="border img-sm" alt="..."></div>
 									<figcaption class="info align-self-center">
 
 										<p class="title">{{carrito.producto.nombre}} </p>
@@ -205,8 +210,10 @@
 							<ul class="row">
 								<li class="col-md-4" *ngFor="let carrito of carritoProducto">
 									<figure class="itemside  mb-3">
-										<div class="aside"><img *ngIf="carrito.producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" class="border img-sm">
-											<img *ngIf="carrito.producto.imagenes.length==0" src="../../assets/img/no-img.jpg" class="border img-sm" alt="..."></div>
+										<div class="aside">
+											<!--<img *ngIf="carrito.producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" class="border img-sm">-->
+											<img *ngIf="carrito.producto.imagenes.length>0" src="{{urlBackend}}/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" class="border img-sm">
+											<img *ngIf="carrito.producto.imagenes.length==0" src="assets/img/no-img.jpg" class="border img-sm" alt="..."></div>
 										<figcaption class="info align-self-center">
 
 											<p class="title">{{carrito.producto.nombre}} </p>

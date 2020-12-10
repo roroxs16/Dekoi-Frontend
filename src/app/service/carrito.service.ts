@@ -8,12 +8,17 @@ import { ProductoForm } from '../models/productoForm';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import swal from 'sweetalert2'
+import {URL_BACKEND} from '../config/config';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoService {
 
-  private urlEndPoint: string = 'http://localhost:8080/api/carrito';
+  //produccion
+  private urlEndPoint: string = URL_BACKEND+'/api/carrito';
+  // local
+ // private urlEndPoint: string = 'http://localhost:8080/api/carrito';
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(private http: HttpClient, private router: Router) { }

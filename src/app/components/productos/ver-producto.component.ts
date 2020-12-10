@@ -33,6 +33,7 @@ import swal from 'sweetalert2';
 import {
   CarritoService
 } from '../../service/carrito.service';
+import {URL_BACKEND} from '../../config/config';
 
 @Component({
   selector: 'app-ver-producto',
@@ -40,7 +41,7 @@ import {
   styleUrls: ['./ver-producto.component.css']
 })
 export class VerProductoComponent implements OnInit {
-
+  urlBackend= URL_BACKEND;
 
   faCart = faShoppingCart
   producto: Producto = new Producto();
