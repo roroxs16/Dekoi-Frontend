@@ -110,7 +110,7 @@ export class CarritoComponent implements OnInit {
 
   public formatList(): void {
     let array: CarritoProducto[] = [];
-    console.log(this.carritoProductos)
+  
     this.carritoProductos.forEach((carrito, index) => {
      
       
@@ -119,10 +119,9 @@ export class CarritoComponent implements OnInit {
       
         for (let i = 0; i < array.length; i++) {  
           if(array[i].producto.nombre==carrito.producto.nombre){
-            console.log(carrito.cantidad)
+     
             array[i].cantidad += carrito.cantidad
-            console.log("te encontre")
-            console.log(array[i].cantidad)
+          
             break;
           }
         

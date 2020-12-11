@@ -354,8 +354,7 @@ export class AgendaComponent implements OnInit {
   goToMeeting(url:string): void{
     let link:string = this.linkify(url);;
 
-    
-    console.log(link)
+
     swal.fire('Link de reunion', `El link de su reunion es ${link}`, "success")
     //this.router.navigateByUrl(cleanUrl)
     //this.document.location.href=url;
