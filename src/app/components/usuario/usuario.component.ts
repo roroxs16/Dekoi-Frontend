@@ -19,16 +19,19 @@ import { Carrito } from 'src/app/models/carrito';
   styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit {
+
   faUser=faUser;
   usuario:Usuario = new Usuario();
   usuarioModal:Usuario=new Usuario;
   usuarioDireccionModal:Usuario;
   compras:Compra[]=[]
-  carritoProducto:CarritoProducto[]= null;
+  carritoProducto:CarritoProducto[]= [];
   ultimaCompra :Compra = null;
   carrito: Carrito = null;
   esCompras:boolean=false;
   allCompras: Compra[]=[];
+
+
   faPowerOff=faPowerOff
 
   constructor(private usuarioService: UsuarioService, 
@@ -38,18 +41,25 @@ export class UsuarioComponent implements OnInit {
             ) { }
 
   ngOnInit(): void {
-    this.usuarioService.cargarUsuario().subscribe(response=>{
-      this.usuario=response;
-      this.compras= this.usuario.compras;
-      this.ultimaCompra=this.compras[this.compras.length-1];
-      this.carrito = this.ultimaCompra.carrito;
-      this.usuarioService.cargarProductosFromCompra(this.carrito.id).subscribe(response=>{
+  
+    this.cargarUsuario();
+  }
 
+  public cargarUsuario(): void{
+   
+    this.usuarioService.cargarUsuario().subscribe(response=>{
+      this.usuario= response;
+      this.compras= response.compras;
+      this.ultimaCompra=response.compras[response.compras.length-1];
+      
+      this.carrito = response.compras[response.compras.length-1].carrito;
+      
+      this.usuarioService.cargarProductosFromCompra(this.carrito.id).subscribe(response=>{
+        
         this.carritoProducto=response;
         
       })
     });
-
 
   }
 
@@ -93,7 +103,18 @@ export class UsuarioComponent implements OnInit {
 
   loadAllCompras():void{
     this.usuarioService.getAllComprasAdmin().subscribe(response =>{
+  
       this.compras=response;
+      
+      this.compras.forEach(compra=>{
+       
+        this.usuarioService.cargarProductosFromCompra(compra.carrito.id).subscribe(response=>{
+        
+          this.carritoProducto=response;
+          
+        })
+      })
+  
     })
   }
 }
