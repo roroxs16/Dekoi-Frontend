@@ -1530,5 +1530,18 @@ a[class*=card]:hover .title {
   margin-right: 5px;
   display: block;
 }
+@media  screen and (max-width: 1366px) {
+  /* insert styles here */
+  .precio{
+    padding-left: 0px !important;
+  }
+}
+
 
 /*# sourceMappingURL=ui.css.map */
+@media  screen and (max-width: 1920px) {
+  /* insert styles here */
+  .precio{
+    padding-left: 55px;
+  }
+}
