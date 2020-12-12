@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-
+import {URL_BACKEND} from '../config/config';
 
 import swal from 'sweetalert2'
 
@@ -17,8 +17,11 @@ import swal from 'sweetalert2'
   providedIn: 'root'
 })
 export class CategoriaService {
+//produccion
+  private urlEndPoint: string = URL_BACKEND+'/api/categoria';
 
-  private urlEndPoint: string = 'http://localhost:8080/api/categoria';
+  //local
+ // private urlEndPoint: string = 'http://localhost:8080/api/categoria';
 
 
   constructor(private http: HttpClient, private router: Router) { }

@@ -25,12 +25,17 @@ import {
 } from 'rxjs/operators';
 import swal from 'sweetalert2';
 
+import {URL_BACKEND} from '../config/config';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ReunionService {
 
-  private urlEndPoint: string = 'http://localhost:8080/api/reunion';
+  private urlEndPoint: string = URL_BACKEND+'/api/reunion';
+
+ // private urlEndPoint: string = 'http://localhost:8080/api/reunion';
 
   constructor(private http: HttpClient, private router: Router) {}
 

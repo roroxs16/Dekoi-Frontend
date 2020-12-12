@@ -5,13 +5,16 @@ import { Observable, of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { map, catchError } from 'rxjs/operators';
 import swal from 'sweetalert2'
+import { URL_BACKEND } from '../config/config';
+
 @Injectable({
   providedIn: 'root'
 })
 export class DireccionService {
+//produccion
+  private urlEndPoint: string = URL_BACKEND+'/api/direccion';
 
-
-    private urlEndPoint: string = 'http://localhost:8080/api/direccion';
+    //private urlEndPoint: string = 'http://localhost:8080/api/direccion';
 
   constructor(private http: HttpClient, private router: Router) { }
 

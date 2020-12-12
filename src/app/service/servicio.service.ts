@@ -8,13 +8,17 @@ import {Servicio} from '../models/servicio';
 import { Observable,  throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import swal from 'sweetalert2';
+import {URL_BACKEND} from '../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioService {
 
-  private urlEndPoint: string ='http://localhost:8080/api/servicio';
+    
+  private urlEndPoint: string =URL_BACKEND+'/api/servicio';
+
+ // private urlEndPoint: string ='http://localhost:8080/api/servicio';
 
   constructor(private http: HttpClient, private router: Router) { }
 

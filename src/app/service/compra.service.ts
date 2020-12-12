@@ -6,12 +6,15 @@ import { Observable, of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { map, catchError } from 'rxjs/operators';
 import swal from 'sweetalert2'
+import { URL_BACKEND } from '../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompraService {
-  private urlEndPoint: string = 'http://localhost:8080/api/compra';
+  //produccion
+  private urlEndPoint: string = URL_BACKEND+'/api/compra';
+  //private urlEndPoint: string = 'http://localhost:8080/api/compra';
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient, private router: Router) { }
 

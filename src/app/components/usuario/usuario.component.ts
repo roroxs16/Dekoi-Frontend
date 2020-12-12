@@ -12,6 +12,7 @@ import { AuthService} from '../../service/auth.service';
 import { UsuarioService } from '../../service/usuario.service';
 import { ModalService } from '../../service/modal.service';
 import { Carrito } from 'src/app/models/carrito';
+import {URL_BACKEND} from '../../config/config';
 
 @Component({
   selector: 'app-usuario',
@@ -19,6 +20,8 @@ import { Carrito } from 'src/app/models/carrito';
   styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit {
+
+  urlBackend= URL_BACKEND;
 
   faUser=faUser;
   usuario:Usuario = new Usuario();

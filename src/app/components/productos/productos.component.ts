@@ -9,6 +9,7 @@ import { CarritoService } from '../../service/carrito.service';
 import { AuthService } from '../../service/auth.service';
 import { CategoriaService } from '../../service/categoria.service';
 import { ProductoForm } from '../../models/productoForm';
+import {URL_BACKEND} from '../../config/config';
 
 import Swal from 'sweetalert2';
 import swal from 'sweetalert2';
@@ -28,6 +29,7 @@ export class ProductosComponent implements OnInit {
 
   paginador: any;
 
+  urlBackend= URL_BACKEND;
 
   enabled: boolean = false;
   productoForm:ProductoForm = new ProductoForm();

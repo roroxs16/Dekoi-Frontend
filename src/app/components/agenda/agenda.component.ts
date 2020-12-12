@@ -262,8 +262,9 @@ export class AgendaComponent implements OnInit {
     this.reunionService.editarReunion(descripcion, id).subscribe(reunion => {
 
       swal.fire('Nueva Reunion', `Reunion agendad con exito!`, 'success');
+      this.router.navigate(['/servicios']);
     })
-    window.location.reload()
+   
   }
 
 
@@ -323,9 +324,9 @@ export class AgendaComponent implements OnInit {
     this.reunionService.agregarReuniones(fechaInicio, fechaFin, this.servicio.id).subscribe(reunion => {
 
       swal.fire('Nueva Reunion', `Reunion agendad con exito!`, 'success');
+      this.router.navigate(['/servicios']);
     })
 
-    window.location.reload()
   }
   public dateToISOLikeButLocal(date) {
     const offsetMs = date.getTimezoneOffset() * 60 * 1000;

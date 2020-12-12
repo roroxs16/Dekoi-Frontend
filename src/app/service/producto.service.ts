@@ -8,10 +8,7 @@ import { Producto } from '../models/producto';
 
 import { Observable,  throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-
-
-
-
+import { URL_BACKEND } from '../config/config';
 import swal from 'sweetalert2'
 
 
@@ -20,7 +17,11 @@ import swal from 'sweetalert2'
 })
 export class ProductoService {
 
-  private urlEndPoint: string = 'http://localhost:8080/api/producto';
+  //produccion
+  private urlEndPoint: string = URL_BACKEND+'/api/producto';
+
+
+  //private urlEndPoint: string = 'http://localhost:8080/api/producto';
 
 
 

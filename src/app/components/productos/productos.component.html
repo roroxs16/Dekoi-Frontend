@@ -145,8 +145,9 @@
         <div class="col-md-6" *ngFor="let producto of productos">
           <div class="bg-producto">
             <div class="row">
-              <img class="img-producto" *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
-              <img class="img-producto" *ngIf="producto.imagenes.length==0" src="../../assets/img/no-img.jpg" alt="...">
+              <!--<img class="img-producto" *ngIf="producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">-->
+              <img class="img-producto" *ngIf="producto.imagenes.length>0" src="{{urlBackend}}/api/uploads/img/{{producto.imagenes[0].nombre}}" alt="">
+              <img class="img-producto" *ngIf="producto.imagenes.length==0" src="assets/img/no-img.jpg" alt="...">
             </div>
             <div class="row" style="background: white;">
               <div class="col-md-8">

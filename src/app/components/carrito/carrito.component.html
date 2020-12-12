@@ -47,10 +47,15 @@
                 <td>
                   <figure class="itemside align-items-center">
                     <div class="aside">
+                      <!--
                       <img *ngIf="carritoProducto.producto.imagenes.length>0"
                         src="http://localhost:8080/api/uploads/img/{{carritoProducto.producto.imagenes[0].nombre}}"
                         class="img-sm">
-                      <img *ngIf="carritoProducto.producto.imagenes.length==0" src="../../assets/img/no-img.jpg"
+                        -->
+                        <img *ngIf="carritoProducto.producto.imagenes.length>0"
+                        src="{{urlBackend}}/api/uploads/img/{{carritoProducto.producto.imagenes[0].nombre}}"
+                        class="img-sm">
+                      <img *ngIf="carritoProducto.producto.imagenes.length==0" src="assets/img/no-img.jpg"
                         class="img-sm" alt="...">
                     </div>
                     <figcaption class="info">

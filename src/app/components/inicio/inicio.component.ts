@@ -9,6 +9,9 @@ import { faChevronLeft, faChevronRight, faTools, faChair } from '@fortawesome/fr
 import { ProductoForm } from '../../models/productoForm';
 import Swal from 'sweetalert2';
 import swal from 'sweetalert2';
+
+import {URL_BACKEND} from '../../config/config';
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -16,6 +19,8 @@ import swal from 'sweetalert2';
 })
 export class InicioComponent implements OnInit {
 
+    //para produccion
+    urlBackend= URL_BACKEND;
   faLeft= faChevronLeft
   faRight= faChevronRight
   faTools = faTools;
