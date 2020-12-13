@@ -70,6 +70,7 @@ const routes: Routes = [
   { path: 'servicios/formulario', component: FormularioServiciosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'admin/productos', component: AdminProductosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'agenda/:id', component: AgendaComponent, canActivate: [AuthGuard] },
+  { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard] },
   { path: 'contacto', component: ContactComponent},
   { path: 'aboutus', component: AboutUsComponent}
   

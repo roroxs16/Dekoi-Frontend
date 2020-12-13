@@ -112,6 +112,7 @@ export class UsuarioService {
   }
 
   updateCompra(compra: Compra): Observable<Compra>{
+    delete compra.usuario
     return this.http.put<Compra>(URL_BACKEND+`/api/compra/${compra.id}`, compra)
       .pipe(
         map((response: any) => response.compra as Compra),

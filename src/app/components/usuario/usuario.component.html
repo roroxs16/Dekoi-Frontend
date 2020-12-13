@@ -32,6 +32,8 @@
 						 Mis Compras </a>
 					<a *ngIf="authService.hasRole('ROLE_ADMIN')" class="list-group-item border border-dark" style="cursor:pointer" (click)="loadAllCompras()">
 						 Compras Clientes </a>
+						 <a class="list-group-item border border-dark" style="cursor:pointer" [routerLink]="['/agenda']">
+							Reuniones </a>
 					<!--<a *ngIf="authService.hasRole('ROLE_ADMIN')" [routerLink]="['/admin/productos']" class="list-group-item border border-dark" style="cursor:pointer" > 
 						Gestion de Productos </a>-->
 				</ul>
@@ -168,7 +170,7 @@
 				<div *ngFor="let compra of compras">
 
 
-					<article class="card order-group"  *ngIf="esCompras">
+					<article class="card order-group border-dark"  *ngIf="esCompras">
 						<header class="card-header">
 							<b class="d-inline-block mr-3">ID de la compra: #{{compra.id}} </b>
 							<span>{{compra.fechaCompra | date :'longDate'}}</span>
