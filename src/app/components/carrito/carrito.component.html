@@ -136,6 +136,7 @@
 
                 <div class="card-body border-top">
                   <button type="submit" [routerLink]="['/pago']" (click)="realizarCompra()"
+                  [queryParams]="{valorCompra: valorCarrito}"
                     class="btn btn-primary float-md-right"
                     [disabled]="!direccionForm.form.valid ? carritoProductos: null ">
                     Realizar Compra <fa-icon [icon]="faRight"></fa-icon>

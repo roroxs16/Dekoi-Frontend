@@ -16,7 +16,9 @@ import Swal from 'sweetalert2'
   styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent implements OnInit {
+
   //para produccion
+  
   urlBackend= URL_BACKEND;
 
   carritoProductos: CarritoProducto[] = [];

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-pago',
@@ -11,9 +12,15 @@ export class PagoComponent implements OnInit {
   faLeft = faChevronLeft;
   faRight = faChevronRight;
 
-  constructor() { }
+  valorTotal: string;
+
+  constructor(private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParamMap.subscribe(params =>{
+      this.valorTotal = params.get('valorCompra')
+    
+    })
   }
 
 }
