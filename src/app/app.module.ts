@@ -46,6 +46,8 @@ import { ScheduleModule, RecurrenceEditorModule, DayService,WeekService,WorkWeek
 import { AgendaComponent } from './components/agenda/agenda.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ListacomprasComponent } from './components/usuario/listacompras.component';
+import { AdmincomprasComponent } from './components/usuario/admin/admincompras.component';
 
 registerLocaleData(localeEs, 'es');
 const routes: Routes = [
@@ -72,7 +74,11 @@ const routes: Routes = [
   { path: 'agenda/:id', component: AgendaComponent, canActivate: [AuthGuard] },
   { path: 'agenda', component: AgendaComponent, canActivate: [AuthGuard] },
   { path: 'contacto', component: ContactComponent},
-  { path: 'aboutus', component: AboutUsComponent}
+  { path: 'aboutus', component: AboutUsComponent},
+  { path: 'admin/compras', component: AdmincomprasComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
+  { path: 'compras', component:ListacomprasComponent},
+
+
   
 ];
 
@@ -102,7 +108,9 @@ const routes: Routes = [
     FormularioServiciosComponent,
     AgendaComponent,
     AboutUsComponent,
-    ContactComponent
+    ContactComponent,
+    ListacomprasComponent,
+    AdmincomprasComponent
   ],
   imports: [
     BrowserModule,

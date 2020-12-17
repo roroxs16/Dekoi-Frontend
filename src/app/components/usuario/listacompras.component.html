@@ -28,11 +28,11 @@
 				<ul class="list-group ">
 					<a class="list-group-item border border-dark" style="cursor:pointer" [routerLink]="['/usuario']"> 
 						Configuracion de cuenta </a>
-					<a class="list-group-item border border-dark" style="cursor:pointer"  [routerLink]="['/compras']">
+					<a class="list-group-item border border-dark" style="cursor:pointer">
 						 Mis Compras </a>
 					<a *ngIf="authService.hasRole('ROLE_ADMIN')" class="list-group-item border border-dark" style="cursor:pointer" [routerLink]="['/compras']" >
 						 Compras Clientes </a>
-					<a class="list-group-item border border-dark" style="cursor:pointer" [routerLink]="['/agenda']">
+						 <a class="list-group-item border border-dark" style="cursor:pointer" [routerLink]="['/agenda']">
 							Reuniones </a>
 					<!--<a *ngIf="authService.hasRole('ROLE_ADMIN')" [routerLink]="['/admin/productos']" class="list-group-item border border-dark" style="cursor:pointer" > 
 						Gestion de Productos </a>-->
@@ -81,7 +81,7 @@
 				</article>
 
 
-				<article class="card mb-3 border border-dark" *ngIf="!ultimaCompra">
+				<article class="card mb-3 border border-dark" *ngIf="!compras">
 					<div class="card-body">
 						<h5 class="card-title mb-4">Usted no tiene compras recientes!
 						</h5>
@@ -103,74 +103,10 @@
 					</div>
 				</article>
 
-				<article class="card order-group border border-dark" *ngIf="ultimaCompra && esCompras==false">
-					<header class="card-header">
-						<b class="d-inline-block mr-3">ID de la compra: #{{ultimaCompra.id}} </b>
-						<span>{{ultimaCompra.fechaCompra | date :'longDate'}}</span>
-
-						<span *ngIf="ultimaCompra.estado==false" class="text-warning"> Por Pagar</span>
-						<span *ngIf="ultimaCompra.estado!=false" class="text-success"> Pagado</span>
-						<button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-success" style="float:right" 
-						 [routerLink]="['/detallecompra', ultimaCompra.id]"
-						 [queryParams]="{usuarioNombre: usuario.nombre, usuarioApellido: usuario.apellido, usuarioNumero: usuario.numeroTelefono, usuarioEmail: usuario.email}"> 
-							Detalle de la compra 
-						</button>
-					</header>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-md-4">
-								<h6 class="text-muted">Total</h6>
+				<div *ngFor="let compra of comprasConProductos">
 
 
-								<p>
-									<span class="b">{{ultimaCompra.valorTotal | currency:'CLP':'symbol-narrow'}} </span>
-								</p>
-
-							</div>
-							<div class="col-md-4">
-								<h6 class="text-muted">Contacto</h6>
-								<p> {{usuario.nombre}} {{usuario.apellido}}
-									<br>
-									{{usuario.numeroTelefono}}
-									<br>
-									{{usuario.email}} <br></p>
-
-							</div>
-							<div class="col-md-4">
-								<h6 class="text-muted">Direccion de envío</h6>
-								<p> {{ultimaCompra.direccion.numero}}, {{ultimaCompra.direccion.calle}}, {{ultimaCompra.direccion.ciudad}} </p>
-								<p *ngIf="ultimaCompra.direccion.departamento">	Departamento: {{ultimaCompra.direccion.departamento}}</p>
-							</div>
-						</div> <!-- row.// -->
-						<hr>
-						<ul class="row">
-							<li class="col-md-4" *ngFor="let carrito of carritoProducto">
-								<figure class="itemside  mb-3">
-									<div class="aside">
-										<!--
-										<img *ngIf="carrito.producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" 
-										class="border img-sm">-->
-										<img *ngIf="carrito.producto.imagenes.length>0" src="{{urlBackend}}/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" 
-										class="border img-sm">
-										<img *ngIf="carrito.producto.imagenes.length==0" src="assets/img/no-img.jpg" class="border img-sm" alt="..."></div>
-									<figcaption class="info align-self-center">
-
-										<p class="title">{{carrito.producto.nombre}} </p>
-										<span class="text-muted">{{carrito.producto.valorUnitario | currency:'CLP':'symbol-narrow'}} X {{carrito.cantidad }}</span>
-
-									</figcaption>
-								</figure>
-							</li>
-
-						</ul>
-						<button *ngIf="ultimaCompra.estado==false" [routerLink]="['/pago']" class="btn btn-outline-success"> Pagar </button>
-					</div> <!-- card-body .// -->
-				</article>
-
-				<div *ngFor="let compra of compras">
-
-
-					<article class="card order-group border-dark"  *ngIf="esCompras">
+					<article class="card order-group border-dark" >
 						<header class="card-header">
 							<b class="d-inline-block mr-3">ID de la compra: #{{compra.id}} </b>
 							<span>{{compra.fechaCompra | date :'longDate'}}</span>
@@ -210,23 +146,27 @@
 							</div> <!-- row.// -->
 							<hr>
 							<ul class="row">
-								<li class="col-md-4" *ngFor="let carrito of carritoProducto">
-									<figure class="itemside  mb-3">
-										<div class="aside">
-											<!--<img *ngIf="carrito.producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" class="border img-sm">-->
-											<img *ngIf="carrito.producto.imagenes.length>0" src="{{urlBackend}}/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" class="border img-sm">
-											<img *ngIf="carrito.producto.imagenes.length==0" src="assets/img/no-img.jpg" class="border img-sm" alt="..."></div>
-										<figcaption class="info align-self-center">
-
-											<p class="title">{{carrito.producto.nombre}} </p>
-											<span class="text-muted">{{carrito.producto.valorUnitario | currency:'CLP':'symbol-narrow'}} X {{carrito.cantidad }}</span>
-
-										</figcaption>
-									</figure>
+								<li class="col-md-4" *ngFor="let carrito of compra.carrito.carritoProducto">
+                               
+                                        <figure class="itemside  mb-3">
+                                           
+                                            <div class="aside">
+                                                <!--<img *ngIf="carrito.producto.imagenes.length>0" src="http://localhost:8080/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" class="border img-sm">-->
+                                                <img *ngIf="carrito.producto.imagenes.length>0" src="{{urlBackend}}/api/uploads/img/{{carrito.producto.imagenes[0].nombre}}" class="border img-sm">
+                                                <img *ngIf="carrito.producto.imagenes.length==0" src="assets/img/no-img.jpg" class="border img-sm" alt="..."></div>
+                                            <figcaption class="info align-self-center">
+    
+                                                <p class="title">{{carrito.producto.nombre}} </p>
+                                                <span class="text-muted">{{carrito.producto.valorUnitario | currency:'CLP':'symbol-narrow'}} X {{carrito.cantidad }}</span>
+    
+                                            </figcaption>
+                                        </figure>
+                           
+							
 								</li>
 
 							</ul>
-							<button *ngIf="ultimaCompra.estado==false"[routerLink]="['/productos']" class="btn btn-outline-success"> Pagar </button>
+							<button *ngIf="compra.estado==false"[routerLink]="['/productos']" class="btn btn-outline-success"> Pagar </button>
 						</div> <!-- card-body .// -->
 					</article>
 					<br>
