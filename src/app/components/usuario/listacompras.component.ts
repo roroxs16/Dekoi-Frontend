@@ -128,15 +128,8 @@ export class ListacomprasComponent implements OnInit {
     this.usuarioService.cargarProductosFromCompra(id).subscribe(response => {
 
       compra.carrito.carritoProducto=response;
-      /*
-      response.forEach(producto=>{
-        if(compra.carrito.id == producto.carrito.id ){
-          let compraWithProducts = Object.assign(compra,producto)
-          this.comprasConProductos.push(compraWithProducts);
-        }
-      })*/
+
       this.comprasConProductos.push(compra)
-     console.log(this.comprasConProductos)   
     })
   }
 

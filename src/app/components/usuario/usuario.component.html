@@ -30,7 +30,7 @@
 						Configuracion de cuenta </a>
 					<a class="list-group-item border border-dark" style="cursor:pointer"  [routerLink]="['/compras']">
 						 Mis Compras </a>
-					<a *ngIf="authService.hasRole('ROLE_ADMIN')" class="list-group-item border border-dark" style="cursor:pointer" [routerLink]="['/compras']" >
+					<a *ngIf="authService.hasRole('ROLE_ADMIN')" class="list-group-item border border-dark" style="cursor:pointer" [routerLink]="['/admin/compras']" >
 						 Compras Clientes </a>
 					<a class="list-group-item border border-dark" style="cursor:pointer" [routerLink]="['/agenda']">
 							Reuniones </a>
