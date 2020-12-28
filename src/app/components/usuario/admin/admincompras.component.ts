@@ -73,7 +73,6 @@ export class AdmincomprasComponent implements OnInit {
   ngOnInit(): void {
     this.cargarUsuario();
     this.loadMisCompras();
-    console.log(this.comprasConProductos)
   }
 
 

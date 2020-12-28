@@ -16,7 +16,7 @@ import {URL_BACKEND} from '../config/config';
 export class ServicioService {
 
     
-  private urlEndPoint: string =URL_BACKEND+'/api/servicio';
+  private urlEndPoint: string = URL_BACKEND+'/api/servicio';
 
  // private urlEndPoint: string ='http://localhost:8080/api/servicio';
 

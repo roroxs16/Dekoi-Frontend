@@ -46,6 +46,10 @@ import {
   Servicio
 } from '../../models/servicio';
 
+import{
+  AuthService
+} from '../../service/auth.service'
+
 import linkifyStr from 'linkifyjs/string';
 import { L10n, loadCldr } from '@syncfusion/ej2-base';
 
@@ -181,7 +185,8 @@ export class AgendaComponent implements OnInit {
     private servicioService: ServicioService,
     private activatedRoute: ActivatedRoute,
     private sanitizer:DomSanitizer,
-    @Inject(DOCUMENT) private document: Document) {}
+    @Inject(DOCUMENT) private document: Document,
+    private authService: AuthService) {}
 
   @ViewChild('scheduleObj', {
     static: true
@@ -300,6 +305,7 @@ export class AgendaComponent implements OnInit {
   public onCloseClick(): void {
     this.scheduleObj.quickPopup.quickPopupHide();
   }
+
   public onAddClick(): void {
     this.onCloseClick();
     const data: Object = this.scheduleObj.getCellDetails(this.scheduleObj.getSelectedElements()) as Object;
@@ -312,6 +318,9 @@ export class AgendaComponent implements OnInit {
     eventData.Id = this.scheduleObj.eventBase.getEventMaxID() as number + 1;
     this.scheduleObj.addEvent(eventData);
     //EndTime StartTime
+
+    //NGdisabled para desabilitar cosas
+    
 
     let last = Object.values(data);
     let fechaInicio = this.dateToISOLikeButLocal(last[0]);
