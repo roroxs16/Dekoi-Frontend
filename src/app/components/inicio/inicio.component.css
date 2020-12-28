@@ -14,7 +14,8 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 28.5%;
+  margin-bottom: 20px;
 }
 
 
@@ -23,13 +24,18 @@
   margin-bottom: 50px;
 }
 
+
 .vertical { 
   display: inline-block;
-  border-left: 2px solid white;
+  border-radius: 20px;
+  border-left: 4px solid white;
   margin: 0 50px;
-  height: 250px;
+  height: 300px;
 } 
 
+.descripcion-servicios{
+  font-size: 18px;
+}
 .carousel-indicators li {
   background-color:  #ff5100 !important;
   background-color:  #ff5100 !important;
@@ -1485,5 +1491,10 @@ a[class*=card]:hover .title {
 
   .fa-servicios{
     padding-left: 85px !important;
+  }
+
+  .row-servicios{
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
   }
 }
