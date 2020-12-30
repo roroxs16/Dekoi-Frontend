@@ -102,7 +102,7 @@ export class ProductosComponent implements OnInit {
 
   public mostrarProductos(categoria: Categoria): any {
     this.productos = [];
-    this.productos = categoria.productos;
+    this.productos = categoria.productos.filter( producto=> producto.estado=='Habilitado')
     this.enabled = true;
 
   }

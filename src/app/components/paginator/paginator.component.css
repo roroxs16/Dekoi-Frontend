@@ -5,3 +5,10 @@
     background-color: #ff5100;
     border-color: #ff5100;
 }
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #ff5100 !important;
+    border-color: #ff5100 !important;
+}

@@ -7,7 +7,7 @@ export class Producto{
   stock: number;
   descripcion: string;
   valorUnitario:number;
-
+  estado:string;
   imagenes:Array<Imagen> =[];
   categoria: Categoria;
 }
