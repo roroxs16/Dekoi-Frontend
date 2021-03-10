@@ -39,8 +39,13 @@ export class CarritoComponent implements OnInit {
     this.carritoService.listCarritoUsuario().subscribe((response) => {
 
       this.carritoProductos = response;
-      this.valorCarrito = this.carritoProductos[0].carrito.valor;
-      this.formatList();
+      if(response.length>0){
+        this.valorCarrito = this.carritoProductos[0].carrito.valor;
+        this.formatList();
+      }else{
+        this.valorCarrito = 0;
+      }
+      
     })
   }
   realizarCompra(): void {

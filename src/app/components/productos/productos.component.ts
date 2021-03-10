@@ -1,15 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 
-import { Producto } from '../../models/producto';
-import { Categoria } from '../../models/categoria';
-import { Router, ActivatedRoute } from '@angular/router';
+import {
+  Producto
+} from '../../models/producto';
+import {
+  Categoria
+} from '../../models/categoria';
+import {
+  Router,
+  ActivatedRoute
+} from '@angular/router';
 
-import { ProductoService } from '../../service/producto.service';
-import { CarritoService } from '../../service/carrito.service';
-import { AuthService } from '../../service/auth.service';
-import { CategoriaService } from '../../service/categoria.service';
-import { ProductoForm } from '../../models/productoForm';
-import {URL_BACKEND} from '../../config/config';
+import {
+  ProductoService
+} from '../../service/producto.service';
+import {
+  CarritoService
+} from '../../service/carrito.service';
+import {
+  AuthService
+} from '../../service/auth.service';
+import {
+  CategoriaService
+} from '../../service/categoria.service';
+import {
+  ProductoForm
+} from '../../models/productoForm';
+import {
+  URL_BACKEND
+} from '../../config/config';
 
 import Swal from 'sweetalert2';
 import swal from 'sweetalert2';
@@ -21,7 +43,7 @@ import swal from 'sweetalert2';
 })
 export class ProductosComponent implements OnInit {
 
-  productos: Producto[]=[];
+  productos: Producto[] = [];
 
   categorias: Categoria[];
 
@@ -29,17 +51,17 @@ export class ProductosComponent implements OnInit {
 
   paginador: any;
 
-  urlBackend= URL_BACKEND;
+  urlBackend = URL_BACKEND;
 
   enabled: boolean = false;
-  productoForm:ProductoForm = new ProductoForm();
+  productoForm: ProductoForm = new ProductoForm();
 
   constructor(private productoService: ProductoService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private categoriaService: CategoriaService,
-    private carritoService:CarritoService,
-    public authService: AuthService) { }
+    private carritoService: CarritoService,
+    public authService: AuthService) {}
 
   ngOnInit(): void {
 
@@ -102,20 +124,37 @@ export class ProductosComponent implements OnInit {
 
   public mostrarProductos(categoria: Categoria): any {
     this.productos = [];
-    this.productos = categoria.productos.filter( producto=> producto.estado=='Habilitado')
+    this.productos = categoria.productos.filter(producto => producto.estado == 'Habilitado')
     this.enabled = true;
 
   }
 
-  public addProductToCart(id: number):any{
+  public addProductToCart(id: number): any {
 
-    this.productoForm.cantidad=1;
-    this.productoForm.productoId=id;
+    this.productoForm.cantidad = 1;
+    this.productoForm.productoId = id;
     this.carritoService.addProductToCart(this.productoForm).subscribe(
-      response =>{
-        swal.fire('Producto agregado',` Producto Agregado con exito al carrito`,'success');
+      response => {
+        swal.fire('Producto agregado', ` Producto Agregado con exito al carrito`, 'success');
       }
     );
   }
 
+
+  public cleanFilters(): void {
+    this.activatedRoute.paramMap.subscribe(params => {
+      let page: number = +params.get('page');
+
+      if (!page) {
+        page = 0;
+      }
+
+      this.productoService.getProducto(page).subscribe(response => {
+        this.productos = response.content as Producto[];
+        this.paginador = response;
+      });
+    })
+
+    this.enabled=false;
+  }
 }

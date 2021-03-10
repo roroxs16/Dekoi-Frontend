@@ -54,14 +54,21 @@ export class UsuarioComponent implements OnInit {
       this.usuario= response;
       this.compras= response.compras;
       this.ultimaCompra=response.compras[response.compras.length-1];
-      
-      this.carrito = response.compras[response.compras.length-1].carrito;
-      
-      this.usuarioService.cargarProductosFromCompra(this.carrito.id).subscribe(response=>{
+    
+      if(response.compras.length >0){
         
-        this.carritoProducto=response;
+        this.carrito = response.compras[response.compras.length-1].carrito;
+        this.usuarioService.cargarProductosFromCompra(this.carrito.id).subscribe(response=>{
         
-      })
+          this.carritoProducto=response;
+          
+        })
+      }else{
+        this.carrito= null;
+      }
+    
+      
+     
     });
 
   }

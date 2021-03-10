@@ -186,7 +186,7 @@ export class AgendaComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private sanitizer:DomSanitizer,
     @Inject(DOCUMENT) private document: Document,
-    private authService: AuthService) {}
+    public authService: AuthService) {}
 
   @ViewChild('scheduleObj', {
     static: true
@@ -323,12 +323,19 @@ export class AgendaComponent implements OnInit {
     
 
     let last = Object.values(data);
+
     let fechaInicio = this.dateToISOLikeButLocal(last[0]);
 
 
     let fechaFin = this.dateToISOLikeButLocal(last[1]);
 
+    let fechaActual = new Date();
 
+    if(fechaActual > last[0] || fechaActual > last[1]){
+      swal.fire('No es posible agendar la reunion', 'Fecha de inicio no valida', 'warning')
+      this.router.navigate(['/servicios']);
+      return null;
+    }
 
     this.reunionService.agregarReuniones(fechaInicio, fechaFin, this.servicio.id).subscribe(reunion => {
 

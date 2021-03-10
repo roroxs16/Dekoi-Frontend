@@ -7,7 +7,12 @@ a{
   color: #878787;
 }
 a:hover{
-  color: #ff5100;
+  color: #ff5100 !important;
+ 
+}
+a.active{
+  color: #ff5100 !important;
+  
 }
 nav{
   font-family: 'Roboto', sans-serif;
@@ -15,8 +20,14 @@ nav{
   background-color: white;
   border: black;
 }
-.active-list-item {
+.active-list-item.active {
   color: #ff5100 !important; 
+  background-color: #ff5100 !important;
 } 
+.dropdown-item.active{
+  color: #ff5100 !important;
+  background-color: #ff5100 !important;
+}
+
 
 
